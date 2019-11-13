@@ -1,7 +1,7 @@
 Package: hereR
 Type: Package
 Title: 'sf'-Based Interface to the 'HERE' REST APIs
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Merlin", "Unterfinger", email = "info@munterfinger.ch", role = c("aut", "cre")))
 Maintainer: Merlin Unterfinger <info@munterfinger.ch>
@@ -9,7 +9,7 @@ URL: https://munterfinger.github.io/hereR/,
         https://github.com/munterfinger/hereR/
 BugReports: https://github.com/munterfinger/hereR/issues/
 Description: Interface to the 'HERE' REST APIs <https://developer.here.com/develop/rest-apis>:
-  (1) geocode addresses using the 'Geocoder' API;
+  (1) geocode and autocomplete addresses or reverse geocode POIs using the 'Geocoder' API;
   (2) routing directions, travel distance or time matrices and isolines using the 'Routing' API;
   (3) traffic flow and incident information from the 'Traffic' API;
   (4) weather forecasts, reports on current weather conditions, astronomical
@@ -27,7 +27,7 @@ LazyData: true
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-11-04 18:14:43 UTC; Merlin
+Packaged: 2019-11-13 21:06:17 UTC; Merlin
 Author: Merlin Unterfinger [aut, cre]
 Repository: CRAN
-Date/Publication: 2019-11-05 15:20:02 UTC
+Date/Publication: 2019-11-13 22:20:09 UTC

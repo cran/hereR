@@ -1,11 +1,14 @@
 .check_addresses <- function(addresses) {
   if (!is.character(addresses)) stop("'addresses' must be a 'character' vector.")
+  if (any(is.na(addresses))) stop("'addresses' contains NAs.")
+  if ("" %in% gsub(" ", "", addresses)) stop("'addresses' contains empty strings.")
 }
 
 .check_points <- function(points) {
-  if (!"sf" %in% class(points) |
-      any(sf::st_geometry_type(points) != "POINT"))
-    stop("'points' must be an sf object with geometry type 'POINT'.")
+  if (!"sf" %in% class(points))
+      stop("'points' must be an sf object.")
+  if (any(sf::st_geometry_type(points) != "POINT"))
+      stop("'points' must be an sf object with geometry type 'POINT'.")
 }
 
 .check_polygon <- function(polygon) {
@@ -131,4 +134,11 @@
   traffic_product_types <- c("flow", "incidents")
   if (!product %in% traffic_product_types)
     stop(sprintf("'product' must be '%s'.", paste(traffic_product_types, collapse = "', '")))
+}
+
+.check_max_results <- function(results) {
+  if (!is.numeric(results))
+    stop("'results' must be of type 'numeric'.")
+  if (results < 1 | results > 20)
+    stop("'results' must be of in the valid range from 1 to 20.")
 }
