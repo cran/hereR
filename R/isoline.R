@@ -46,8 +46,12 @@ isoline <- function(poi, range = seq(5, 30, 5) * 60, rangetype = "time",
   .check_rangetype(rangetype)
   .check_type(type = type, request = "calculateisoline")
   .check_mode(mode = mode, request = "calculateisoline")
+  .check_boolean(traffic)
+  .check_boolean(start)
+  .check_boolean(aggregate)
+  .check_boolean(url_only)
 
-  # Add authentification
+  # Add authentication
   url <- .add_auth(
     url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?"
   )
@@ -109,15 +113,19 @@ isoline <- function(poi, range = seq(5, 30, 5) * 60, rangetype = "time",
   if (length(data) == 0) return(NULL)
 
   # Extract information
+  ids <- .get_ids(data)
+  count <- 0
   isolines <-  sf::st_as_sf(
     data.table::rbindlist(
       lapply(data, function(con) {
+        count <<- count + 1
         df <- jsonlite::fromJSON(con)
         geometry <- lapply(df$response$isoline$component, function(iso){
           .polygon_from_pointList(iso$shape[[1]])
         })
         sf::st_as_sf(
           data.table::data.table(
+            id = ids[count],
             timestamp = as.POSIXct(df$response$metaInfo$timestamp,
                                    tz = "UTC",
                                    format = "%Y-%m-%dT%H:%M:%SZ"),
@@ -141,6 +149,7 @@ isoline <- function(poi, range = seq(5, 30, 5) * 60, rangetype = "time",
     isolines <- lwgeom::st_make_valid(isolines)
     isolines <- sf::st_difference(isolines)
     isolines$Group.1 <- NULL
+    isolines$id <- NA
 
     # Fix geometry collections
     suppressWarnings(
@@ -149,6 +158,6 @@ isoline <- function(poi, range = seq(5, 30, 5) * 60, rangetype = "time",
       )
     )
   }
-
+  rownames(isolines) <- NULL
   return(isolines)
 }

@@ -22,7 +22,13 @@ head(addresses, 3)
 head(geocoded, 3)
 
 ## ----join_geocoded, eval=FALSE, echo=TRUE, out.width='100%'--------------
-#  geocoded_sfdf <- st_as_sf(data.frame(geocoded, df[row.names(geocoded), ]))
+#  df <- data.frame(
+#    company = c("Schweizerische Bundesbahnen SBB", "Bahnhof AG", "Deutsche Bahn AG"),
+#    address = c("Wylerstrasse 123, 3000 Bern 65", "not_an_address", "Potsdamer Platz 2, 10785 Berlin"),
+#    stringsAsFactors = FALSE
+#  )
+#  locs <- geocode(df$address)
+#  geocoded_sfdf <- st_as_sf(data.frame(locs, df[locs$id, ]))
 
 ## ----map_geocoded, eval=TRUE, out.width='100%'---------------------------
 mapview(geocoded,
@@ -39,11 +45,12 @@ mapview(geocoded,
 ## ----results_autocomplete, eval=TRUE, echo=TRUE, out.width='100%'--------
 results <- data.table(
   input = addresses[suggestions$id],
+  id = suggestions$id,
   rank = suggestions$order,
   suggestion = suggestions$label
 )
 
-## ----table_results, eval=TRUE, echo=FALSE, out.width='100%', fig.align='center'----
+## ----table_results, eval=TRUE, echo=FALSE, out.width='100%', fig.align='center', screenshot.force=FALSE----
 knitr::kable(head(results), format = "html")
 
 ## ----reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'------------

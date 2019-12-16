@@ -22,20 +22,29 @@ alerts <- hereR:::example$weather_alerts
 #    product = "observation"
 #  )
 
-## ----table_obs, eval=TRUE, fig.align='center', out.width='100%', echo=FALSE----
+## ----table_obs, eval=TRUE, fig.align='center', out.width='100%', echo=FALSE, screenshot.force=FALSE----
 cols <- c("station", "distance", "description",
           "temperature", "humidity",
           "windSpeed", "windDirection")
 knitr::kable(as.data.frame(observation)[, cols], format = "html")
 
 ## ----map_obs, eval=TRUE, out.width='100%'--------------------------------
-mapview(observation,
-        zcol = "temperature",
-        cex = observation$humidity/4,
-        layer.name = "Observation",
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE
-)
+m <-
+  mapview(observation,
+          zcol = "temperature",
+          cex = observation$humidity/4,
+          layer.name = "Observation",
+          map.types = c("Esri.WorldTopoMap"),
+          homebutton = FALSE
+  ) + 
+  mapview(poi,
+          zcol = "city",
+          cex = 1,
+          col.region = "black",
+          legend = FALSE,
+          homebutton = FALSE
+  )
+m
 
 ## ----forecast, eval = FALSE----------------------------------------------
 #  forecast <- weather(
@@ -53,21 +62,30 @@ g <- lapply(1:nrow(forecast), function(x) {
               colour = 'blue') +
     xlab("Time from now [h]") +
     ylab("Temperature [°C] / Humidity [%]") +
-    ggtitle(forecast$city[x]) +
+    ggtitle(forecast$station[x]) +
     theme_classic()
 })
 
 ## ----map_forecast, eval=TRUE, out.width='100%'---------------------------
-mapview(forecast,
-        color = "black",
-        col.region = "yellow",
-        layer.name = "Forecast",
-        zcol = "city",
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE,
-        legend = FALSE,
-        popup = leafpop::popupGraph(g)
-)
+m <-
+  mapview(forecast,
+          color = "black",
+          col.region = "yellow",
+          layer.name = "Forecast",
+          zcol = "station",
+          map.types = c("Esri.WorldTopoMap"),
+          homebutton = FALSE,
+          legend = FALSE,
+          popup = leafpop::popupGraph(g)
+  ) + 
+  mapview(poi,
+          zcol = "city",
+          cex = 1,
+          col.region = "black",
+          legend = FALSE,
+          homebutton = FALSE
+  )
+m
 
 ## ----astronomy, eval = FALSE---------------------------------------------
 #  astronomy <- weather(
@@ -75,7 +93,7 @@ mapview(forecast,
 #    product = "forecast_astronomy"
 #  )
 
-## ----table_ast, eval=TRUE, fig.align='center', out.width='100%', echo=FALSE----
+## ----table_ast, eval=TRUE, fig.align='center', out.width='100%', echo=FALSE, screenshot.force=FALSE----
 ast <- astronomy$astronomy[[1]]
 ast$phase <- ast$moonPhaseDesc
 cols <- c("date", "sunrise", "sunset", "moonrise", "moonset", "phase")

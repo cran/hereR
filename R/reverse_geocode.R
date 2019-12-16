@@ -35,9 +35,11 @@
 #' landmarks <- reverse_geocode(poi = poi, results = 3, landmarks = TRUE, url_only = TRUE)
 reverse_geocode <- function(poi, results = 1, landmarks = FALSE, url_only = FALSE) {
 
-  # Check and preprocess addresses
+  # Input checks
   .check_points(poi)
   .check_max_results(results)
+  .check_boolean(landmarks)
+  .check_boolean(url_only)
 
   # Add authentication
   url <- .add_auth(
@@ -85,6 +87,7 @@ reverse_geocode <- function(poi, results = 1, landmarks = FALSE, url_only = FALS
 
   # Create sf, data.table, data.frame
   if (nrow(reverse) > 0) {
+    rownames(reverse) <- NULL
     return(
       sf::st_set_crs(
         sf::st_as_sf(reverse, coords = c("lng", "lat")),
@@ -96,13 +99,14 @@ reverse_geocode <- function(poi, results = 1, landmarks = FALSE, url_only = FALS
 }
 
 .extract_addresses <- function(data) {
+  ids <- .get_ids(data)
   count <- 0
   result <- data.table::rbindlist(lapply(data, function(con) {
     count <<- count + 1
     df <- jsonlite::fromJSON(con)
     if (length(df$Response$View$Result) == 0) return(NULL)
     data.table::data.table(
-      id = count,
+      id = ids[count],
       rank = seq(1, nrow(df$Response$View$Result[[1]])),
       distance = df$Response$View$Result[[1]]$Distance,
       level = df$Response$View$Result[[1]]$MatchLevel,
@@ -123,13 +127,14 @@ reverse_geocode <- function(poi, results = 1, landmarks = FALSE, url_only = FALS
 }
 
 .extract_landmarks <- function(data) {
+  ids <- .get_ids(data)
   count <- 0
   result <- data.table::rbindlist(lapply(data, function(con) {
     count <<- count + 1
     df <- jsonlite::fromJSON(con)
     if (length(df$Response$View$Result) == 0) return(NULL)
     data.table::data.table(
-      id = count,
+      id = ids[count],
       rank = seq(1, nrow(df$Response$View$Result[[1]])),
       distance = df$Response$View$Result[[1]]$Distance,
       level = df$Response$View$Result[[1]]$MatchLevel,

@@ -7,14 +7,25 @@
 .check_points <- function(points) {
   if (!"sf" %in% class(points))
       stop("'points' must be an sf object.")
+  if (any(sf::st_is_empty(points)))
+    stop("'points' has empty entries in the geometry column.")
   if (any(sf::st_geometry_type(points) != "POINT"))
       stop("'points' must be an sf object with geometry type 'POINT'.")
 }
 
 .check_polygon <- function(polygon) {
+  if (!"sf" %in% class(polygon))
+    stop("'polygon' must be an sf object.")
+  if (any(sf::st_is_empty(polygon)))
+    stop("'polygon' has empty entries in the geometry column.")
   if (!"sf" %in% class(polygon) |
       any(!(sf::st_geometry_type(polygon) %in% c("POLYGON", "MULTIPOLYGON"))))
     stop("'polygon' must be an sf object with geometry type 'POLYGON' or 'MULTIPOLYGON'.")
+}
+
+.check_boolean <- function(bool) {
+  if (!bool %in% c(TRUE, FALSE))
+    stop(sprintf("'%s' must be a 'boolean' value.", deparse(substitute(bool))))
 }
 
 .check_datetime <- function(datetime) {
@@ -96,7 +107,7 @@
 .check_proxy <- function(proxy) {
   if (!is.null(proxy)) {
     if (!is.character(proxy))
-      stop("'proxy' must be of type 'character'")
+      stop("'proxy' must be of type 'character'.")
     if (!strsplit(proxy, "://")[[1]][1] %in% c("http", "https"))
       stop("'proxy' is not in the required format: 'http://your-proxy.com:port/' or 'https://your-proxy.org:port/'.")
   }
@@ -105,7 +116,7 @@
 .check_proxyuserpwd <- function(proxyuserpwd) {
   if (!is.null(proxyuserpwd)) {
     if (!is.character(proxyuserpwd))
-      stop("'proxyuserpwd' must be of type 'character'")
+      stop("'proxyuserpwd' must be of type 'character'.")
     if (length(strsplit(proxyuserpwd, ":")[[1]]) != 2)
       stop("'proxyuserpwd' is not in the required format: 'user:pwd'.")
   }

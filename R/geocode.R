@@ -23,8 +23,10 @@
 #' locs <- geocode(addresses = poi$city, url_only = TRUE)
 geocode <- function(addresses, autocomplete = FALSE, url_only = FALSE) {
 
-  # Check and preprocess addresses
+  # Input checks
   .check_addresses(addresses)
+  .check_boolean(autocomplete)
+  .check_boolean(url_only)
 
   # Add authentication
   url <- .add_auth(
@@ -59,18 +61,19 @@ geocode <- function(addresses, autocomplete = FALSE, url_only = FALSE) {
   if (length(data) == 0) return(NULL)
 
   # Extract information
+  ids <- .get_ids(data)
   count <- 0
-  rows <- seq(1, length(addresses))
+  geocode_failed <- character(0)
   geocoded <- data.table::rbindlist(
     lapply(data, function(con) {
       count <<- count + 1
       df <- jsonlite::fromJSON(con)
       if (length(df$Response$View) == 0) {
-        message(sprintf("Address '%s' not found.", addresses[count]))
-        rows <<- rows[rows != count]
+        geocode_failed <<- c(geocode_failed, addresses[count])
         return(NULL)
       }
       result <- data.table::data.table(
+        id = ids[count],
         address = df$Response$View$Result[[1]]$Location$Address$Label,
         street = df$Response$View$Result[[1]]$Location$Address$Street,
         houseNumber = df$Response$View$Result[[1]]$Location$Address$HouseNumber,
@@ -88,9 +91,15 @@ geocode <- function(addresses, autocomplete = FALSE, url_only = FALSE) {
     }), fill = TRUE
   )
 
+  # Failed to geocode
+  if (length(geocode_failed) > 0) {
+    message(sprintf("Address(es) '%s' not found.",
+                    paste(geocode_failed, collapse = "', '")))
+  }
+
   # Create sf, data.table, data.frame
   if (nrow(geocoded) > 0) {
-    row.names(geocoded) <- rows
+    rownames(geocoded) <- NULL
     return(
       sf::st_set_crs(
         sf::st_as_sf(geocoded, coords = c("lng", "lat")),

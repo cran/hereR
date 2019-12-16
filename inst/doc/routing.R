@@ -14,14 +14,21 @@ routes <- hereR:::example$route
 mat <- hereR:::example$route_matrix
 iso <- hereR:::example$isoline
 
+start <- poi[1:2, ]
+destination <- poi[3:4, ]
+
 ## ----directions, eval=FALSE----------------------------------------------
+#  start <- poi[1:2, ]
+#  destination <- poi[3:4, ]
 #  routes <- route(
-#    start = poi[1:2, ],
-#    destination = poi[3:4, ]
+#    start = start,
+#    destination = destination
 #  )
 
 ## ----map_routes, eval=TRUE, out.width='100%'-----------------------------
-routes$label <- paste(routes$fromLabel, routes$toLabel, sep =  " - ")
+routes$label <- paste(start$city[routes$id],
+                      destination$city[routes$id],
+                      sep =  " - ")
 mapview(routes,
         zcol = "label",
         lwd = routes$travelTime/max(routes$travelTime)*5,
@@ -42,7 +49,7 @@ mapview(routes,
 #    start = poi
 #  )
 
-## ----table_route_matrix, eval=TRUE, out.width='100%', echo=FALSE---------
+## ----table_route_matrix, eval=TRUE, out.width='100%', echo=FALSE, screenshot.force=FALSE----
 knitr::kable(head(mat, 10), format = "html")
 
 ## ----isoline, eval=FALSE-------------------------------------------------

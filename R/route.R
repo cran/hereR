@@ -58,6 +58,8 @@ route <- function(start, destination,
   .check_type(type, request = "calculateroute")
   .check_mode(mode, request = "calculateroute")
   .check_vehicle_type(vehicle_type)
+  .check_boolean(traffic)
+  .check_boolean(url_only)
 
   # CRS transformation and formatting
   start <- sf::st_coordinates(
@@ -73,7 +75,7 @@ route <- function(start, destination,
     "geo!", destination[, 2], ",", destination[, 1]
   )
 
-  # Add authentification
+  # Add authentication
   url <- .add_auth(
     url = "https://route.api.here.com/routing/7.2/calculateroute.json?"
   )
@@ -145,18 +147,24 @@ route <- function(start, destination,
   if (length(data) == 0) return(NULL)
 
   # Extract information
+  ids <- .get_ids(data)
+  count <- 0
   routes <- sf::st_as_sf(
     data.table::rbindlist(
       lapply(data, function(con) {
+        count <<- count + 1
         df <- jsonlite::fromJSON(con)
+
         # Get summary
         summary <- df$response$route$summary
         summary <- summary[, !names(summary) %in% c("flags", "text", "_type"),
                            drop = FALSE]
+
         # Build sf object
         sf::st_as_sf(
           data.table::data.table(
             cbind(
+              id = ids[count],
               fromLabel = utils::head(df$response$route$waypoint, 1)[[1]]$label[1],
               toLabel = utils::tail(df$response$route$waypoint, 1)[[1]]$label[2],
               mode = paste(Reduce(c, df$response$route$mode$transportModes),
@@ -174,5 +182,6 @@ route <- function(start, destination,
       })
     )
   )
+  rownames(routes) <- NULL
   return(routes)
 }
