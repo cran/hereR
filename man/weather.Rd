@@ -2,7 +2,7 @@
 % Please edit documentation in R/weather.R
 \name{weather}
 \alias{weather}
-\title{HERE Destination Weather API: Observations, Forecast, Astronomy and Alerts}
+\title{HERE Destination Weather API: Observations, Forecasts, Astronomy and Alerts}
 \usage{
 weather(poi, product = "observation", url_only = FALSE)
 }
@@ -20,15 +20,12 @@ The point geometry in the \code{sf} object is the location of the weather statio
 \description{
 Weather forecasts, reports on current weather conditions,
 astronomical information and alerts at a specific location (coordinates or
-location name) based on the 'Destination Weather' API.
+location name) based on the HERE 'Destination Weather' API.
 The information comes from the nearest available weather station and is not interpolated.
 }
 \examples{
-# Authentication
-set_auth(
-  app_id = "<YOUR APP ID>",
-  app_code = "<YOUR APP CODE>"
-)
+# Provide an API Key for a HERE project
+set_key("<YOUR API KEY>")
 
 # Observation
 observation <- weather(poi = poi, product = "observation", url_only = TRUE)

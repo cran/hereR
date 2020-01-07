@@ -1,6 +1,6 @@
 #' HERE Geocoder API: Autocomplete
 #'
-#' Completes addresses using the 'Geocoder Autocomplete' API.
+#' Completes addresses using the HERE 'Geocoder Autocomplete' API.
 #'
 #' @references
 #' \href{https://developer.here.com/documentation/geocoder-autocomplete/dev_guide/topics/resource-suggest.html}{HERE Geocoder API: Autocomplete}
@@ -14,23 +14,20 @@
 #' @export
 #'
 #' @examples
-#' # Authentication
-#' set_auth(
-#'   app_id = "<YOUR APP ID>",
-#'   app_code = "<YOUR APP CODE>"
-#' )
+#' # Provide an API Key for a HERE project
+#' set_key("<YOUR API KEY>")
 #'
 #' suggestions <- autocomplete(addresses = poi$city, url_only = TRUE)
 autocomplete <- function(addresses, results = 5, url_only = FALSE) {
 
   # Check addresses
   .check_addresses(addresses)
-  .check_max_results(results)
+  .check_numeric_range(results, 1, 20)
   .check_boolean(url_only)
 
-  # Add authentication
-  url <- .add_auth(
-    url = "https://autocomplete.geocoder.api.here.com/6.2/suggest.json?"
+  # Add API key
+  url <- .add_key(
+    url = "https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?"
   )
 
   # Add addresses
@@ -76,7 +73,7 @@ autocomplete <- function(addresses, results = 5, url_only = FALSE) {
   # Return if not NULL data.talbe
   if (nrow(suggestion) > 0) {
     rownames(suggestion) <- NULL
-    return(suggestion)
+    return(as.data.frame(suggestion))
   } else {
     return(NULL)
   }

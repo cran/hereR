@@ -1,6 +1,6 @@
 #' HERE Geocoder API: Reverse Geocode
 #'
-#' Get addresses or landmarks from locations using the 'Geocoder' API.
+#' Get addresses or landmarks from locations using the HERE 'Geocoder' API.
 #' The return value is an \code{sf} object, containing point geometries
 #' with suggestions for addresses or landmarks near the provided POIs.
 #'
@@ -22,11 +22,8 @@
 #' The \code{"id"} column can be used to join the original POIs.
 #'
 #' @examples
-#' # Authentication
-#' set_auth(
-#'   app_id = "<YOUR APP ID>",
-#'   app_code = "<YOUR APP CODE>"
-#' )
+#' # Provide an API Key for a HERE project
+#' set_key("<YOUR API KEY>")
 #'
 #' # Get addresses
 #' addresses <- reverse_geocode(poi = poi, results = 3, landmarks = FALSE, url_only = TRUE)
@@ -37,13 +34,13 @@ reverse_geocode <- function(poi, results = 1, landmarks = FALSE, url_only = FALS
 
   # Input checks
   .check_points(poi)
-  .check_max_results(results)
+  .check_numeric_range(results, 1, 20)
   .check_boolean(landmarks)
   .check_boolean(url_only)
 
-  # Add authentication
-  url <- .add_auth(
-    url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?"
+  # Add API key
+  url <- .add_key(
+    url = "https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?"
   )
 
   # Add point coords
@@ -90,7 +87,9 @@ reverse_geocode <- function(poi, results = 1, landmarks = FALSE, url_only = FALS
     rownames(reverse) <- NULL
     return(
       sf::st_set_crs(
-        sf::st_as_sf(reverse, coords = c("lng", "lat")),
+        sf::st_as_sf(
+          as.data.frame(reverse),
+          coords = c("lng", "lat")),
         4326)
     )
   } else {

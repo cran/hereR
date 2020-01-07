@@ -1,6 +1,6 @@
 #' HERE Geocoder API: Geocode
 #'
-#' Geocodes addresses using the 'Geocoder' API.
+#' Geocodes addresses using the HERE 'Geocoder' API.
 #'
 #' @references
 #' \href{https://developer.here.com/documentation/geocoder/topics/resource-geocode.html}{HERE Geocoder API: Geocode}
@@ -14,11 +14,8 @@
 #' @export
 #'
 #' @examples
-#' # Authentication
-#' set_auth(
-#'   app_id = "<YOUR APP ID>",
-#'   app_code = "<YOUR APP CODE>"
-#' )
+#' # Provide an API Key for a HERE project
+#' set_key("<YOUR API KEY>")
 #'
 #' locs <- geocode(addresses = poi$city, url_only = TRUE)
 geocode <- function(addresses, autocomplete = FALSE, url_only = FALSE) {
@@ -28,9 +25,9 @@ geocode <- function(addresses, autocomplete = FALSE, url_only = FALSE) {
   .check_boolean(autocomplete)
   .check_boolean(url_only)
 
-  # Add authentication
-  url <- .add_auth(
-    url = "https://geocoder.api.here.com/6.2/geocode.json?"
+  # Add API key
+  url <- .add_key(
+    url = "https://geocoder.ls.hereapi.com/6.2/geocode.json?"
   )
 
   # Autocomplete addresses
@@ -97,12 +94,14 @@ geocode <- function(addresses, autocomplete = FALSE, url_only = FALSE) {
                     paste(geocode_failed, collapse = "', '")))
   }
 
-  # Create sf, data.table, data.frame
+  # Create sf object
   if (nrow(geocoded) > 0) {
     rownames(geocoded) <- NULL
     return(
       sf::st_set_crs(
-        sf::st_as_sf(geocoded, coords = c("lng", "lat")),
+        sf::st_as_sf(
+          as.data.frame(geocoded),
+          coords = c("lng", "lat")),
         4326)
     )
   } else {

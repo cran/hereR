@@ -1,4 +1,4 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -16,7 +16,7 @@ forecast <- hereR:::example$weather_forecast_hourly
 astronomy <- hereR:::example$weather_forecast_astronomy
 alerts <- hereR:::example$weather_alerts
 
-## ----observations, eval = FALSE------------------------------------------
+## ----observations, eval = FALSE-----------------------------------------------
 #  observation <- weather(
 #    poi = poi,
 #    product = "observation"
@@ -28,7 +28,7 @@ cols <- c("station", "distance", "description",
           "windSpeed", "windDirection")
 knitr::kable(as.data.frame(observation)[, cols], format = "html")
 
-## ----map_obs, eval=TRUE, out.width='100%'--------------------------------
+## ----map_obs, eval=TRUE, out.width='100%'-------------------------------------
 m <-
   mapview(observation,
           zcol = "temperature",
@@ -46,27 +46,31 @@ m <-
   )
 m
 
-## ----forecast, eval = FALSE----------------------------------------------
+## ----forecast, eval = FALSE---------------------------------------------------
 #  forecast <- weather(
 #    poi = poi,
 #    product = "forecast_hourly"
 #  )
 
-## ----plots_forecast, eval=TRUE, out.width='100%'-------------------------
+## ----plots_forecast, eval=TRUE, out.width='100%'------------------------------
 g <- lapply(1:nrow(forecast), function(x) {
-  fc <- forecast$forecast[[x]]
-  ggplot() + 
-    geom_line(aes(x = seq(1, nrow(fc)), y = as.numeric(fc$temperature)),
-              colour = 'red') +
-    geom_line(aes(x = seq(1, nrow(fc)), y = as.numeric(fc$humidity)),
-              colour = 'blue') +
-    xlab("Time from now [h]") +
-    ylab("Temperature [°C] / Humidity [%]") +
+  fc <- data.frame(
+    dt = as.POSIXct(forecast$forecast[[x]]$utcTime, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"),
+    te = as.numeric(forecast$forecast[[x]]$temperature),
+    rh = as.numeric(forecast$forecast[[x]]$humidity)
+  )
+  ggplot(fc, aes(x = dt)) + 
+    geom_line(aes(y = te, colour = "Temperature")) +
+    geom_line(aes(y = rh/5, colour = "Humidity")) +
+    scale_y_continuous(sec.axis = sec_axis(~.*5, name = "Relative humidity [%]")) + 
+    scale_colour_manual(values = c("blue", "red")) +
+    labs(y = "Air temperature [°C]", x = "", colour = "") +
     ggtitle(forecast$station[x]) +
-    theme_classic()
+    theme_minimal() +
+    theme(legend.position="bottom", panel.background = element_rect(color = NA))
 })
 
-## ----map_forecast, eval=TRUE, out.width='100%'---------------------------
+## ----map_forecast, eval=TRUE, out.width='100%'--------------------------------
 m <-
   mapview(forecast,
           color = "black",
@@ -87,7 +91,7 @@ m <-
   )
 m
 
-## ----astronomy, eval = FALSE---------------------------------------------
+## ----astronomy, eval = FALSE--------------------------------------------------
 #  astronomy <- weather(
 #    poi = poi,
 #    product = "forecast_astronomy"
@@ -99,7 +103,7 @@ ast$phase <- ast$moonPhaseDesc
 cols <- c("date", "sunrise", "sunset", "moonrise", "moonset", "phase")
 knitr::kable(ast[, cols], format = "html", )
 
-## ----alerts, eval = FALSE------------------------------------------------
+## ----alerts, eval = FALSE-----------------------------------------------------
 #  alerts <- weather(
 #    poi = poi,
 #    product = "alerts"

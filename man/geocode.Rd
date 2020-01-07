@@ -17,14 +17,11 @@ geocode(addresses, autocomplete = FALSE, url_only = FALSE)
 An \code{sf} object, containing the coordinates of the geocoded addresses.
 }
 \description{
-Geocodes addresses using the 'Geocoder' API.
+Geocodes addresses using the HERE 'Geocoder' API.
 }
 \examples{
-# Authentication
-set_auth(
-  app_id = "<YOUR APP ID>",
-  app_code = "<YOUR APP CODE>"
-)
+# Provide an API Key for a HERE project
+set_key("<YOUR API KEY>")
 
 locs <- geocode(addresses = poi$city, url_only = TRUE)
 }

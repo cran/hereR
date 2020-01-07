@@ -1,9 +1,6 @@
 test_that("autocomplete works", {
-  # Set dummy login
-  set_auth(
-    app_id = "dummy_app_id",
-    app_code = "dummy_app_code"
-  )
+  # Set dummy key
+  set_key("dummy_api_key")
 
   # Load package example data
   data(poi)
@@ -20,7 +17,7 @@ test_that("autocomplete works", {
     suggestions <- autocomplete(addresses = poi$city),
 
     # Tests
-    expect_is(suggestions,  c("data.table", "data.frame")),
+    expect_is(suggestions,  c("data.frame")),
     expect_equal(length(unique(suggestions$id)), length(poi$city))
   )
 })

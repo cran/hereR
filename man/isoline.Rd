@@ -2,29 +2,37 @@
 % Please edit documentation in R/isoline.R
 \name{isoline}
 \alias{isoline}
-\title{HERE Routing API: Isoline}
+\title{HERE Routing API: Calculate Isoline}
 \usage{
-isoline(poi, range = seq(5, 30, 5) * 60, rangetype = "time",
-  type = "fastest", mode = "car", traffic = FALSE,
-  departure = NULL, start = TRUE, aggregate = TRUE,
-  url_only = FALSE)
+isoline(
+  poi,
+  datetime = Sys.time(),
+  arrival = FALSE,
+  range = seq(5, 30, 5) * 60,
+  range_type = "time",
+  type = "fastest",
+  mode = "car",
+  traffic = FALSE,
+  aggregate = TRUE,
+  url_only = FALSE
+)
 }
 \arguments{
 \item{poi}{\code{sf} object, Points of Interest (POIs) of geometry type \code{POINT}.}
 
+\item{datetime}{\code{POSIXct} object, datetime for the departure (or arrival if \code{arrival = TRUE}).}
+
+\item{arrival}{boolean, are the provided Points of Interest (POIs) the origin or destination locations (\code{default = FALSE})?}
+
 \item{range}{numeric, a vector of type \code{integer} containing the breaks for the generation of the isolines: (1) time in seconds; (2) distance in meters; (3) consumption in costfactor.}
 
-\item{rangetype}{character, unit of the isolines: \code{"distance"}, \code{"time"} or \code{"consumption"}.}
+\item{range_type}{character, unit of the isolines: \code{"distance"}, \code{"time"} or \code{"consumption"}.}
 
 \item{type}{character, set the routing type: \code{"fastest"} or \code{"shortest"}.}
 
 \item{mode}{character, set the transport mode: \code{"car"}, \code{"pedestrian"} or \code{"truck"}.}
 
-\item{traffic}{boolean, use real-time traffic or prediction in routing (\code{default = FALSE})? If no \code{departure} date and time is set, the current timestamp at the moment of the request is used for \code{departure}.}
-
-\item{departure}{datetime, timestamp of type \code{POSIXct}, \code{POSIXt} for the departure.}
-
-\item{start}{boolean, are the provided Points of Interest (POIs) the start or destination (\code{default = TRUE})?}
+\item{traffic}{boolean, use real-time traffic or prediction in routing (\code{default = FALSE})? If no \code{datetime} is set, the current timestamp at the moment of the request is used for \code{datetime}.}
 
 \item{aggregate}{boolean, aggregate (with function \code{min}) and intersect the isolines from geometry type \code{POLYGON} to geometry type \code{MULTIPOLYGON} (\code{default = TRUE})?}
 
@@ -34,16 +42,13 @@ isoline(poi, range = seq(5, 30, 5) * 60, rangetype = "time",
 An \code{sf} object containing the requested isolines.
 }
 \description{
-Calcuates isolines (\code{POLYGON} or \code{MULTIPOLYGON}) that connect the end points of all routes
-leaving from defined centers (POIs) with either a specified length, a
-specified travel time or consumption.
+Calcuates isolines (\code{POLYGON} or \code{MULTIPOLYGON}) using the HERE 'Routing' API
+that connect the end points of all routes leaving from defined centers (POIs) with either
+a specified length, a specified travel time or consumption.
 }
 \examples{
-# Authentication
-set_auth(
-  app_id = "<YOUR APP ID>",
-  app_code = "<YOUR APP CODE>"
-)
+# Provide an API Key for a HERE project
+set_key("<YOUR API KEY>")
 
 # Isochrone for 5, 10, 15, 20, 25 and 30 minutes driving time
 isolines <- isoline(

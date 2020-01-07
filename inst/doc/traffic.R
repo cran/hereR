@@ -1,4 +1,4 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -13,15 +13,15 @@ mapviewOptions(
 flow <- hereR:::example$traffic_flow
 incidents <- hereR:::example$traffic_incidents
 
-## ----flow, eval=FALSE----------------------------------------------------
+## ----flow, eval=FALSE---------------------------------------------------------
 #  flow <- traffic(
 #    aoi = aoi[aoi$code == "LI", ],
 #    product = "flow",
-#    from_dt = Sys.time() - (60*60*2),
-#    to_dt = Sys.time()
+#    from = Sys.time() - (60*60*2),
+#    to = Sys.time()
 #  )
 
-## ----map_flow, eval=TRUE, out.width='100%'-------------------------------
+## ----map_flow, eval=TRUE, out.width='100%'------------------------------------
 flow <- flow[order(flow$JF), ]
 mapview(flow,
         zcol = "JF",
@@ -31,15 +31,14 @@ mapview(flow,
         homebutton = FALSE
 )
 
-## ----incidents, eval=FALSE-----------------------------------------------
+## ----incidents, eval=FALSE----------------------------------------------------
 #  incidents <- traffic(
 #    aoi = aoi[aoi$code == "LI", ],
 #    product = "incidents",
-#    from_dt = Sys.time()-60*60*1.5,
-#    local_time = FALSE
+#    from = Sys.time()-60*60*1.5
 #  )
 
-## ----map_incidents, eval=TRUE, out.width='100%'--------------------------
+## ----map_incidents, eval=TRUE, out.width='100%'-------------------------------
 mapview(incidents,
         zcol = "type",
         layer.name = "Incident type",

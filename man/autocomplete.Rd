@@ -17,14 +17,11 @@ autocomplete(addresses, results = 5, url_only = FALSE)
 A \code{data.table} object, containing the autocomplete suggestions for the addresses.
 }
 \description{
-Completes addresses using the 'Geocoder Autocomplete' API.
+Completes addresses using the HERE 'Geocoder Autocomplete' API.
 }
 \examples{
-# Authentication
-set_auth(
-  app_id = "<YOUR APP ID>",
-  app_code = "<YOUR APP CODE>"
-)
+# Provide an API Key for a HERE project
+set_key("<YOUR API KEY>")
 
 suggestions <- autocomplete(addresses = poi$city, url_only = TRUE)
 }

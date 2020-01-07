@@ -2,28 +2,36 @@
 % Please edit documentation in R/route.R
 \name{route}
 \alias{route}
-\title{HERE Routing API: Route}
+\title{HERE Routing API: Calculate Route}
 \usage{
-route(start, destination, type = "fastest", mode = "car",
-  traffic = FALSE, vehicle_type = "diesel,5.5", departure = NULL,
-  arrival = NULL, url_only = FALSE)
+route(
+  origin,
+  destination,
+  datetime = Sys.time(),
+  arrival = FALSE,
+  type = "fastest",
+  mode = "car",
+  traffic = FALSE,
+  vehicle_type = "diesel,5.5",
+  url_only = FALSE
+)
 }
 \arguments{
-\item{start}{\code{sf} object, Points of Interest (POIs) of geometry type \code{POINT} for the start locations.}
+\item{origin}{\code{sf} object, the origin locations of geometry type \code{POINT}.}
 
-\item{destination}{\code{sf} object, Points of Interest (POIs) of geometry type \code{POINT} for the destination locations.}
+\item{destination}{\code{sf} object, the destination locations of geometry type \code{POINT}.}
+
+\item{datetime}{\code{POSIXct} object, datetime for the departure (or arrival if \code{arrival = TRUE}).}
+
+\item{arrival}{boolean, calculate routes for arrival at the defined time (\code{default = FALSE})?}
 
 \item{type}{character, set the routing type: \code{"fastest"}, \code{"shortest"} or \code{"balanced"}.}
 
-\item{mode}{character, set the transport mode: \code{"car"}, \code{"pedestrian"}, \code{"carHOV"}, \code{"publicTransport"}, \code{"publicTransportTimeTable"}, \code{"truck"} or \code{"bicycle"}.}
+\item{mode}{character, set the transport mode: \code{"car"}, \code{"pedestrian"}, \code{"carHOV"}, \code{"publicTransport"}, \code{"truck"} or \code{"bicycle"}.}
 
-\item{traffic}{boolean, use real-time traffic or prediction in routing (\code{default = FALSE})? If no \code{departure} or \code{arrival} date and time is set, the current timestamp at the moment of the request is used for \code{departure}.}
+\item{traffic}{boolean, use real-time traffic or prediction in routing (\code{default = FALSE})? If no \code{datetime} is set, the current timestamp at the moment of the request is used for \code{datetime}.}
 
 \item{vehicle_type}{character, specify the motor type of the vehicle: \code{"diesel"}, \code{"gasoline"} or \code{"electric"}. And set the consumption per 100km im liters (\code{default = "diesel,5.5"}).}
-
-\item{departure}{datetime, timestamp of type \code{POSIXct}, \code{POSIXt} for the departure.}
-
-\item{arrival}{datetime, timestamp of type \code{POSIXct}, \code{POSIXt} for the arrival. Only specify a departure or an arrival.}
 
 \item{url_only}{boolean, only return the generated URLs (\code{default = FALSE})?}
 }
@@ -31,21 +39,22 @@ route(start, destination, type = "fastest", mode = "car",
 An \code{sf} object containing the requested routes.
 }
 \description{
-Calculates route geometries (\code{LINESTRING}) between given pairs of points using the 'Routing' API.
+Calculates route geometries (\code{LINESTRING}) between given pairs of points using the HERE 'Routing' API.
 Routes can be created for various transport modes, as for example 'car' or 'public transport',
 incorporating current traffic information, if available.
 For routes using the transport mode \code{"car"} a vehicle type can be specified,
 to obtain an estimate of the consumption.
 }
+\note{
+The public transport routes (\code{mode = "publicTransport"}) provided by \code{\link{route}}
+are not considering the time tables of the public transport providers.
+Use \code{\link{connection}} for public transport routes that consider time tables.
+}
 \examples{
-# Authentication
-set_auth(
-  app_id = "<YOUR APP ID>",
-  app_code = "<YOUR APP CODE>"
-)
+# Provide an API Key for a HERE project
+set_key("<YOUR API KEY>")
 
 # Get all from - to combinations from POIs
-library(sf)
 to <- poi[rep(seq_len(nrow(poi)), nrow(poi)), ]
 from <- poi[rep(seq_len(nrow(poi)), each = nrow(poi)),]
 idx <- apply(to != from, any, MARGIN = 1)
@@ -54,7 +63,7 @@ from <- from[idx, ]
 
 # Routing
 routes <- route(
-  start = from, destination = to,
+  origin = from, destination = to,
   mode = "car", type = "fastest", traffic = TRUE,
   vehicle_type = "diesel,5.5",
   url_only = TRUE

@@ -1,9 +1,6 @@
 test_that("traffic incidents works", {
-  # Set dummy login
-  set_auth(
-    app_id = "dummy_app_id",
-    app_code = "dummy_app_code"
-  )
+  # Set dummy key
+  set_key("dummy_api_key")
 
   # Load package example data
   data(aoi)
@@ -14,7 +11,7 @@ test_that("traffic incidents works", {
   expect_error(traffic(aoi = aoi, product = "not_a_product"), "'product' must be 'flow', 'incidents'.")
 
   # Test URL
-  expect_is(traffic(aoi = aoi[aoi$code == "LI", ], product = "incidents", from_dt = Sys.time()-60*60, to_dt = Sys.time(), url_only = TRUE), "character")
+  expect_is(traffic(aoi = aoi[aoi$code == "LI", ], product = "incidents", from = Sys.time()-60*60, to = Sys.time(), url_only = TRUE), "character")
 
   # Test with API response mock
   with_mock(
@@ -22,7 +19,7 @@ test_that("traffic incidents works", {
     traffic_incidents <- traffic(aoi = aoi[aoi$code == "LI", ], product = "incidents"),
 
     # Tests
-    expect_equal(class(traffic_incidents), c("sf", "data.table", "data.frame")),
+    expect_equal(class(traffic_incidents), c("sf", "data.frame")),
     expect_equal(any(sf::st_geometry_type(traffic_incidents) != "POINT"), FALSE)
   )
 })

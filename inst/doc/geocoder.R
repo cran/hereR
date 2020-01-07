@@ -1,4 +1,4 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -12,16 +12,16 @@ suggestions <- hereR:::example$autocomplete
 rev_addresses <- hereR:::example$reverse_geocode_addresses
 rev_landmarks <- hereR:::example$reverse_geocode_landmarks
 
-## ----print_addresses, eval=TRUE, echo=TRUE, out.width='100%'-------------
+## ----print_addresses, eval=TRUE, echo=TRUE, out.width='100%'------------------
 head(addresses, 3)
 
-## ----geocode, eval=FALSE-------------------------------------------------
+## ----geocode, eval=FALSE------------------------------------------------------
 #  geocoded <- geocode(addresses, autocomplete = FALSE)
 
-## ----head_geocoded, eval=TRUE, echo=TRUE, out.width='100%'---------------
+## ----head_geocoded, eval=TRUE, echo=TRUE, out.width='100%'--------------------
 head(geocoded, 3)
 
-## ----join_geocoded, eval=FALSE, echo=TRUE, out.width='100%'--------------
+## ----join_geocoded, eval=FALSE, echo=TRUE, out.width='100%'-------------------
 #  df <- data.frame(
 #    company = c("Schweizerische Bundesbahnen SBB", "Bahnhof AG", "Deutsche Bahn AG"),
 #    address = c("Wylerstrasse 123, 3000 Bern 65", "not_an_address", "Potsdamer Platz 2, 10785 Berlin"),
@@ -30,7 +30,7 @@ head(geocoded, 3)
 #  locs <- geocode(df$address)
 #  geocoded_sfdf <- st_as_sf(data.frame(locs, df[locs$id, ]))
 
-## ----map_geocoded, eval=TRUE, out.width='100%'---------------------------
+## ----map_geocoded, eval=TRUE, out.width='100%'--------------------------------
 mapview(geocoded,
         label = geocoded$address,
         col.regions = "yellow",
@@ -39,10 +39,10 @@ mapview(geocoded,
         homebutton = FALSE
 )
 
-## ----autocomplete, eval=FALSE--------------------------------------------
+## ----autocomplete, eval=FALSE-------------------------------------------------
 #  suggestions <- autocomplete(addresses, results = 3)
 
-## ----results_autocomplete, eval=TRUE, echo=TRUE, out.width='100%'--------
+## ----results_autocomplete, eval=TRUE, echo=TRUE, out.width='100%'-------------
 results <- data.table(
   input = addresses[suggestions$id],
   id = suggestions$id,
@@ -53,11 +53,11 @@ results <- data.table(
 ## ----table_results, eval=TRUE, echo=FALSE, out.width='100%', fig.align='center', screenshot.force=FALSE----
 knitr::kable(head(results), format = "html")
 
-## ----reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'------------
+## ----reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'-----------------
 #  rev_addresses <- reverse_geocode(poi = poi, results = 3, landmarks = FALSE)
 #  rev_landmarks <- reverse_geocode(poi = poi, results = 3, landmarks = TRUE)
 
-## ----map_reverse_geocode, eval=TRUE, echo=TRUE, out.width='100%'---------
+## ----map_reverse_geocode, eval=TRUE, echo=TRUE, out.width='100%'--------------
 m <-
   mapview(poi, alpha.region = 0, col.region = "transparent",
           label = poi$city, cex = 30, layer.name = "POIs",

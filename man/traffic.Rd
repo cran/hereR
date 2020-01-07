@@ -4,19 +4,25 @@
 \alias{traffic}
 \title{HERE Traffic API: Flow and Incidents}
 \usage{
-traffic(aoi, product = "flow", from_dt = NULL, to_dt = NULL,
-  local_time = FALSE, url_only = FALSE)
+traffic(
+  aoi,
+  product = "flow",
+  from = NULL,
+  to = NULL,
+  min_jam_factor = 0,
+  url_only = FALSE
+)
 }
 \arguments{
 \item{aoi}{\code{sf} object, Areas of Interest (POIs) of geometry type \code{POLYGON}.}
 
 \item{product}{character, traffic product of the 'Traffic API'. Supported products: \code{"flow"} and \code{"incidents"}.}
 
-\item{from_dt}{datetime, timestamp of type \code{POSIXct}, \code{POSIXt} for the earliest traffic incidents (Note: Only takes effect if \code{product} is set to \code{"incidents"}).}
+\item{from}{\code{POSIXct} object, datetime of the earliest traffic incidents (Note: Only takes effect if \code{product} is set to \code{"incidents"}).}
 
-\item{to_dt}{datetime, timestamp of type \code{POSIXct}, \code{POSIXt} for the latest traffic incidents (Note: Only takes effect if \code{product} is set to \code{"incidents"}).}
+\item{to}{\code{POSIXct} object, datetime of the latest traffic incidents (Note: Only takes effect if \code{product} is set to \code{"incidents"}).}
 
-\item{local_time}{boolean, should time values in the response for traffic incidents be in the local time of the incident or in UTC (\code{default = FALSE})?}
+\item{min_jam_factor}{numeric, only retrieve flow information with a jam factor greater than the value provided (Note: Only takes effect if \code{product} is set to \code{"flow"}, \code{default = 0}).}
 
 \item{url_only}{boolean, only return the generated URLs (\code{default = FALSE})?}
 }
@@ -24,7 +30,7 @@ traffic(aoi, product = "flow", from_dt = NULL, to_dt = NULL,
 An \code{sf} object containing the requested traffic information.
 }
 \description{
-Real-time traffic flow and incident information based on the 'Traffic' API.
+Real-time traffic flow and incident information based on the HERE 'Traffic' API in areas of interest (AOIs).
 The traffic flow data contains speed (\code{"SP"}) and congestion (jam factor: \code{"JF"}) information.
 Traffic incidents contain information about location, time, duration, severity, description and other details.
 }
@@ -43,11 +49,8 @@ Explanation of the returned traffic flow variables:
 }
 }
 \examples{
-# Authentication
-set_auth(
-  app_id = "<YOUR APP ID>",
-  app_code = "<YOUR APP CODE>"
-)
+# Provide an API Key for a HERE project
+set_key("<YOUR API KEY>")
 
 # Real-time traffic flow
 flow <- traffic(
@@ -60,8 +63,8 @@ flow <- traffic(
 incidents <- traffic(
   aoi = aoi[aoi$code == "LI", ],
   product = "incidents",
-  from_dt = as.POSIXct("2018-01-01 00:00:00"),
-  to_dt = as.POSIXct("2019-12-31 23:59:59"),
+  from = as.POSIXct("2018-01-01 00:00:00"),
+  to = as.POSIXct("2019-12-31 23:59:59"),
   url_only = TRUE
 )
 }

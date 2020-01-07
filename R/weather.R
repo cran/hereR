@@ -1,8 +1,8 @@
-#' HERE Destination Weather API: Observations, Forecast, Astronomy and Alerts
+#' HERE Destination Weather API: Observations, Forecasts, Astronomy and Alerts
 #'
 #' Weather forecasts, reports on current weather conditions,
 #' astronomical information and alerts at a specific location (coordinates or
-#' location name) based on the 'Destination Weather' API.
+#' location name) based on the HERE 'Destination Weather' API.
 #' The information comes from the nearest available weather station and is not interpolated.
 #'
 #' @references
@@ -18,11 +18,8 @@
 #' @export
 #'
 #' @examples
-#' # Authentication
-#' set_auth(
-#'   app_id = "<YOUR APP ID>",
-#'   app_code = "<YOUR APP CODE>"
-#' )
+#' # Provide an API Key for a HERE project
+#' set_key("<YOUR API KEY>")
 #'
 #' # Observation
 #' observation <- weather(poi = poi, product = "observation", url_only = TRUE)
@@ -41,9 +38,9 @@ weather <- function(poi, product = "observation", url_only = FALSE) {
   .check_weather_product(product)
   .check_boolean(url_only)
 
-  # Add authentication
-  url <- .add_auth(
-    url = "https://weather.api.here.com/weather/1.0/report.json?"
+  # Add API key
+  url <- .add_key(
+    url = "https://weather.ls.hereapi.com/weather/1.0/report.json?"
   )
 
   # Add product
@@ -105,7 +102,9 @@ weather <- function(poi, product = "observation", url_only = FALSE) {
   rownames(weather) <- NULL
   return(
     sf::st_set_crs(
-      sf::st_as_sf(weather, coords = c("lng", "lat")),
+      sf::st_as_sf(
+        as.data.frame(weather),
+        coords = c("lng", "lat")),
     4326)
   )
 }
@@ -123,9 +122,7 @@ weather <- function(poi, product = "observation", url_only = FALSE) {
         lng = df$observations$location$longitude[1],
         lat = df$observations$location$latitude[1],
         distance = df$observations$location$distance[1] * 1000,
-        timestamp = as.POSIXct(
-          df$observations$location$observation[[1]]$utcTime,
-          format = "%Y-%m-%dT%H:%M:%OS"),
+        timestamp = .parse_datetime(df$observations$location$observation[[1]]$utcTime),
         state = df$observations$location$state[1],
         country = df$observations$location$country[1])
       obs <- df$observations$location$observation[[1]]
@@ -187,7 +184,7 @@ weather <- function(poi, product = "observation", url_only = FALSE) {
   )
   astronomy$astronomy <- lapply(dfs, function(df) {
     ast <- df$astronomy$astronomy
-    ast$date <- as.Date(as.POSIXct(ast$utcTime, tz = "UTC"))
+    ast$date <- as.Date(.parse_datetime(ast$utcTime))
     ast$utcTime <- NULL
     ast
     }

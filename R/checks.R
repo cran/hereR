@@ -29,8 +29,9 @@
 }
 
 .check_datetime <- function(datetime) {
-  if (!any(class(Sys.time()) %in% c("POSIXct", "POSIXt")))
-    stop("'datetime' must be of type 'POSIXct', 'POSIXt'.")
+  if (!any(class(datetime) %in% c("POSIXct", "POSIXt")) & !is.null(datetime))
+    stop(sprintf("'%s' must be of type 'POSIXct', 'POSIXt'.",
+                 deparse(substitute(datetime))))
 }
 
 .check_datetime_range <- function(from, to) {
@@ -53,11 +54,9 @@
       stop(.stop_print_modes(mode = mode, modes = modes, request = request))
 
   } else if (request == "calculateroute") {
+    modes <- modes[c(1, 2, 3, 4, 6, 7)]
     if (!mode %in% modes)
       stop(.stop_print_modes(mode = mode, modes = modes, request = request))
-
-  } else {
-    stop(sprintf("'%s' is an invalid request type.", request))
   }
 }
 
@@ -98,10 +97,10 @@
     stop(sprintf("'attribute' must be in '%s'.", paste(attributes, collapse = "', '")))
 }
 
-.check_rangetype <- function(rangetype) {
-  rangetypes <- c("distance", "time", "consumption")
-  if (!rangetype %in% rangetypes)
-    stop(sprintf("'rangetype' must be '%s'.", paste(rangetypes, collapse = "', '")))
+.check_range_type <- function(range_type) {
+  range_types <- c("distance", "time", "consumption")
+  if (!range_type %in% range_types)
+    stop(sprintf("'range_type' must be '%s'.", paste(range_types, collapse = "', '")))
 }
 
 .check_proxy <- function(proxy) {
@@ -122,10 +121,9 @@
   }
 }
 
-.check_auth <- function(app_id, app_code) {
-  if (!(is.character(app_id) & app_id != "" &
-        is.character(app_code) & app_code != ""))
-    stop("Please provide an 'app_id' and an 'app_code' for a HERE project.
+.check_key <- function(api_key) {
+  if (!(is.character(api_key) & api_key != ""))
+    stop("Please provide an 'API key' for a HERE project.
          Get your login here: https://developer.here.com/")
 }
 
@@ -147,9 +145,17 @@
     stop(sprintf("'product' must be '%s'.", paste(traffic_product_types, collapse = "', '")))
 }
 
-.check_max_results <- function(results) {
-  if (!is.numeric(results))
-    stop("'results' must be of type 'numeric'.")
-  if (results < 1 | results > 20)
-    stop("'results' must be of in the valid range from 1 to 20.")
+.check_min_jam_factor <- function(min_jam_factor) {
+  if (!is.numeric(min_jam_factor))
+    stop("'min_jam_factor' must be of type 'numeric'.")
+  if (min_jam_factor < 0 | min_jam_factor > 10)
+    stop("'min_jam_factor' must be in the valid range from 0 to 10.")
+}
+
+.check_numeric_range <- function(num, lower, upper) {
+  var_name = deparse(substitute(num))
+  if (!is.numeric(num))
+    stop(sprintf("'%s' must be of type 'numeric'.", var_name))
+  if (num < lower | num > upper)
+    stop(sprintf("'%s' must be in the valid range from %s to %s.", var_name, lower, upper))
 }

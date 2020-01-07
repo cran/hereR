@@ -1,9 +1,6 @@
 test_that("isoline works", {
-  # Set dummy login
-  set_auth(
-    app_id = "dummy_app_id",
-    app_code = "dummy_app_code"
-  )
+  # Set dummy key
+  set_key("dummy_api_key")
 
   # Load package example data
   data(poi)
@@ -13,8 +10,9 @@ test_that("isoline works", {
   expect_error(isoline(poi = c("character", NA)), "'points' must be an sf object.")
   expect_error(isoline(poi = poi, mode = "not_a_mode"))
   expect_error(isoline(poi = poi, type = "not_a_type"))
+  expect_error(isoline(poi = poi, range_type = "not_a_range_type"))
   expect_error(isoline(poi = poi, traffic = "not_a_bool"), "'traffic' must be a 'boolean' value.")
-  expect_error(isoline(poi = poi, start = "not_a_bool"), "'start' must be a 'boolean' value.")
+  expect_error(isoline(poi = poi, arrival = "not_a_bool"), "'arrival' must be a 'boolean' value.")
   expect_error(isoline(poi = poi, aggregate = "not_a_bool"), "'aggregate' must be a 'boolean' value.")
   expect_error(isoline(poi = poi, url_only = "not_a_bool"), "'url_only' must be a 'boolean' value.")
 

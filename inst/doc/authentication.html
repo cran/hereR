@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -307,20 +306,16 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>Set up a valid authentication to the ‘HERE’ REST APIs and optionally configure a proxy.</p>
 <div id="application-credentials" class="section level2">
 <h2>Application credentials</h2>
-<p>In order to use the functionality of the <code>hereR</code> package, application credentials for a HERE project must be provided. The HERE application credentials (APP ID and APP CODE) can be obtained for free as follows:</p>
+<p>In order to use the functionality of the <code>hereR</code> package, application credentials for a HERE project must be provided. The HERE application credentials (API Key) can be obtained for free as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://developer.here.com/">developer.here.com</a></li>
-<li>Sign up for a HERE developer account</li>
-<li>Create a new project of type ‘REST &amp; XYZ HUB API/CLI’</li>
-<li>Copy the <strong>APP ID</strong> and <strong>APP CODE</strong> from the project</li>
+<li>Sign up for a HERE developer account, which automatically creates a new project</li>
+<li>Click ‘REST: Generate APP’</li>
+<li>Click ‘Create API Key’ and copy the key</li>
 </ol>
-<p>The APP ID and APP CODE are set for the current R session and will be used to authenticate in the requests to the HERE REST APIs (250K free transactions per month). To set the credentials, please use:</p>
+<p>The API key is set for the current R session and will be used to authenticate in the requests to the HERE REST APIs (250K free transactions per month). To set the key, please use:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(hereR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">set_auth</span>(</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">app_id =</span> <span class="st">&quot;&lt;YOUR APP ID&gt;&quot;</span>,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">app_code =</span> <span class="st">&quot;&lt;YOUR APP CODE&gt;&quot;</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">set_key</span>(<span class="st">&quot;&lt;YOUR API KEY&gt;&quot;</span>)</a></code></pre></div>
 </div>
 <div id="proxy" class="section level2">
 <h2>Proxy</h2>
@@ -333,7 +328,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="remove-credentials" class="section level2">
 <h2>Remove credentials</h2>
-<p>To remove previously set credentials from the current R session use <code>unset_auth()</code>. In order to delete the proxy information use <code>unset_proxy()</code>. For overwriting application credentials or proxy settings use again the <code>set_auth()</code> and <code>set_proxy()</code> functions.</p>
+<p>To remove previously set credentials from the current R session use <code>unset_key()</code>. In order to delete the proxy information use <code>unset_proxy()</code>. For overwriting application credentials or proxy settings use again the <code>set_key()</code> and <code>set_proxy()</code> functions.</p>
 </div>
 <div id="reference" class="section level2">
 <h2>Reference</h2>
