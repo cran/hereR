@@ -10,32 +10,28 @@ mapviewOptions(
     c("#FFD700", "#CA0020")
   )
 )
-flow <- hereR:::example$traffic_flow
-incidents <- hereR:::example$traffic_incidents
+flows <- hereR:::example$flow
+incidents <- hereR:::example$incident
 
 ## ----flow, eval=FALSE---------------------------------------------------------
-#  flow <- traffic(
-#    aoi = aoi[aoi$code == "LI", ],
-#    product = "flow",
-#    from = Sys.time() - (60*60*2),
-#    to = Sys.time()
+#  flows <- flow(
+#    aoi = aoi[aoi$code == "LI", ]
 #  )
 
 ## ----map_flow, eval=TRUE, out.width='100%'------------------------------------
-flow <- flow[order(flow$JF), ]
-mapview(flow,
+flows <- flows[order(flows$JF), ]
+mapview(flows,
         zcol = "JF",
-        lwd = flow$JF*2,
+        lwd = flows$JF*2,
         layer.name = "Jam factor",
         map.types = c("Esri.WorldTopoMap"),
         homebutton = FALSE
 )
 
 ## ----incidents, eval=FALSE----------------------------------------------------
-#  incidents <- traffic(
+#  incidents <- incident(
 #    aoi = aoi[aoi$code == "LI", ],
-#    product = "incidents",
-#    from = Sys.time()-60*60*1.5
+#    from = Sys.time()-60*60
 #  )
 
 ## ----map_incidents, eval=TRUE, out.width='100%'-------------------------------
