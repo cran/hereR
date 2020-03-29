@@ -1,3 +1,10 @@
+# version 0.3.2
+
+* Defunct the deprecated `traffic()` function, which has been replaced by the functions `flow()` and `incident()`.
+* Recreated package test data, api mocks and examples with `sf` 0.9-0 (see [#36](https://github.com/munterfinger/hereR/issues/36)).
+* Increased the dependency on the `sf` package to version 0.9-0 due to a different CRS handling (for more information about the changes in sf, see [here](https://www.r-spatial.org/r/2020/03/17/wkt.html)). **Note: Older versions of the `sf` package are no longer supported.**
+* Temporarily deactivated maps with multiple layers until the `mapview` issue [271](https://github.com/r-spatial/mapview/issues/271) is fixed.
+
 # version 0.3.1
 
 * There are no more missing M:N route combinations in the the edge list returned by `route_matrix()` (see [#30](https://github.com/munterfinger/hereR/issues/30)).

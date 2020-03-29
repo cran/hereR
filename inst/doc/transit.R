@@ -50,21 +50,24 @@ knitr::kable(head(as.data.frame(connection_summary)[, colnames(connection_summar
 #    results = 5
 #  )
 
-## ----stations_map, eval=TRUE, out.width='100%'--------------------------------
-buffer <-
-  poi %>%
-  st_transform(2056) %>%
-  st_buffer(500) %>%
-  st_transform(4326)
-
-m <-
-  mapview(poi, alpha.region = 1, col.region = "black",
-          label = poi$city, layer.name = "POIs",
-          map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
-  mapview(stations, col.region = "yellow", alpha = 1,
-          label = stations$station, layer.name = "Stations",
-          homebutton = FALSE) +
-  mapview(buffer, col.region = "transparent", alpha.region = 0,
-          layer.name = "Buffer", homebutton = FALSE, legend = FALSE)
-m
+## ----stations_map, eval=FALSE, out.width='100%'-------------------------------
+#  # NOTE: This code block is temporarily not evaluated due to an issue of the
+#  # mapview package when plotting multiple SF layers with the new CRS structure of
+#  # version 0.9-0 (see: https://github.com/r-spatial/mapview/issues/271).
+#  buffer <-
+#    poi %>%
+#    st_transform(2056) %>%
+#    st_buffer(500) %>%
+#    st_transform(4326)
+#  
+#  m <-
+#    mapview(poi, alpha.region = 1, col.region = "black",
+#            label = poi$city, layer.name = "POIs",
+#            map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
+#    mapview(stations, col.region = "yellow", alpha = 1,
+#            label = stations$station, layer.name = "Stations",
+#            homebutton = FALSE) +
+#    mapview(buffer, col.region = "transparent", alpha.region = 0,
+#            layer.name = "Buffer", homebutton = FALSE, legend = FALSE)
+#  m
 

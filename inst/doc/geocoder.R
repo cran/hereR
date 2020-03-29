@@ -57,16 +57,19 @@ knitr::kable(head(results), format = "html")
 #  rev_addresses <- reverse_geocode(poi = poi, results = 3, landmarks = FALSE)
 #  rev_landmarks <- reverse_geocode(poi = poi, results = 3, landmarks = TRUE)
 
-## ----map_reverse_geocode, eval=TRUE, echo=TRUE, out.width='100%'--------------
-m <-
-  mapview(poi, alpha.region = 0, col.region = "transparent",
-          label = poi$city, cex = 30, layer.name = "POIs",
-          map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
-  mapview(rev_addresses, col.region = "yellow", alpha = 0,
-          label = rev_addresses$label, layer.name = "Adresses",
-          homebutton = FALSE) +
-  mapview(rev_landmarks, col.region = "red", alpha = 0,
-          label = rev_landmarks$name, layer.name = "Landmarks",
-          homebutton = FALSE)
-m
+## ----map_reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'-------------
+#  # NOTE: This code block is temporarily not evaluated due to an issue of the
+#  # mapview package when plotting multiple SF layers with the new CRS structure of
+#  # version 0.9-0 (see: https://github.com/r-spatial/mapview/issues/271).
+#  m <-
+#    mapview(poi, alpha.region = 0, col.region = "transparent",
+#            label = poi$city, cex = 30, layer.name = "POIs",
+#            map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
+#    mapview(rev_addresses, col.region = "yellow", alpha = 0,
+#            label = rev_addresses$label, layer.name = "Adresses",
+#            homebutton = FALSE) +
+#    mapview(rev_landmarks, col.region = "red", alpha = 0,
+#            label = rev_landmarks$name, layer.name = "Landmarks",
+#            homebutton = FALSE)
+#  m
 

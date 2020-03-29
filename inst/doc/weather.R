@@ -28,23 +28,26 @@ cols <- c("station", "distance", "description",
           "windSpeed", "windDirection")
 knitr::kable(as.data.frame(observation)[, cols], format = "html")
 
-## ----map_obs, eval=TRUE, out.width='100%'-------------------------------------
-m <-
-  mapview(observation,
-          zcol = "temperature",
-          cex = observation$humidity/4,
-          layer.name = "Observation",
-          map.types = c("Esri.WorldTopoMap"),
-          homebutton = FALSE
-  ) + 
-  mapview(poi,
-          zcol = "city",
-          cex = 1,
-          col.region = "black",
-          legend = FALSE,
-          homebutton = FALSE
-  )
-m
+## ----map_obs, eval=FALSE, out.width='100%'------------------------------------
+#  # NOTE: This code block is temporarily not evaluated due to an issue of the
+#  # mapview package when plotting multiple SF layers with the new CRS structure of
+#  # version 0.9-0 (see: https://github.com/r-spatial/mapview/issues/271).
+#  m <-
+#    mapview(observation,
+#            zcol = "temperature",
+#            cex = observation$humidity/4,
+#            layer.name = "Observation",
+#            map.types = c("Esri.WorldTopoMap"),
+#            homebutton = FALSE
+#    ) +
+#    mapview(poi,
+#            zcol = "city",
+#            cex = 1,
+#            col.region = "black",
+#            legend = FALSE,
+#            homebutton = FALSE
+#    )
+#  m
 
 ## ----forecast, eval = FALSE---------------------------------------------------
 #  forecast <- weather(
@@ -70,26 +73,29 @@ g <- lapply(1:nrow(forecast), function(x) {
     theme(legend.position="bottom", panel.background = element_rect(color = NA))
 })
 
-## ----map_forecast, eval=TRUE, out.width='100%'--------------------------------
-m <-
-  mapview(forecast,
-          color = "black",
-          col.region = "yellow",
-          layer.name = "Forecast",
-          zcol = "station",
-          map.types = c("Esri.WorldTopoMap"),
-          homebutton = FALSE,
-          legend = FALSE,
-          popup = leafpop::popupGraph(g)
-  ) + 
-  mapview(poi,
-          zcol = "city",
-          cex = 1,
-          col.region = "black",
-          legend = FALSE,
-          homebutton = FALSE
-  )
-m
+## ----map_forecast, eval=FALSE, out.width='100%'-------------------------------
+#  # NOTE: This code block is temporarily not evaluated due to an issue of the
+#  # mapview package when plotting multiple SF layers with the new CRS structure of
+#  # version 0.9-0 (see: https://github.com/r-spatial/mapview/issues/271).
+#  m <-
+#    mapview(forecast,
+#            color = "black",
+#            col.region = "yellow",
+#            layer.name = "Forecast",
+#            zcol = "station",
+#            map.types = c("Esri.WorldTopoMap"),
+#            homebutton = FALSE,
+#            legend = FALSE,
+#            popup = leafpop::popupGraph(g)
+#    ) +
+#    mapview(poi,
+#            zcol = "city",
+#            cex = 1,
+#            col.region = "black",
+#            legend = FALSE,
+#            homebutton = FALSE
+#    )
+#  m
 
 ## ----astronomy, eval = FALSE--------------------------------------------------
 #  astronomy <- weather(
