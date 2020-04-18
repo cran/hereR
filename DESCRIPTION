@@ -1,7 +1,7 @@
 Package: hereR
 Type: Package
 Title: 'sf'-Based Interface to the 'HERE' REST APIs
-Version: 0.3.2
+Version: 0.3.3
 Authors@R: c(
     person("Merlin", "Unterfinger", email = "info@munterfinger.ch", role = c("aut", "cre")))
 Maintainer: Merlin Unterfinger <info@munterfinger.ch>
@@ -18,8 +18,8 @@ Description: Interface to the 'HERE' REST APIs <https://developer.here.com/devel
   Locations, routes and isolines are returned as 'sf' objects.
 Depends: R (>= 3.3.0)
 Imports: curl (>= 4.2), data.table (>= 1.12.6), jsonlite (>= 1.6),
-        lwgeom (>= 0.1-7), sf (>= 0.9-0), stringr (>= 1.4.0)
-Suggests: ggplot2 (>= 3.2.1), leafpop (>= 0.0.1), mapview (>= 2.7.0),
+        lwgeom (>= 0.2-3), sf (>= 0.9-0), stringr (>= 1.4.0)
+Suggests: ggplot2 (>= 3.2.1), leafpop (>= 0.0.1), mapview (>= 2.7.8),
         testthat (>= 2.2.1), knitr (>= 1.25), rmarkdown (>= 1.16), covr
         (>= 3.3.2)
 License: GPL-3
@@ -28,7 +28,7 @@ LazyData: true
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-03-29 20:47:23 UTC; Merlin
+Packaged: 2020-04-18 00:39:15 UTC; munterfi
 Author: Merlin Unterfinger [aut, cre]
 Repository: CRAN
-Date/Publication: 2020-03-29 21:10:02 UTC
+Date/Publication: 2020-04-18 04:50:02 UTC

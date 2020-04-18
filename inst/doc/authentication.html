@@ -315,13 +315,19 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(hereR)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">set_key</span>(<span class="st">&quot;&lt;YOUR API KEY&gt;&quot;</span>)</a></code></pre></div>
 </div>
+<div id="information-about-requests" class="section level2">
+<h2>Information about requests</h2>
+<p>By default, the <code>hereR</code> package does not print messages with information about the requests sent and the data received from to the HERE APIs. If this information should be printed for the current R session, use:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">set_verbose</span>(<span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Use <code>set_Verbose(FALSE)</code> to set the <code>hereR</code> package to be quiet again.</p>
+</div>
 <div id="proxy" class="section level2">
 <h2>Proxy</h2>
 <p>If you are working behind a proxy and you don’t want to change the global proxy settings of RStudio, the proxy information can be passed directly to the <code>hereR</code> package. If a proxy is needed, it can be set as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">set_proxy</span>(</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">proxy =</span> <span class="st">&quot;https://&lt;YOUR-PROXY.NET&gt;:&lt;PORT&gt;/&quot;</span>,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">proxyuserpwd =</span> <span class="st">&quot;&lt;USER&gt;:&lt;PASSWORD&gt;&quot;</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">set_proxy</span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">proxy =</span> <span class="st">&quot;https://&lt;YOUR-PROXY.NET&gt;:&lt;PORT&gt;/&quot;</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">proxyuserpwd =</span> <span class="st">&quot;&lt;USER&gt;:&lt;PASSWORD&gt;&quot;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">)</a></code></pre></div>
 <p><strong>Note:</strong> Only functions of the <code>hereR</code> package are now using the proxy. Other functions sending requests to the web continue to encounter timeout errors.</p>
 </div>
 <div id="remove-credentials" class="section level2">
