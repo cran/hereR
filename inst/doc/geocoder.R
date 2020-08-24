@@ -6,6 +6,7 @@ knitr::opts_chunk$set(
 library(hereR)
 library(data.table)
 library(mapview)
+mapviewOptions(fgb = FALSE)
 addresses <- poi$city
 geocoded <- hereR:::example$geocode
 suggestions <- hereR:::example$autocomplete
@@ -30,14 +31,14 @@ head(geocoded, 3)
 #  locs <- geocode(df$address)
 #  geocoded_sfdf <- st_as_sf(data.frame(locs, df[locs$id, ]))
 
-## ----map_geocoded, eval=TRUE, out.width='100%'--------------------------------
-mapview(geocoded,
-        label = geocoded$address,
-        col.regions = "yellow",
-        map.types = c("Esri.WorldTopoMap"),
-        legend = FALSE,
-        homebutton = FALSE
-)
+## ----map_geocoded, eval=FALSE, out.width='100%'-------------------------------
+#  mapview(geocoded,
+#          label = geocoded$address,
+#          col.regions = "yellow",
+#          map.types = c("Esri.WorldTopoMap"),
+#          legend = FALSE,
+#          homebutton = FALSE
+#  )
 
 ## ----autocomplete, eval=FALSE-------------------------------------------------
 #  suggestions <- autocomplete(addresses, results = 3)
@@ -57,16 +58,16 @@ knitr::kable(head(results), format = "html")
 #  rev_addresses <- reverse_geocode(poi = poi, results = 3, landmarks = FALSE)
 #  rev_landmarks <- reverse_geocode(poi = poi, results = 3, landmarks = TRUE)
 
-## ----map_reverse_geocode, eval=TRUE, echo=TRUE, out.width='100%'--------------
-m <-
-  mapview(poi, alpha.region = 0, col.region = "transparent",
-          label = poi$city, cex = 30, layer.name = "POIs",
-          map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
-  mapview(rev_addresses, col.region = "yellow", alpha = 0,
-          label = rev_addresses$label, layer.name = "Adresses",
-          homebutton = FALSE) +
-  mapview(rev_landmarks, col.region = "red", alpha = 0,
-          label = rev_landmarks$name, layer.name = "Landmarks",
-          homebutton = FALSE)
-m
+## ----map_reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'-------------
+#  m <-
+#    mapview(poi, alpha.region = 0, col.region = "transparent",
+#            label = poi$city, cex = 30, layer.name = "POIs",
+#            map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
+#    mapview(rev_addresses, col.region = "yellow", alpha = 0,
+#            label = rev_addresses$label, layer.name = "Adresses",
+#            homebutton = FALSE) +
+#    mapview(rev_landmarks, col.region = "red", alpha = 0,
+#            label = rev_landmarks$name, layer.name = "Landmarks",
+#            homebutton = FALSE)
+#  m
 

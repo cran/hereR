@@ -7,6 +7,7 @@ library(hereR)
 library(mapview)
 library(sf)
 mapviewOptions(
+  fgb = FALSE,
   vector.palette = colorRampPalette(
     c("#000004FF", "#420A68FF", "#932667FF", "#DD513AFF", "#FCA50AFF", "#FCFFA4FF")
   )
@@ -25,13 +26,13 @@ stations <- hereR:::example$station
 ## ----table_connection_section, eval=TRUE, echo=FALSE, out.width='100%', fig.align='center', screenshot.force=FALSE----
 knitr::kable(head(as.data.frame(connection_section)[, colnames(connection_section) != "geometry"]), format = "html")
 
-## ----pt_connection_section_map, eval=TRUE, out.width='100%'-------------------
-mapview(connection_section,
-        zcol = "mode",
-        layer.name = "Transport mode",
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE
-)
+## ----pt_connection_section_map, eval=FALSE, out.width='100%'------------------
+#  mapview(connection_section,
+#          zcol = "mode",
+#          layer.name = "Transport mode",
+#          map.types = c("Esri.WorldTopoMap"),
+#          homebutton = FALSE
+#  )
 
 ## ----pt_connection_summary, eval = FALSE--------------------------------------
 #  connection_summary <- connection(
@@ -50,21 +51,21 @@ knitr::kable(head(as.data.frame(connection_summary)[, colnames(connection_summar
 #    results = 5
 #  )
 
-## ----stations_map, eval=TRUE, out.width='100%'--------------------------------
-buffer <-
-  poi %>%
-  st_transform(2056) %>%
-  st_buffer(500) %>%
-  st_transform(4326)
-
-m <-
-  mapview(poi, alpha.region = 1, col.region = "black",
-          label = poi$city, layer.name = "POIs",
-          map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
-  mapview(stations, col.region = "yellow", alpha = 1,
-          label = stations$station, layer.name = "Stations",
-          homebutton = FALSE) +
-  mapview(buffer, col.region = "transparent", alpha.region = 0,
-          layer.name = "Buffer", homebutton = FALSE, legend = FALSE)
-m
+## ----stations_map, eval=FALSE, out.width='100%'-------------------------------
+#  buffer <-
+#    poi %>%
+#    st_transform(2056) %>%
+#    st_buffer(500) %>%
+#    st_transform(4326)
+#  
+#  m <-
+#    mapview(poi, alpha.region = 1, col.region = "black",
+#            label = poi$city, layer.name = "POIs",
+#            map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
+#    mapview(stations, col.region = "yellow", alpha = 1,
+#            label = stations$station, layer.name = "Stations",
+#            homebutton = FALSE) +
+#    mapview(buffer, col.region = "transparent", alpha.region = 0,
+#            layer.name = "Buffer", homebutton = FALSE, legend = FALSE)
+#  m
 

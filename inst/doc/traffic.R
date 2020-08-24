@@ -6,6 +6,7 @@ knitr::opts_chunk$set(
 library(hereR)
 library(mapview)
 mapviewOptions(
+  fgb = FALSE,
   vector.palette = colorRampPalette(
     c("#FFD700", "#CA0020")
   )
@@ -18,15 +19,15 @@ incidents <- hereR:::example$incident
 #    aoi = aoi[aoi$code == "LI", ]
 #  )
 
-## ----map_flow, eval=TRUE, out.width='100%'------------------------------------
-flows <- flows[order(flows$JF), ]
-mapview(flows,
-        zcol = "JF",
-        lwd = flows$JF*2,
-        layer.name = "Jam factor",
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE
-)
+## ----map_flow, eval=FALSE, out.width='100%'-----------------------------------
+#  flows <- flows[order(flows$JF), ]
+#  mapview(flows,
+#          zcol = "JF",
+#          lwd = flows$JF*2,
+#          layer.name = "Jam factor",
+#          map.types = c("Esri.WorldTopoMap"),
+#          homebutton = FALSE
+#  )
 
 ## ----incidents, eval=FALSE----------------------------------------------------
 #  incidents <- incident(
@@ -34,11 +35,11 @@ mapview(flows,
 #    from = Sys.time()-60*60
 #  )
 
-## ----map_incidents, eval=TRUE, out.width='100%'-------------------------------
-mapview(incidents,
-        zcol = "type",
-        layer.name = "Incident type",
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE
-)
+## ----map_incidents, eval=FALSE, out.width='100%'------------------------------
+#  mapview(incidents,
+#          zcol = "type",
+#          layer.name = "Incident type",
+#          map.types = c("Esri.WorldTopoMap"),
+#          homebutton = FALSE
+#  )
 

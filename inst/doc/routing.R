@@ -6,6 +6,7 @@ knitr::opts_chunk$set(
 library(hereR)
 library(mapview)
 mapviewOptions(
+  fgb = FALSE,
   vector.palette = colorRampPalette(
     c("#000004FF", "#420A68FF", "#932667FF", "#DD513AFF", "#FCA50AFF", "#FCFFA4FF")
   )
@@ -28,17 +29,17 @@ destination <- poi[3:4, ]
 ## ----table_directions, eval=TRUE, echo=FALSE, out.width='100%', fig.align='center', screenshot.force=FALSE----
 knitr::kable(head(as.data.frame(routes)[, colnames(routes) != "geometry"]), format = "html")
 
-## ----map_routes, eval=TRUE, out.width='100%'----------------------------------
-routes$label <- paste(origin$city[routes$id],
-                      destination$city[routes$id],
-                      sep =  " - ")
-mapview(routes,
-        zcol = "label",
-        lwd = routes$travelTime/max(routes$travelTime)*5,
-        layer.name = "Route [O-D]",
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE
-)
+## ----map_routes, eval=FALSE, out.width='100%'---------------------------------
+#  routes$label <- paste(origin$city[routes$id],
+#                        destination$city[routes$id],
+#                        sep =  " - ")
+#  mapview(routes,
+#          zcol = "label",
+#          lwd = routes$travelTime/max(routes$travelTime)*5,
+#          layer.name = "Route [O-D]",
+#          map.types = c("Esri.WorldTopoMap"),
+#          homebutton = FALSE
+#  )
 
 ## ----matrix, eval=FALSE-------------------------------------------------------
 #  # From - to
@@ -66,13 +67,13 @@ knitr::kable(head(mat, 10), format = "html")
 #    traffic = FALSE
 #  )
 
-## ----map_isoline, eval=TRUE, out.width='100%'---------------------------------
-iso$minutes <- iso$range/60
-mapview(iso,
-        zcol = "minutes",
-        layer.name = "Isoline [min]",
-        alpha = 0,
-        map.types = c("Esri.WorldTopoMap"),
-        homebutton = FALSE
-)
+## ----map_isoline, eval=FALSE, out.width='100%'--------------------------------
+#  iso$minutes <- iso$range/60
+#  mapview(iso,
+#          zcol = "minutes",
+#          layer.name = "Isoline [min]",
+#          alpha = 0,
+#          map.types = c("Esri.WorldTopoMap"),
+#          homebutton = FALSE
+#  )
 
