@@ -1,13 +1,15 @@
 # hereR <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/hereR)](https://CRAN.R-project.org/package=hereR)
+[![CRAN checks](https://cranchecks.info/badges/worst/hereR)](https://cran.r-project.org/web/checks/check_results_hereR.html)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/hereR?color=brightgreen)](https://CRAN.R-project.org/package=hereR)
 [![R build status](https://github.com/munterfinger/hereR/workflows/R-CMD-check/badge.svg)](https://github.com/munterfinger/hereR/actions)
 [![Codecov test coverage](https://codecov.io/gh/munterfinger/hereR/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfinger/hereR?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/munterfinger/hereR/badge)](https://www.codefactor.io/repository/github/munterfinger/hereR)
 <!-- badges: end -->
 
 The **hereR** package provides an interface to the **HERE REST APIs** for R:
-(1) geocode and autocomplete addresses or reverse geocode POIs using the **Geocoder API**;
+(1) geocode and autosuggest addresses or reverse geocode POIs using the **Geocoder API**;
 (2) route directions, travel distance or time matrices and isolines using the **Routing API**;
 (3) request real-time traffic flow and incident information from the **Traffic API**;
 (4) find public transport connections and nearby stations using the **Public Transit API**;
@@ -46,7 +48,7 @@ Once valid application credentials are created and the key is set in the R sessi
 ``` r
 geocode(c("Schweighofstrasse 190, Zurich, Switzerland", "Hardstrasse 48, Zurich, Switzerland"))
 
-autocomplete(c("Schweighofstrasse", "Hardstrasse"))
+autosuggest(c("Schweighofstrasse", "Hardstrasse"))
 
 reverse_geocode(poi)
 ```
@@ -92,9 +94,9 @@ weather(poi, product = "alerts")
 
 ## References
 
-* [Geocoder API](https://developer.here.com/documentation/geocoder)
-* [Routing API](https://developer.here.com/documentation/routing)
-* [Traffic API](https://developer.here.com/documentation/traffic)
-* [Public Transit API](https://developer.here.com/documentation/transit)
-* [Intermodal Routing API](https://developer.here.com/documentation/intermodal-routing)
-* [Destination Weather API](https://developer.here.com/documentation/weather)
+* [Geocoder API](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
+* [Routing API](https://developer.here.com/documentation/routing/dev_guide/topics/introduction.html)
+* [Traffic API](https://developer.here.com/documentation/traffic/dev_guide/topics/incident-data.html)
+* [Public Transit API](https://developer.here.com/documentation/public-transit/dev_guide/index.html)
+* [Intermodal Routing API](https://developer.here.com/documentation/intermodal-routing/dev_guide/index.html)
+* [Destination Weather API](https://developer.here.com/documentation/destination-weather/dev_guide/topics/overview.html)

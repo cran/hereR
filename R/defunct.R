@@ -67,6 +67,7 @@ traffic <- function(aoi, product = "flow", from = NULL, to = NULL,
 #'
 #' @return
 #' None.
+#'
 #' @name set_auth-defunct
 #' @usage set_auth(app_id, app_code)
 #' @seealso \code{\link{hereR-defunct}}
@@ -88,6 +89,7 @@ set_auth <- function(app_id, app_code){
 #'
 #' @return
 #' None.
+#'
 #' @name unset_auth-defunct
 #' @usage unset_auth()
 #' @seealso \code{\link{hereR-defunct}}
@@ -101,4 +103,80 @@ NULL
 #' @export
 unset_auth <- function() {
   .Defunct(new = "unset_key", package = "hereR")
+}
+
+#' HERE Geocoder API: Autocomplete
+#'
+#' Completes addresses using the HERE 'Geocoder Autocomplete' API.
+#'
+#' @references
+#' \href{https://developer.here.com/documentation/geocoder-autocomplete/dev_guide/topics/resource-suggest.html}{HERE Geocoder API: Autocomplete}
+#'
+#' @param addresses character, addresses to autocomplete.
+#' @param results numeric, maximum number of suggestions (Valid range: 1 and 20).
+#' @param url_only boolean, only return the generated URLs (\code{default = FALSE})?
+#'
+#' @return
+#' A \code{data.frame} object, containing the autocomplete suggestions for the addresses.
+#'
+#' @name autocomplete-defunct
+#' @usage autocomplete(addresses, results, url_only)
+#' @seealso \code{\link{hereR-defunct}}
+#' @keywords internal
+NULL
+
+#' @rdname hereR-defunct
+#' @section \code{autocomplete}:
+#' For \code{autocomplete}, use \code{\link{autosuggest}}.
+#'
+#' @export
+autocomplete <- function(addresses, results = 5, url_only = FALSE) {
+  .Defunct(new = "autosuggest", package = "hereR")
+}
+
+#' Proxy Configuration
+#'
+#' If a proxy is needed, for example because the computer is behind a corporate proxy,
+#' it can be set as follows: \code{proxy = "http://your-proxy.net:port/"} or \code{"https://your-proxy.net:port/"} and \code{"proxyuserpwd" = "user:pwd"}.
+#'
+#' @param proxy character, the URL of the proxy (\code{"https://your-proxy.net:port/"}).
+#' @param proxyuserpwd character, user and password for the authentication (\code{"user:pwd"}).
+#'
+#' @return
+#' None.
+#'
+#' @name set_proxy-defunct
+#' @usage set_proxy(proxy, proxyuserpwd)
+#' @seealso \code{\link{hereR-defunct}}
+#' @keywords internal
+NULL
+
+#' @rdname hereR-defunct
+#' @section \code{set_proxy}:
+#' For \code{set_proxy}, configure a global proxy for R in '~/.Renviron' instead.
+#'
+#' @export
+set_proxy <- function(proxy, proxyuserpwd) {
+  .Defunct(msg = "'set_proxy' is defunct.\nUse a global proxy configuration for R in '~/.Renviron' instead.")
+}
+
+#' Remove Proxy Configuration
+#'
+#' Remove a previously set proxy configuration from the current R session.
+#'
+#' @return
+#' None.
+#' @name unset_proxy-defunct
+#' @usage unset_proxy()
+#' @seealso \code{\link{hereR-defunct}}
+#' @keywords internal
+NULL
+
+#' #' @rdname hereR-defunct
+#' @section \code{unset_proxy}:
+#' For \code{unset_proxy}, configure a global proxy for R in '~/.Renviron' instead.
+#'
+#' @export
+unset_proxy <- function() {
+  .Defunct(msg = "'unset_proxy' is defunct.\nUse a global proxy configuration for R in '~/.Renviron' instead.")
 }

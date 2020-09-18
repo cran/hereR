@@ -64,6 +64,16 @@
   }
 }
 
+.check_input_rows <- function(x, y) {
+  if (nrow(x) != nrow(y))
+    stop(
+      sprintf(
+        "'%s' must have the same number of rows as '%s'.",
+        deparse(substitute(x)), deparse(substitute(y))
+      )
+    )
+}
+
 .check_bbox <- function(bbox) {
   if (any(c(bbox[3, ] - bbox[1, ], bbox[4, ] - bbox[2, ]) >= 10)) {
     stop("The polygons in 'aoi' must fit in a 10 x 10 degree bbox.")
@@ -166,30 +176,6 @@
       "'range_type' must be '%s'.",
       paste(range_types, collapse = "', '")
     ))
-  }
-}
-
-.check_proxy <- function(proxy) {
-  if (!is.null(proxy)) {
-    if (!is.character(proxy)) {
-      stop("'proxy' must be of type 'character'.")
-    }
-    if (!strsplit(proxy, "://")[[1]][1] %in% c("http", "https")) {
-      stop(
-        "'proxy' is not in the required format: 'http://your-proxy.com:port/' or 'https://your-proxy.org:port/'."
-      )
-    }
-  }
-}
-
-.check_proxyuserpwd <- function(proxyuserpwd) {
-  if (!is.null(proxyuserpwd)) {
-    if (!is.character(proxyuserpwd)) {
-      stop("'proxyuserpwd' must be of type 'character'.")
-    }
-    if (length(strsplit(proxyuserpwd, ":")[[1]]) != 2) {
-      stop("'proxyuserpwd' is not in the required format: 'user:pwd'.")
-    }
   }
 }
 

@@ -75,30 +75,21 @@
     }
   }
 
-  # Define the IDs
+  # Define the IDs and callback functions
   ids = paste0("request_", seq_along(url))
-
-  # Define the callback functions
   cbs = lapply(ids, cb_gen)
 
-  # Request pool and add proxy
+  # Add requests to pool
   pool = curl::new_pool()
-  proxy <- Sys.getenv("HERE_PROXY")
-  proxyuserpwd <- Sys.getenv("HERE_PROXYUSERPWD")
   lapply(seq_along(url), function(i) {
     handle <- curl::new_handle()
-    curl::handle_setopt(handle,
-                        proxy = proxy,
-                        proxyuserpwd = proxyuserpwd)
     curl::curl_fetch_multi(utils::URLencode(url[i]), pool = pool,
                            done = cbs[[i]], fail = cbs[[i]],
-                           handle = handle)
+                           handle = curl::new_handle())
   })
 
-  # Send requests
+  # Send requests and process the responses in the same order as the input URLs
   out = curl::multi_run(pool = pool)
-
-  # Process the results in the same order that the URLs were given
   results <- lapply(results[ids], function(x) {
     rawChar <- rawToChar(x$content)
     Encoding(rawChar) <- encoding
@@ -141,4 +132,23 @@
   lng <- as.numeric(sapply(coords, function(x) x[2]))
   lat <- as.numeric(sapply(coords, function(x) x[1]))
   sf::st_polygon(list(cbind(lng, lat)))
+}
+
+.wkt_from_point_df <- function(df, lng_col, lat_col) {
+  df <- as.data.frame(df)
+  sf::st_as_text(
+    sf::st_as_sfc(
+      lapply(1:nrow(df), function(x) {
+        if (is.numeric(df[x, lng_col]) & is.numeric(df[x, lat_col])) {
+          return(
+            sf::st_point(
+              cbind(df[x, lng_col], df[x, lat_col])
+            )
+          )
+        } else {
+          return(sf::st_point())
+        }
+      }), crs = 4326
+    )
+  )
 }

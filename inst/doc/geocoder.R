@@ -4,20 +4,18 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(hereR)
-library(data.table)
 library(mapview)
 mapviewOptions(fgb = FALSE)
-addresses <- poi$city
+address <- poi$city
 geocoded <- hereR:::example$geocode
-suggestions <- hereR:::example$autocomplete
-rev_addresses <- hereR:::example$reverse_geocode_addresses
-rev_landmarks <- hereR:::example$reverse_geocode_landmarks
+suggestions <- hereR:::example$autosuggest
+reverse_geocoded <- hereR:::example$reverse_geocode
 
 ## ----print_addresses, eval=TRUE, echo=TRUE, out.width='100%'------------------
-head(addresses, 3)
+head(address, 3)
 
 ## ----geocode, eval=FALSE------------------------------------------------------
-#  geocoded <- geocode(addresses, autocomplete = FALSE)
+#  geocoded <- geocode(address)
 
 ## ----head_geocoded, eval=TRUE, echo=TRUE, out.width='100%'--------------------
 head(geocoded, 3)
@@ -34,40 +32,36 @@ head(geocoded, 3)
 ## ----map_geocoded, eval=FALSE, out.width='100%'-------------------------------
 #  mapview(geocoded,
 #          label = geocoded$address,
-#          col.regions = "yellow",
+#          col.regions = "red",
 #          map.types = c("Esri.WorldTopoMap"),
 #          legend = FALSE,
 #          homebutton = FALSE
 #  )
 
 ## ----autocomplete, eval=FALSE-------------------------------------------------
-#  suggestions <- autocomplete(addresses, results = 3)
+#  suggestions <- autocomplete(address, results = 3)
 
 ## ----results_autocomplete, eval=TRUE, echo=TRUE, out.width='100%'-------------
-results <- data.table(
-  input = addresses[suggestions$id],
+results <- data.frame(
+  input = address[suggestions$id],
   id = suggestions$id,
-  rank = suggestions$order,
-  suggestion = suggestions$label
+  rank = suggestions$rank,
+  suggestion = suggestions$suggestion
 )
 
 ## ----table_results, eval=TRUE, echo=FALSE, out.width='100%', fig.align='center', screenshot.force=FALSE----
 knitr::kable(head(results), format = "html")
 
 ## ----reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'-----------------
-#  rev_addresses <- reverse_geocode(poi = poi, results = 3, landmarks = FALSE)
-#  rev_landmarks <- reverse_geocode(poi = poi, results = 3, landmarks = TRUE)
+#  reverse_geocoded <- reverse_geocode(poi = poi, results = 3)
 
 ## ----map_reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'-------------
 #  m <-
 #    mapview(poi, alpha.region = 0, col.region = "transparent",
 #            label = poi$city, cex = 30, layer.name = "POIs",
 #            map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
-#    mapview(rev_addresses, col.region = "yellow", alpha = 0,
-#            label = rev_addresses$label, layer.name = "Adresses",
-#            homebutton = FALSE) +
-#    mapview(rev_landmarks, col.region = "red", alpha = 0,
-#            label = rev_landmarks$name, layer.name = "Landmarks",
+#    mapview(reverse_geocoded, col.region = "red", alpha = 0,
+#            label = reverse_geocoded$label, layer.name = "Adresses",
 #            homebutton = FALSE)
 #  m
 

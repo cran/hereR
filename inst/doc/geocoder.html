@@ -318,26 +318,26 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>Geocode addresses using the ‘HERE Geocoder’ and ‘HERE Geocoder Autocomplete’ APIs.</p>
 <div id="geocode-addresses" class="section level2">
 <h2>Geocode addresses</h2>
-<p>In order to geocode addresses, the function <code>geocode()</code> is used. The requests are sent asynchronously, which means that every geocoded address is counting as one request. If the option <code>autocomplete</code> is set to <code>TRUE</code>, the addresses are sent to the ‘Geocoder Autocomplete’ API before geocoding, which improves matches but doubles the amount of requests. The addresses have to be of type <code>character</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">head</span>(addresses, <span class="dv">3</span>)</span>
+<p>In order to geocode addresses, the function <code>geocode()</code> is used. The requests are sent asynchronously, which means that every geocoded address is counting as one request. The addresses have to be of type <code>character</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">head</span>(address, <span class="dv">3</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Luzern&quot;   &quot;Lugano&quot;   &quot;Lausanne&quot;</span></span></code></pre></div>
 <p>Geocode the character vector containing the addresses:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>geocoded &lt;-<span class="st"> </span><span class="kw">geocode</span>(addresses, <span class="dt">autocomplete =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>geocoded &lt;-<span class="st"> </span><span class="kw">geocode</span>(address)</span></code></pre></div>
 <p>The return value is an <code>sf</code> object containing <code>POINT</code> geometries of the addresses:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">head</span>(geocoded, <span class="dv">3</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">#&gt; Simple feature collection with 3 features and 8 fields</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">#&gt; Simple feature collection with 3 features and 12 fields</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">#&gt; geometry type:  POINT</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">#&gt; dimension:      XY</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt; bbox:           xmin: 6.63222 ymin: 46.00297 xmax: 8.95121 ymax: 47.04954</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt; bbox:           xmin: 6.63222 ymin: 46.00297 xmax: 8.9512 ymax: 47.04954</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt; geographic CRS: WGS 84</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt;   id              address postalCode     city       county state country  type</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt; 1  1  Luzern, LU, Schweiz       6003   Luzern Luzern-Stadt    LU     CHE point</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">#&gt; 2  2 Lugano, TI, Svizzera       6900   Lugano       Lugano    TI     CHE point</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">#&gt; 3  3 Lausanne, VD, Suisse       1003 Lausanne     Lausanne    VD     CHE point</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">#&gt;                   geometry</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">#&gt; 1 POINT (8.30438 47.04954)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">#&gt; 2 POINT (8.95121 46.00297)</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">#&gt; 3 POINT (6.63222 46.51961)</span></span></code></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt;   id                  address     type street house_number postal_code district</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt; 1  1          Luzern, Schweiz locality   &lt;NA&gt;         &lt;NA&gt;        6003     &lt;NA&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">#&gt; 2  2 Lugano, Ticino, Svizzera locality   &lt;NA&gt;         &lt;NA&gt;        6900     &lt;NA&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">#&gt; 3  3   Lausanne, Vaud, Suisse locality   &lt;NA&gt;         &lt;NA&gt;        1003     &lt;NA&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">#&gt;       city       county  state  country      access                 geometry</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">#&gt; 1   Luzern Luzern-Stadt Luzern  Schweiz POINT EMPTY POINT (8.30437 47.04954)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">#&gt; 2   Lugano       Lugano Ticino Svizzera POINT EMPTY  POINT (8.9512 46.00297)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">#&gt; 3 Lausanne     Lausanne   Vaud   Suisse POINT EMPTY  POINT (6.63222 46.5196)</span></span></code></pre></div>
 <p>Not found addresses are deleted from the result. This means that the <code>sf</code> object may contain fewer rows than the original number of addresses. The column <code>&quot;id&quot;</code> matches the order of the the input addresses. Using the <code>&quot;id&quot;</code> column a corresponding <code>data.frame</code> <code>&quot;df&quot;</code> with the addresses to geocode could be joined to the coordinates after geocoding.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  <span class="dt">company =</span> <span class="kw">c</span>(<span class="st">&quot;Schweizerische Bundesbahnen SBB&quot;</span>, <span class="st">&quot;Bahnhof AG&quot;</span>, <span class="st">&quot;Deutsche Bahn AG&quot;</span>),</span>
@@ -349,22 +349,22 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>Print the geocoded addresses on an interactive leaflet map:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">mapview</span>(geocoded,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>        <span class="dt">label =</span> geocoded<span class="op">$</span>address,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>        <span class="dt">col.regions =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>        <span class="dt">col.regions =</span> <span class="st">&quot;red&quot;</span>,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>        <span class="dt">map.types =</span> <span class="kw">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>        <span class="dt">legend =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>        <span class="dt">homebutton =</span> <span class="ot">FALSE</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>)</span></code></pre></div>
 </div>
-<div id="autocomplete-addresses" class="section level2">
-<h2>Autocomplete addresses</h2>
-<p>The Geocoder Autocomplete API can be accessed using the <code>autocomplete()</code> function. The <code>results</code> parameter defines the maximum number of suggestions that should be requested for each address.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>suggestions &lt;-<span class="st"> </span><span class="kw">autocomplete</span>(addresses, <span class="dt">results =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p>The return value is a <code>data.table</code> containing autocomplete suggestions for the addresses. The variable <code>id</code> matches the index of the initial address vector, which was used as input and <code>order</code> stores the rank of the suggestion.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">data.table</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  <span class="dt">input =</span> addresses[suggestions<span class="op">$</span>id],</span>
+<div id="autosuggestions" class="section level2">
+<h2>Autosuggestions</h2>
+<p>The Geocoder Autosuggest API can be accessed using the <code>autosuggest()</code> function. The <code>results</code> parameter defines the maximum number of suggestions that should be requested for each input address.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>suggestions &lt;-<span class="st"> </span><span class="kw">autocomplete</span>(address, <span class="dt">results =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p>The return value is a <code>data.frame</code> containing autocomplete suggestions for the addresses. The variable <code>id</code> matches the index of the initial address vector, which was used as input and <code>order</code> stores the rank of the suggestion.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  <span class="dt">input =</span> address[suggestions<span class="op">$</span>id],</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>  <span class="dt">id =</span> suggestions<span class="op">$</span>id,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>  <span class="dt">rank =</span> suggestions<span class="op">$</span>order,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>  <span class="dt">suggestion =</span> suggestions<span class="op">$</span>label</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>  <span class="dt">rank =</span> suggestions<span class="op">$</span>rank,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>  <span class="dt">suggestion =</span> suggestions<span class="op">$</span>suggestion</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>)</span></code></pre></div>
 <table>
 <thead>
@@ -395,7 +395,7 @@ Luzern
 1
 </td>
 <td style="text-align:left;">
-Schweiz, Luzern
+Luzerner Kantonalbank
 </td>
 </tr>
 <tr>
@@ -409,7 +409,7 @@ Luzern
 2
 </td>
 <td style="text-align:left;">
-Schweiz, Luzern, Luzern-Stadt, Luzern
+Luzern, Schweiz
 </td>
 </tr>
 <tr>
@@ -423,7 +423,7 @@ Luzern
 3
 </td>
 <td style="text-align:left;">
-Schweiz, Luzern, Luzern-Stadt
+Luzern-Stadt, Luzern, Schweiz
 </td>
 </tr>
 <tr>
@@ -437,7 +437,7 @@ Lugano
 1
 </td>
 <td style="text-align:left;">
-Svizzera, Lugano
+Lugano, Ticino, Svizzera
 </td>
 </tr>
 <tr>
@@ -451,7 +451,7 @@ Lugano
 2
 </td>
 <td style="text-align:left;">
-Svizzera, Lugano, Lugano
+Villa Lugano, Ciudad de Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina
 </td>
 </tr>
 <tr>
@@ -465,7 +465,7 @@ Lugano
 3
 </td>
 <td style="text-align:left;">
-Svizzera, Lugano, Lugano, Lugano
+Stazione Lugano FFS
 </td>
 </tr>
 </tbody>
@@ -473,29 +473,25 @@ Svizzera, Lugano, Lugano, Lugano
 </div>
 <div id="reverse-geocode-pois" class="section level2">
 <h2>Reverse geocode POIs</h2>
-<p>The reverse geocoding feature of the Geocoder API can be accessed using the <code>reverse_geocode()</code> function. The function allows to retrieve addresses (<code>landmarks = FALSE</code>) or landmarks (<code>landmarks = TRUE</code>) near POIs.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>rev_addresses &lt;-<span class="st"> </span><span class="kw">reverse_geocode</span>(<span class="dt">poi =</span> poi, <span class="dt">results =</span> <span class="dv">3</span>, <span class="dt">landmarks =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>rev_landmarks &lt;-<span class="st"> </span><span class="kw">reverse_geocode</span>(<span class="dt">poi =</span> poi, <span class="dt">results =</span> <span class="dv">3</span>, <span class="dt">landmarks =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>The reverse geocoding feature of the Geocoder API can be accessed using the <code>reverse_geocode()</code> function. The function allows to retrieve addresses near POIs.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>reverse_geocoded &lt;-<span class="st"> </span><span class="kw">reverse_geocode</span>(<span class="dt">poi =</span> poi, <span class="dt">results =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>The function returns an <code>sf</code> object, containing the suggested addresses or landmark names of the reverse geocoded POIs. The coordinates are different from the initially provided POIs since they represent the locations of the suggested addresses or landmarks.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>m &lt;-</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(poi, <span class="dt">alpha.region =</span> <span class="dv">0</span>, <span class="dt">col.region =</span> <span class="st">&quot;transparent&quot;</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>          <span class="dt">label =</span> poi<span class="op">$</span>city, <span class="dt">cex =</span> <span class="dv">30</span>, <span class="dt">layer.name =</span> <span class="st">&quot;POIs&quot;</span>,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>          <span class="dt">map.types =</span> <span class="kw">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>), <span class="dt">homebutton =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(rev_addresses, <span class="dt">col.region =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">alpha =</span> <span class="dv">0</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>          <span class="dt">label =</span> rev_addresses<span class="op">$</span>label, <span class="dt">layer.name =</span> <span class="st">&quot;Adresses&quot;</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>          <span class="dt">homebutton =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(rev_landmarks, <span class="dt">col.region =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="dv">0</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a>          <span class="dt">label =</span> rev_landmarks<span class="op">$</span>name, <span class="dt">layer.name =</span> <span class="st">&quot;Landmarks&quot;</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a>          <span class="dt">homebutton =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a>m</span></code></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(reverse_geocoded, <span class="dt">col.region =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="dv">0</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>          <span class="dt">label =</span> reverse_geocoded<span class="op">$</span>label, <span class="dt">layer.name =</span> <span class="st">&quot;Adresses&quot;</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>          <span class="dt">homebutton =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>m</span></code></pre></div>
 <p>If no addresses or landmarks are found near a POI, <code>NULL</code> for this POI is returned. In this case the rows corresponding to this particular POI are missing and merging the POIs by row is not possible. However, in the returned <code>sf</code> object, the column <code>&quot;id&quot;</code> matches the rows of the input POIs. The <code>&quot;id&quot;</code> column can be used to join the original POIs.</p>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>
 <ul>
 <li><a href="https://developer.here.com/documentation/geocoder-autocomplete/dev_guide/topics/resource-suggest.html">Autocomplete</a></li>
-<li><a href="https://developer.here.com/documentation/geocoder/topics/resource-geocode.html">Geocoder</a></li>
-<li><a href="https://developer.here.com/documentation/geocoder/dev_guide/topics/resource-reverse-geocode.html">Reverse Geocoder</a></li>
+<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html">Geocoder</a></li>
+<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-reverse-geocode-brief.html">Reverse Geocoder</a></li>
 </ul>
 </div>
 

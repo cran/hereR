@@ -10,4 +10,12 @@ test_that("defunct works", {
   expect_error(traffic(aoi = aoi, product = "flow"))
   expect_error(traffic(aoi = aoi, product = "incidents"))
 
+  # autocomplete
+  expect_error(autocomplete("Defunct"))
+
+  # set_proxy
+  expect_error(set_proxy(proxy = "DE", proxyuserpwd = "FUNCT"))
+
+  # unset_proxy
+  expect_error(unset_proxy())
 })
