@@ -14,19 +14,9 @@
 
 <title>Public Transit API</title>
 
-<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
-// be compatible with the behavior of Pandoc < 2.8).
-document.addEventListener('DOMContentLoaded', function(e) {
-  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
-  var i, h, a;
-  for (i = 0; i < hs.length; i++) {
-    h = hs[i];
-    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
-    a = h.attributes;
-    while (a.length > 0) h.removeAttribute(a[0].name);
-  }
-});
-</script>
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<link href="data:text/css,%0Aa%2Eanchor%2Dsection%20%7Bmargin%2Dleft%3A%2010px%3B%20visibility%3A%20hidden%3B%20color%3A%20inherit%3B%7D%0Aa%2Eanchor%2Dsection%3A%3Abefore%20%7Bcontent%3A%20%27%23%27%3B%7D%0A%2EhasAnchor%3Ahover%20a%2Eanchor%2Dsection%20%7Bvisibility%3A%20visible%3B%7D%0A" rel="stylesheet" />
+<script src="data:application/javascript;base64,Ly8gQW5jaG9yIHNlY3Rpb25zIHYxLjAgd3JpdHRlbiBieSBBdHN1c2hpIFlhc3Vtb3RvIG9uIE9jdCAzcmQsIDIwMjAuCmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RPTUNvbnRlbnRMb2FkZWQnLCBmdW5jdGlvbigpIHsKICAvLyBEbyBub3RoaW5nIGlmIEFuY2hvckpTIGlzIHVzZWQKICBpZiAodHlwZW9mIHdpbmRvdy5hbmNob3JzID09PSAnb2JqZWN0JyAmJiBhbmNob3JzLmhhc093blByb3BlcnR5KCdoYXNBbmNob3JKU0xpbmsnKSkgewogICAgcmV0dXJuOwogIH0KCiAgY29uc3QgaCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ2gxLCBoMiwgaDMsIGg0LCBoNSwgaDYnKTsKCiAgLy8gRG8gbm90aGluZyBpZiBzZWN0aW9ucyBhcmUgYWxyZWFkeSBhbmNob3JlZAogIGlmIChBcnJheS5mcm9tKGgpLnNvbWUoeCA9PiB4LmNsYXNzTGlzdC5jb250YWlucygnaGFzQW5jaG9yJykpKSB7CiAgICByZXR1cm4gbnVsbDsKICB9CgogIC8vIFVzZSBzZWN0aW9uIGlkIHdoZW4gcGFuZG9jIHJ1bnMgd2l0aCAtLXNlY3Rpb24tZGl2cwogIGNvbnN0IHNlY3Rpb25faWQgPSBmdW5jdGlvbih4KSB7CiAgICByZXR1cm4gKCh4LmNsYXNzTGlzdC5jb250YWlucygnc2VjdGlvbicpIHx8ICh4LnRhZ05hbWUgPT09ICdTRUNUSU9OJykpCiAgICAgICAgICAgID8geC5pZCA6ICcnKTsKICB9OwoKICAvLyBBZGQgYW5jaG9ycwogIGguZm9yRWFjaChmdW5jdGlvbih4KSB7CiAgICBjb25zdCBpZCA9IHguaWQgfHwgc2VjdGlvbl9pZCh4LnBhcmVudEVsZW1lbnQpOwogICAgaWYgKGlkID09PSAnJykgewogICAgICByZXR1cm4gbnVsbDsKICAgIH0KICAgIGxldCBhbmNob3IgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdhJyk7CiAgICBhbmNob3IuaHJlZiA9ICcjJyArIGlkOwogICAgYW5jaG9yLmNsYXNzTGlzdCA9IFsnYW5jaG9yLXNlY3Rpb24nXTsKICAgIHguY2xhc3NMaXN0LmFkZCgnaGFzQW5jaG9yJyk7CiAgICB4LmFwcGVuZENoaWxkKGFuY2hvcik7CiAgfSk7Cn0pOwo="></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -35,68 +25,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-      pre > code.sourceCode > span:empty { height: 1.2em; }
-      code.sourceCode > span { color: inherit; text-decoration: inherit; }
-      div.sourceCode { margin: 1em 0; }
-      pre.sourceCode { margin: 0; }
-      @media screen {
-      div.sourceCode { overflow: auto; }
-      }
-      @media print {
-      pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-      }
-      pre.numberSource code
-        { counter-reset: source-line 0; }
-      pre.numberSource code > span
-        { position: relative; left: -4em; counter-increment: source-line; }
-      pre.numberSource code > span > a:first-child::before
-        { content: counter(source-line);
-          position: relative; left: -1em; text-align: right; vertical-align: baseline;
-          border: none; display: inline-block;
-          -webkit-touch-callout: none; -webkit-user-select: none;
-          -khtml-user-select: none; -moz-user-select: none;
-          -ms-user-select: none; user-select: none;
-          padding: 0 4px; width: 4em;
-          color: #aaaaaa;
-        }
-      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-      div.sourceCode
-        {   }
-      @media screen {
-      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-      }
-      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-      code span.at { color: #7d9029; } /* Attribute */
-      code span.bn { color: #40a070; } /* BaseN */
-      code span.bu { } /* BuiltIn */
-      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-      code span.ch { color: #4070a0; } /* Char */
-      code span.cn { color: #880000; } /* Constant */
-      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-      code span.dt { color: #902000; } /* DataType */
-      code span.dv { color: #40a070; } /* DecVal */
-      code span.er { color: #ff0000; font-weight: bold; } /* Error */
-      code span.ex { } /* Extension */
-      code span.fl { color: #40a070; } /* Float */
-      code span.fu { color: #06287e; } /* Function */
-      code span.im { } /* Import */
-      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-      code span.op { color: #666666; } /* Operator */
-      code span.ot { color: #007020; } /* Other */
-      code span.pp { color: #bc7a00; } /* Preprocessor */
-      code span.sc { color: #4070a0; } /* SpecialChar */
-      code span.ss { color: #bb6688; } /* SpecialString */
-      code span.st { color: #4070a0; } /* String */
-      code span.va { color: #19177c; } /* Variable */
-      code span.vs { color: #4070a0; } /* VerbatimString */
-      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     </style>
 
 
@@ -190,187 +118,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
-
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -397,11 +145,11 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="sections" class="section level3">
 <h3>1. Sections</h3>
 <p>Request available public transport connections as detailed sections:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>connection_section &lt;-<span class="st"> </span><span class="kw">connection</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="dt">origin =</span> poi[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, ],</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="dt">destination =</span> poi[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, ],</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="dt">summary =</span> <span class="ot">FALSE</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>connection_section <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The <code>id</code> column corresponds to the row of the input locations (<code>origin</code> and <code>destination</code>) and the <code>rank</code> column enumerates the alternative routes. The maximum number of alternatives can be set by the <code>results</code> parameter. Each row in the returned <code>sf</code> object corresponds to a route section with a transport mode in a vehicle without a transfer.</p>
 <table>
 <thead>
@@ -456,13 +204,13 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2020-10-19 23:54:00
+2020-11-26 20:19:00
 </td>
 <td style="text-align:left;">
 ORIG
 </td>
 <td style="text-align:left;">
-2020-10-20 00:04:00
+2020-11-26 20:29:00
 </td>
 <td style="text-align:left;">
 Lausanne, Sallaz
@@ -497,13 +245,13 @@ NA
 1
 </td>
 <td style="text-align:left;">
-2020-10-20 00:04:00
+2020-11-26 20:29:00
 </td>
 <td style="text-align:left;">
 Lausanne, Sallaz
 </td>
 <td style="text-align:left;">
-2020-10-20 00:13:00
+2020-11-26 20:39:00
 </td>
 <td style="text-align:left;">
 Lausanne, gare
@@ -521,13 +269,13 @@ m2
 Transport publics de la Région Lausannoise
 </td>
 <td style="text-align:left;">
-Lausanne, Ouchy-Olympique
+Lausanne, gare
 </td>
 <td style="text-align:right;">
 2940
 </td>
 <td style="text-align:right;">
-540
+600
 </td>
 </tr>
 <tr>
@@ -538,13 +286,13 @@ Lausanne, Ouchy-Olympique
 1
 </td>
 <td style="text-align:left;">
-2020-10-20 00:13:00
+2020-11-26 20:39:00
 </td>
 <td style="text-align:left;">
 Lausanne, gare
 </td>
 <td style="text-align:left;">
-2020-10-20 00:18:00
+2020-11-26 20:44:00
 </td>
 <td style="text-align:left;">
 Lausanne
@@ -579,13 +327,13 @@ NA
 1
 </td>
 <td style="text-align:left;">
-2020-10-20 00:20:00
+2020-11-26 20:44:00
 </td>
 <td style="text-align:left;">
 Lausanne
 </td>
 <td style="text-align:left;">
-2020-10-20 01:26:00
+2020-11-26 21:56:00
 </td>
 <td style="text-align:left;">
 Bern
@@ -597,19 +345,19 @@ intercityTrain
 Intercity Train
 </td>
 <td style="text-align:left;">
-IC 1
+IR 15
 </td>
 <td style="text-align:left;">
 Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:left;">
-Zürich HB
+Luzern
 </td>
 <td style="text-align:right;">
 97091
 </td>
 <td style="text-align:right;">
-3960
+4320
 </td>
 </tr>
 <tr>
@@ -620,13 +368,13 @@ Zürich HB
 1
 </td>
 <td style="text-align:left;">
-2020-10-20 01:32:00
+2020-11-26 22:02:00
 </td>
 <td style="text-align:left;">
 Bern
 </td>
 <td style="text-align:left;">
-2020-10-20 01:44:00
+2020-11-26 22:13:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
@@ -650,7 +398,7 @@ Belp
 8668
 </td>
 <td style="text-align:right;">
-720
+660
 </td>
 </tr>
 <tr>
@@ -661,13 +409,13 @@ Belp
 1
 </td>
 <td style="text-align:left;">
-2020-10-20 01:44:00
+2020-11-26 22:13:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
 </td>
 <td style="text-align:left;">
-2020-10-20 01:45:00
+2020-11-26 22:14:00
 </td>
 <td style="text-align:left;">
 DEST
@@ -688,7 +436,7 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-76
+84
 </td>
 <td style="text-align:right;">
 60
@@ -697,21 +445,21 @@ NA
 </tbody>
 </table>
 <p>Print the public transport sections on an interactive leaflet map:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">mapview</span>(connection_section,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>        <span class="dt">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>        <span class="dt">layer.name =</span> <span class="st">&quot;Transport mode&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>        <span class="dt">map.types =</span> <span class="kw">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>        <span class="dt">homebutton =</span> <span class="ot">FALSE</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mapview</span>(connection_section,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">layer.name =</span> <span class="st">&quot;Transport mode&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="summary" class="section level3">
 <h3>2. Summary</h3>
 <p>Request a summary of the available public transport connections:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>connection_summary &lt;-<span class="st"> </span><span class="kw">connection</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="dt">origin =</span> poi[<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, ],</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="dt">destination =</span> poi[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, ],</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  <span class="dt">summary =</span> <span class="ot">TRUE</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>connection_summary <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -765,13 +513,54 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2020-10-19 23:54:00
+2020-11-26 20:19:00
 </td>
 <td style="text-align:left;">
 Lausanne, Sallaz
 </td>
 <td style="text-align:left;">
-2020-10-20 01:45:00
+2020-11-26 22:14:00
+</td>
+<td style="text-align:left;">
+Kehrsatz Nord
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+pedestrian, subway, pedestrian, intercityTrain, cityTrain, pedestrian
+</td>
+<td style="text-align:left;">
+Train, Intercity Train, Train
+</td>
+<td style="text-align:left;">
+m2, IR 15, S 3
+</td>
+<td style="text-align:left;">
+Transport publics de la Région Lausannoise, Schweizerische Bundesbahnen SBB, BLS AG (bls)
+</td>
+<td style="text-align:right;">
+109665
+</td>
+<td style="text-align:right;">
+6540
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+2020-11-26 20:52:00
+</td>
+<td style="text-align:left;">
+Lausanne, Sallaz
+</td>
+<td style="text-align:left;">
+2020-11-26 22:44:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
@@ -792,51 +581,10 @@ m2, IC 1, S 3
 Transport publics de la Région Lausannoise, Schweizerische Bundesbahnen SBB, BLS AG (bls)
 </td>
 <td style="text-align:right;">
-109657
+109665
 </td>
 <td style="text-align:right;">
-6180
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-2020-10-20 00:18:00
-</td>
-<td style="text-align:left;">
-Lausanne, Sallaz
-</td>
-<td style="text-align:left;">
-2020-10-20 02:24:00
-</td>
-<td style="text-align:left;">
-Kehrsatz Nord
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-pedestrian, subway, pedestrian, intercityTrain, cityTrain, pedestrian
-</td>
-<td style="text-align:left;">
-Train, Intercity Train, Train
-</td>
-<td style="text-align:left;">
-m2, IR 15, S 44
-</td>
-<td style="text-align:left;">
-Transport publics de la Région Lausannoise, Schweizerische Bundesbahnen SBB, BLS AG (bls)
-</td>
-<td style="text-align:right;">
-109657
-</td>
-<td style="text-align:right;">
-6480
+6120
 </td>
 </tr>
 <tr>
@@ -847,13 +595,54 @@ Transport publics de la Région Lausannoise, Schweizerische Bundesbahnen SBB, BL
 1
 </td>
 <td style="text-align:left;">
-2020-10-19 23:39:00
+2020-11-26 20:25:00
 </td>
 <td style="text-align:left;">
 Basel, Kleinhüningen
 </td>
 <td style="text-align:left;">
-2020-10-20 01:39:00
+2020-11-26 22:21:00
+</td>
+<td style="text-align:left;">
+Zürich HB
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+pedestrian, lightRail, pedestrian, intercityTrain, intercityTrain, pedestrian
+</td>
+<td style="text-align:left;">
+Tram, Intercity Train, Intercity Train
+</td>
+<td style="text-align:left;">
+8, 1, IR 17
+</td>
+<td style="text-align:left;">
+Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB, Schweizerische Bundesbahnen SBB
+</td>
+<td style="text-align:right;">
+100373
+</td>
+<td style="text-align:right;">
+6600
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+2020-11-26 20:39:00
+</td>
+<td style="text-align:left;">
+Basel, Kleinhüningen
+</td>
+<td style="text-align:left;">
+2020-11-26 22:39:00
 </td>
 <td style="text-align:left;">
 Zürich HB
@@ -874,51 +663,10 @@ Tram, Intercity Train
 Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:right;">
-94848
+94841
 </td>
 <td style="text-align:right;">
-7020
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-2020-10-19 23:54:00
-</td>
-<td style="text-align:left;">
-Basel, Kleinhüningen
-</td>
-<td style="text-align:left;">
-2020-10-20 01:47:00
-</td>
-<td style="text-align:left;">
-Zürich HB
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-pedestrian, lightRail, pedestrian, intercityTrain, intercityTrain, pedestrian
-</td>
-<td style="text-align:left;">
-Tram, Intercity Train, Intercity Train
-</td>
-<td style="text-align:left;">
-8, IC 61, IC 1
-</td>
-<td style="text-align:left;">
-Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB, Schweizerische Bundesbahnen SBB
-</td>
-<td style="text-align:right;">
-108350
-</td>
-<td style="text-align:right;">
-6240
+7080
 </td>
 </tr>
 </tbody>
@@ -928,28 +676,28 @@ Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB, Schweizerische Bundesb
 <div id="stations" class="section level2">
 <h2>Stations</h2>
 <p>The function <code>station()</code> allows to request public transport stations nearby points of interest (POIs). The <code>radius</code> defines the maximum search distance in meters and <code>results</code> specifies the maximum number of returned stations. The returned <code>sf</code> object contains the locations of the stations and the available public transport lines at the station.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>stations &lt;-<span class="st"> </span><span class="kw">station</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  <span class="dt">poi =</span> poi,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="dt">radius =</span> <span class="dv">500</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="dt">results =</span> <span class="dv">5</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">station</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radius =</span> <span class="dv">500</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">results =</span> <span class="dv">5</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print the POIs, the radius and stations on an interactive leaflet map:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>buffer &lt;-</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="st">  </span>poi <span class="op">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">st_transform</span>(<span class="dv">2056</span>) <span class="op">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">st_buffer</span>(<span class="dv">500</span>) <span class="op">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">st_transform</span>(<span class="dv">4326</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>m &lt;-</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(poi, <span class="dt">alpha.region =</span> <span class="dv">1</span>, <span class="dt">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>          <span class="dt">label =</span> poi<span class="op">$</span>city, <span class="dt">layer.name =</span> <span class="st">&quot;POIs&quot;</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>          <span class="dt">map.types =</span> <span class="kw">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>), <span class="dt">homebutton =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(stations, <span class="dt">col.region =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>          <span class="dt">label =</span> stations<span class="op">$</span>station, <span class="dt">layer.name =</span> <span class="st">&quot;Stations&quot;</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>          <span class="dt">homebutton =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">mapview</span>(buffer, <span class="dt">col.region =</span> <span class="st">&quot;transparent&quot;</span>, <span class="dt">alpha.region =</span> <span class="dv">0</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>          <span class="dt">layer.name =</span> <span class="st">&quot;Buffer&quot;</span>, <span class="dt">homebutton =</span> <span class="ot">FALSE</span>, <span class="dt">legend =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>m</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>buffer <span class="ot">&lt;-</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  poi <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">2056</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_buffer</span>(<span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapview</span>(poi, <span class="at">alpha.region =</span> <span class="dv">1</span>, <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">label =</span> poi<span class="sc">$</span>city, <span class="at">layer.name =</span> <span class="st">&quot;POIs&quot;</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>), <span class="at">homebutton =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapview</span>(stations, <span class="at">col.region =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">label =</span> stations<span class="sc">$</span>station, <span class="at">layer.name =</span> <span class="st">&quot;Stations&quot;</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">homebutton =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapview</span>(buffer, <span class="at">col.region =</span> <span class="st">&quot;transparent&quot;</span>, <span class="at">alpha.region =</span> <span class="dv">0</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">layer.name =</span> <span class="st">&quot;Buffer&quot;</span>, <span class="at">homebutton =</span> <span class="cn">FALSE</span>, <span class="at">legend =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>
