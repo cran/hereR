@@ -4,8 +4,12 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(hereR)
-library(mapview)
-mapviewOptions(fgb = FALSE)
+library(sf)
+
+if (requireNamespace("mapview", quietly = TRUE)) {
+ mapview::mapviewOptions(fgb = FALSE)
+}
+
 address <- poi$city
 geocoded <- hereR:::example$geocode
 suggestions <- hereR:::example$autosuggest
@@ -30,16 +34,18 @@ head(geocoded, 3)
 #  geocoded_sfdf <- st_as_sf(data.frame(locs, df[locs$id, ]))
 
 ## ----map_geocoded, eval=FALSE, out.width='100%'-------------------------------
-#  mapview(geocoded,
-#          label = geocoded$address,
-#          col.regions = "red",
-#          map.types = c("Esri.WorldTopoMap"),
-#          legend = FALSE,
-#          homebutton = FALSE
-#  )
+#  if (requireNamespace("mapview", quietly = TRUE)) {
+#    mapview::mapview(geocoded,
+#                     label = geocoded$address,
+#                     col.regions = "red",
+#                     map.types = c("Esri.WorldTopoMap"),
+#                     legend = FALSE,
+#                     homebutton = FALSE
+#    )
+#  }
 
 ## ----autocomplete, eval=FALSE-------------------------------------------------
-#  suggestions <- autocomplete(address, results = 3)
+#  suggestions <- autosuggest(address, results = 3)
 
 ## ----results_autocomplete, eval=TRUE, echo=TRUE, out.width='100%'-------------
 results <- data.frame(
@@ -56,12 +62,14 @@ knitr::kable(head(results), format = "html")
 #  reverse_geocoded <- reverse_geocode(poi = poi, results = 3)
 
 ## ----map_reverse_geocode, eval=FALSE, echo=TRUE, out.width='100%'-------------
-#  m <-
-#    mapview(poi, alpha.region = 0, col.region = "transparent",
-#            label = poi$city, cex = 30, layer.name = "POIs",
-#            map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
-#    mapview(reverse_geocoded, col.region = "red", alpha = 0,
-#            label = reverse_geocoded$label, layer.name = "Adresses",
-#            homebutton = FALSE)
-#  m
+#  if (requireNamespace("mapview", quietly = TRUE)) {
+#    m <-
+#      mapview::mapview(poi, alpha.region = 0, col.region = "transparent",
+#                       label = poi$city, cex = 30, layer.name = "POIs",
+#                       map.types = c("Esri.WorldTopoMap"), homebutton = FALSE) +
+#      mapview::mapview(reverse_geocoded, col.region = "red", alpha = 0,
+#                       label = reverse_geocoded$label, layer.name = "Adresses",
+#                       homebutton = FALSE)
+#    m
+#  }
 

@@ -4,13 +4,14 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(hereR)
-library(mapview)
-mapviewOptions(
-  fgb = FALSE,
-  vector.palette = colorRampPalette(
-    c("#FFD700", "#CA0020")
+
+if (requireNamespace("mapview", quietly = TRUE)) {
+  mapview::mapviewOptions(
+    fgb = FALSE,
+    vector.palette = colorRampPalette(c("#FFD700", "#CA0020"))
   )
-)
+}
+
 flows <- hereR:::example$flow
 incidents <- hereR:::example$incident
 
@@ -21,13 +22,17 @@ incidents <- hereR:::example$incident
 
 ## ----map_flow, eval=FALSE, out.width='100%'-----------------------------------
 #  flows <- flows[order(flows$JF), ]
-#  mapview(flows,
-#          zcol = "JF",
-#          lwd = flows$JF*2,
-#          layer.name = "Jam factor",
-#          map.types = c("Esri.WorldTopoMap"),
-#          homebutton = FALSE
-#  )
+#  rownames(flows) <- NULL
+#  
+#  if (requireNamespace("mapview", quietly = TRUE)) {
+#    mapview::mapview(flows,
+#                     zcol = "JF",
+#                     lwd = round(flows$JF*2),
+#                     layer.name = "Jam factor",
+#                     map.types = c("Esri.WorldTopoMap"),
+#                     homebutton = FALSE
+#    )
+#  }
 
 ## ----incidents, eval=FALSE----------------------------------------------------
 #  incidents <- incident(
@@ -36,10 +41,12 @@ incidents <- hereR:::example$incident
 #  )
 
 ## ----map_incidents, eval=FALSE, out.width='100%'------------------------------
-#  mapview(incidents,
-#          zcol = "type",
-#          layer.name = "Incident type",
-#          map.types = c("Esri.WorldTopoMap"),
-#          homebutton = FALSE
-#  )
+#  if (requireNamespace("mapview", quietly = TRUE)) {
+#    mapview::mapview(incidents,
+#                     zcol = "type",
+#                     layer.name = "Incident type",
+#                     map.types = c("Esri.WorldTopoMap"),
+#                     homebutton = FALSE
+#    )
+#  }
 

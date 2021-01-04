@@ -4,13 +4,16 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(hereR)
-library(mapview)
-mapviewOptions(
-  fgb = FALSE,
-  vector.palette = colorRampPalette(
-    c("#000004FF", "#420A68FF", "#932667FF", "#DD513AFF", "#FCA50AFF", "#FCFFA4FF")
+
+if (requireNamespace("mapview", quietly = TRUE)) {
+  mapview::mapviewOptions(
+    fgb = FALSE,
+    vector.palette = grDevices::colorRampPalette(
+      c("#000004FF", "#420A68FF", "#932667FF", "#DD513AFF", "#FCA50AFF", "#FCFFA4FF")
+    )
   )
-)
+}
+
 intermodal_routes <- hereR:::example$intermodal_route
 
 ## ----int_directions, eval=FALSE-----------------------------------------------
@@ -24,10 +27,12 @@ intermodal_routes <- hereR:::example$intermodal_route
 knitr::kable(head(as.data.frame(intermodal_routes)[, colnames(intermodal_routes) != "geometry"]), format = "html")
 
 ## ----map_int_routes, eval=FALSE, out.width='100%'-----------------------------
-#  mapview(intermodal_routes,
-#          zcol = "mode",
-#          layer.name = "Intermodal route",
-#          map.types = c("Esri.WorldTopoMap"),
-#          homebutton = FALSE
-#  )
+#  if (requireNamespace("mapview", quietly = TRUE)) {
+#    mapview::mapview(intermodal_routes,
+#                     zcol = "mode",
+#                     layer.name = "Intermodal route",
+#                     map.types = c("Esri.WorldTopoMap"),
+#                     homebutton = FALSE
+#    )
+#  }
 

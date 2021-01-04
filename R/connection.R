@@ -15,7 +15,7 @@
 #' @param datetime \code{POSIXct} object, datetime for the departure (or arrival if \code{arrival = TRUE}).
 #' @param arrival boolean, calculate connections for arrival at the defined time (\code{default = FALSE})?
 #' @param results numeric, maximum number of suggested public transport routes (Valid range: 1 and 6).
-#' @param transfers numeric, maximum number of transfers allowed per route (Valid range: -1 and 6, \code{default = -1}).
+#' @param transfers numeric, maximum number of transfers allowed per route (Valid range: -1 and 6, whereby the \code{default = -1} allows for unlimited transfers).
 #' @param summary boolean, return a summary of the public transport connections instead of the sections of the routes (\code{default = FALSE})?
 #' @param url_only boolean, only return the generated URLs (\code{default = FALSE})?
 #'
@@ -129,8 +129,8 @@ connection <- function(origin, destination, datetime = Sys.time(),
 
   # Postprocess
   routes <- routes[routes$rank <= results, ]
-  routes$departure <- .parse_datetime(routes$departure, tz = attr(datetime, "tzone"))
-  routes$arrival <- .parse_datetime(routes$arrival, tz = attr(datetime, "tzone"))
+  routes$departure <- .parse_datetime_tz(routes$departure, tz = attr(datetime, "tzone"))
+  routes$arrival <- .parse_datetime_tz(routes$arrival, tz = attr(datetime, "tzone"))
   rownames(routes) <- NULL
 
   # Summarize connections
