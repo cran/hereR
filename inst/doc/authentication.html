@@ -12,7 +12,7 @@
 
 
 
-<title>Authentication</title>
+<title>Authentication &amp; Options</title>
 
 <script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 
@@ -26,7 +26,14 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -130,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">Authentication</h1>
+<h1 class="title toc-ignore">Authentication &amp; Options</h1>
 
 
 
@@ -155,11 +162,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_verbose</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Use <code>set_Verbose(FALSE)</code> to set the <strong>hereR</strong> package to be quiet again.</p>
 </div>
+<div id="rate-limits" class="section level2">
+<h2>Rate limits</h2>
+<p>For freemium licenses the number of requests per second (RPS) is limited, use <code>set_rate_limit(FALSE)</code> to turn off rate limits for accounts with paid plans.</p>
+<p>The limits are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Service</th>
+<th>Max RPS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Geocoding &amp; Search</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Multi Reverse Geocoding</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Vector Tile</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Map Tile</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<td>Map Image</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Routing</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Matrix Routing</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Isoline Routing</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Route Matching</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Advanced Datasets</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Waypoints Sequence</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Transit</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Intermodal</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="proxy" class="section level2">
 <h2>Proxy</h2>
 <p>If you are working behind a corporate proxy the requests sent by <strong>hereR</strong> might fail with timeout errors. In this case, consider setting a global proxy for R. Open the R environment file <code>file.edit(&#39;~/.Renviron&#39;)</code> and add your proxy configuration:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">http_proxy=</span>http://user:passwd@proxy.dom.com:port/</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">https_proxy=</span>https://user:passwd@proxy.dom.com:port/</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">http_proxy</span><span class="op">=</span>http://user:passwd@proxy.dom.com:port/</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">https_proxy</span><span class="op">=</span>https://user:passwd@proxy.dom.com:port/</span></code></pre></div>
 <p><strong>Note:</strong> On RStudio Server this file is located at <code>R_HOME/etc/Renviron.site</code>.</p>
 </div>
 <div id="remove-credentials" class="section level2">
