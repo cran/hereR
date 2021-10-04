@@ -1,6 +1,6 @@
-49bd8953b416ad4a23372810a071aada *DESCRIPTION
+5e974c5c70f8076aca57ecfe5ccbe232 *DESCRIPTION
 7c674782af1147ce0f994bc4b92d741f *NAMESPACE
-835fe214f47941a1ee2c2760d77323e6 *NEWS.md
+57f4039759a934c27fe227ae1f21ffba *NEWS.md
 aa1ca85576a96363591f6e3a4faf76d5 *R/autosuggest.R
 4b0fc077d4005598ace72e47fbf60b50 *R/checks.R
 9d2f941430d4f0969666a0ca4fc4eded *R/connection.R
@@ -21,7 +21,7 @@ dedc0fba04e863917c911e22cc7eb541 *R/station.R
 1b977bed383284330469940f55b4ea33 *R/sysdata.rda
 67e8430cd6f5801023ec014ced5c1968 *R/utils.R
 d233c5e9a57ff24c87f62177f03320aa *R/weather.R
-ae27abceeae9c8c08c0dc1bcd1647307 *README.md
+557e696b8f1a01f3930ad910540fbaa7 *README.md
 051e1b7f71f7ede3a7e1932bef40fcb5 *build/vignette.rds
 854a4eb18a239c2065a8c180d7cb017b *data/aoi.rda
 1a75d72b1a3a7ad34dd2a42a3fd71ba0 *data/poi.rda
@@ -56,7 +56,7 @@ e241407141d06c8893f949713b2df544 *man/flow.Rd
 167217917f0238c0019f22aa0ae69c25 *man/geocode.Rd
 e3c81e6943206bbb4cbb9a107e01c9e2 *man/hereR-defunct.Rd
 49c26645bb42b0b2da5b83bcd7028e2c *man/hereR-deprecated.Rd
-a4b6b28310129b1881d7d396316a2900 *man/hereR-package.Rd
+4e14a136a276b2280c0e2190ad110d51 *man/hereR-package.Rd
 a6a20cc24ff9ec69ccaa14b37279aec6 *man/incident.Rd
 65a5e9fee33360b1805858d6e3926d7c *man/intermodal_route.Rd
 49140704d285defa1c355ed1d481d83a *man/isoline.Rd
