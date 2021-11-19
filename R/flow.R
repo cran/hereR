@@ -58,7 +58,7 @@ flow <- function(aoi, min_jam_factor = 0, url_only = FALSE) {
 
   # Add bbox
   aoi <- sf::st_transform(aoi, 4326)
-  bbox <- sapply(sf::st_geometry(aoi), sf::st_bbox)
+  bbox <- vapply(sf::st_geometry(aoi), sf::st_bbox, numeric(4))
   .check_bbox(bbox)
   url <- paste0(
     url,
@@ -88,7 +88,7 @@ flow <- function(aoi, min_jam_factor = 0, url_only = FALSE) {
   # Request and get content
   data <- .async_request(
     url = url,
-    rps = Inf
+    rps = 10
   )
   if (length(data) == 0) {
     return(NULL)

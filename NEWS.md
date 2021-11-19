@@ -1,3 +1,13 @@
+# version 0.8.2
+
+* Setting the arrival time is now supported by the Routing API, therefore `route(..., arrival = TRUE)` works.
+* Since `sapply` is not type safe, replace its use with `vapply(..., FUN.VALUE = type)`.
+* Add endpoint URL (without parameters) of failing requests to the warning message and print error message of the response.
+* RPS limit for weather and traffic endpoints.
+* Changed workflow from git flow to trunc-based development. Removed develop branch. New features are merged directly into `master` and releases are tagged after CRAN has accepted the package submission, which triggers the documentation build.
+* Bugfix: Fix time / traffic independent requests in `isoline(..., traffic=FALSE)` (closes [#147](https://github.com/munterfi/hereR/issues/147)).
+* Bugfix: Explicitly cast linestring in function `.connection_summary` to avoid error in `CPL_geos_union` (@panhypersebastos).
+
 # version 0.8.1
 
 * Adjust URLs to GitHub account due to renaming munterfinger to @munterfi.

@@ -5,7 +5,7 @@
 [![CRAN checks](https://cranchecks.info/badges/worst/hereR)](https://cran.r-project.org/web/checks/check_results_hereR.html)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/hereR?color=brightgreen)](https://CRAN.R-project.org/package=hereR)
 [![R build status](https://github.com/munterfi/hereR/workflows/R-CMD-check/badge.svg)](https://github.com/munterfi/hereR/actions)
-[![Codecov test coverage](https://codecov.io/gh/munterfi/hereR/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfi/hereR?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/munterfi/hereR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/munterfi/hereR?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/munterfi/hereR/badge)](https://www.codefactor.io/repository/github/munterfi/hereR)
 <!-- badges: end -->
 
@@ -30,7 +30,7 @@ install.packages("hereR")
 Install the development version from [GitHub](https://github.com/munterfi/hereR/) with:
 
 ``` r
-remotes::install_github("munterfi/hereR@develop")
+remotes::install_github("munterfi/hereR")
 ```
 
 ## Usage
@@ -65,7 +65,7 @@ route(poi[1:2, ], poi[3:4, ], transport_mode = "car", traffic = TRUE)
 
 route(poi[1:2, ], poi[3:4, ], transport_mode = "car", traffic = FALSE)
 
-route(poi[1:2, ], poi[3:4, ], transport_mode = "bicycle")
+route(poi[4, ], poi[5, ], transport_mode = "bicycle")
 ```
 
 **Matrix Routing API:** Request a matrix of route summaries.
@@ -86,7 +86,7 @@ isoline(poi, range_type = "time", transport_mode = "pedestrian")
 
 isoline(poi, range_type = "distance", transport_mode = "truck")
 
-isoline(poi, range_type = "consumption", transport_mode = "car")
+isoline(poi, range_type = "consumption", transport_mode = "car", traffic = FALSE)
 ```
 
 **Traffic API:** Get real-time traffic flow or incidents in a specific area.
@@ -125,8 +125,7 @@ weather(poi, product = "alerts")
 
 ## Contributing
 
-* Contributions to this package are very welcome, issues and pull requests are the preferred ways to share them.
-* Please see the [Contribution Guidelines](https://github.com/munterfi/hereR/blob/master/.github/CONTRIBUTING.md) and direct pull requests to the `develop` branch.
+* Contributions to this package are very welcome, issues and pull requests are the preferred ways to share them. Please see the [Contribution Guidelines](https://github.com/munterfi/hereR/blob/master/.github/CONTRIBUTING.md).
 * This project is released with a [Contributor Code of Conduct](https://github.com/munterfi/hereR/blob/master/.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## References

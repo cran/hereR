@@ -13,6 +13,10 @@ test_that("route works", {
   expect_error(route(origin = poi, destination = poi, traffic = "not_a_bool"), "'traffic' must be a 'boolean' value.")
   expect_error(route(origin = poi, destination = poi, url_only = "not_a_bool"), "'url_only' must be a 'boolean' value.")
 
+  # Avoid area and features
+  expect_true(all(grepl("&avoid[areas]=bbox:", route(origin = poi, destination = poi, avoid_area = aoi, url_only = TRUE), fixed = TRUE)))
+  expect_true(all(grepl("&avoid[features]=tollRoad,ferry", route(origin = poi, destination = poi, avoid_feature = c("tollRoad", "ferry"), url_only = TRUE), fixed = TRUE)))
+
   # Test with API response mock
   with_mock(
     "hereR:::.async_request" = function(url, rps) {
