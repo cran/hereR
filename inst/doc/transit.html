@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     </style>
 
 
+
 <style type="text/css">
   code {
     white-space: pre;
@@ -333,23 +334,37 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<p>Request public transport connections between given points and find stations nearby using the ‘HERE Public Transit’ API.</p>
+<p>Request public transport connections between given points and find
+stations nearby using the ‘HERE Public Transit’ API.</p>
 <div id="connections" class="section level2">
 <h2>Connections</h2>
-<p>The function <code>connection()</code> allows to request public transport connections from the API. Two types of requests are provided:</p>
+<p>The function <code>connection()</code> allows to request public
+transport connections from the API. Two types of requests are
+provided:</p>
 <ul>
-<li><code>connection(..., summary = FALSE)</code>: The public transport connections are returned as multiple sections with the same vehicle and transport mode. Each row represents a section with a detailed route geometry.</li>
-<li><code>connection(..., summary = TRUE)</code>: A summary of the connections is retrieved, where each connection is represented as one row with a unified and simplified geometry.</li>
+<li><code>connection(..., summary = FALSE)</code>: The public transport
+connections are returned as multiple sections with the same vehicle and
+transport mode. Each row represents a section with a detailed route
+geometry.</li>
+<li><code>connection(..., summary = TRUE)</code>: A summary of the
+connections is retrieved, where each connection is represented as one
+row with a unified and simplified geometry.</li>
 </ul>
 <div id="sections" class="section level3">
 <h3>1. Sections</h3>
-<p>Request available public transport connections as detailed sections:</p>
+<p>Request available public transport connections as detailed
+sections:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>connection_section <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">FALSE</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>The <code>id</code> column corresponds to the row of the input locations (<code>origin</code> and <code>destination</code>) and the <code>rank</code> column enumerates the alternative routes. The maximum number of alternatives can be set by the <code>results</code> parameter. Each row in the returned <code>sf</code> object corresponds to a route section with a transport mode in a vehicle without a transfer.</p>
+<p>The <code>id</code> column corresponds to the row of the input
+locations (<code>origin</code> and <code>destination</code>) and the
+<code>rank</code> column enumerates the alternative routes. The maximum
+number of alternatives can be set by the <code>results</code> parameter.
+Each row in the returned <code>sf</code> object corresponds to a route
+section with a transport mode in a vehicle without a transfer.</p>
 <table>
 <thead>
 <tr>
@@ -409,13 +424,13 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2021-11-19 18:18:00
+2022-07-24 15:57:00
 </td>
 <td style="text-align:left;">
 ORIG
 </td>
 <td style="text-align:left;">
-2021-11-19 18:28:00
+2022-07-24 16:07:00
 </td>
 <td style="text-align:left;">
 Lausanne, Sallaz
@@ -436,7 +451,7 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-582
+577
 </td>
 <td style="text-align:right;">
 600
@@ -453,13 +468,13 @@ NA
 2
 </td>
 <td style="text-align:left;">
-2021-11-19 18:28:00
+2022-07-24 16:07:00
 </td>
 <td style="text-align:left;">
 Lausanne, Sallaz
 </td>
 <td style="text-align:left;">
-2021-11-19 18:38:00
+2022-07-24 16:17:00
 </td>
 <td style="text-align:left;">
 Lausanne, gare
@@ -477,10 +492,10 @@ m2
 Transports Publics de la Région Lausannoise sa
 </td>
 <td style="text-align:left;">
-Lausanne, gare
+Lausanne, Ouchy-Olympique
 </td>
 <td style="text-align:right;">
-2941
+2940
 </td>
 <td style="text-align:right;">
 600
@@ -497,13 +512,13 @@ Lausanne, gare
 3
 </td>
 <td style="text-align:left;">
-2021-11-19 18:38:00
+2022-07-24 16:17:00
 </td>
 <td style="text-align:left;">
 Lausanne, gare
 </td>
 <td style="text-align:left;">
-2021-11-19 18:43:00
+2022-07-24 16:20:00
 </td>
 <td style="text-align:left;">
 Lausanne
@@ -524,10 +539,10 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-270
+180
 </td>
 <td style="text-align:right;">
-300
+180
 </td>
 </tr>
 <tr>
@@ -541,13 +556,13 @@ NA
 4
 </td>
 <td style="text-align:left;">
-2021-11-19 18:44:00
+2022-07-24 16:20:00
 </td>
 <td style="text-align:left;">
 Lausanne
 </td>
 <td style="text-align:left;">
-2021-11-19 19:56:00
+2022-07-24 17:26:00
 </td>
 <td style="text-align:left;">
 Bern
@@ -556,22 +571,22 @@ Bern
 intercityTrain
 </td>
 <td style="text-align:left;">
-Inter Regional Rail Service
+Long Distance Trains
 </td>
 <td style="text-align:left;">
-IR15
+IC1
 </td>
 <td style="text-align:left;">
 Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:left;">
-Luzern
+St. Gallen
 </td>
 <td style="text-align:right;">
-97078
+82104
 </td>
 <td style="text-align:right;">
-4320
+3960
 </td>
 </tr>
 <tr>
@@ -585,13 +600,13 @@ Luzern
 5
 </td>
 <td style="text-align:left;">
-2021-11-19 20:02:00
+2022-07-24 17:32:00
 </td>
 <td style="text-align:left;">
 Bern
 </td>
 <td style="text-align:left;">
-2021-11-19 20:13:00
+2022-07-24 17:43:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
@@ -612,7 +627,7 @@ BLS AG (bls)
 Belp
 </td>
 <td style="text-align:right;">
-8679
+8663
 </td>
 <td style="text-align:right;">
 660
@@ -629,13 +644,13 @@ Belp
 6
 </td>
 <td style="text-align:left;">
-2021-11-19 20:13:00
+2022-07-24 17:43:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
 </td>
 <td style="text-align:left;">
-2021-11-19 20:16:00
+2022-07-24 17:46:00
 </td>
 <td style="text-align:left;">
 DEST
@@ -656,7 +671,7 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-202
+203
 </td>
 <td style="text-align:right;">
 180
@@ -664,7 +679,8 @@ NA
 </tr>
 </tbody>
 </table>
-<p>Print the public transport sections on an interactive leaflet map:</p>
+<p>Print the public transport sections on an interactive leaflet
+map:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(connection_section,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
@@ -735,54 +751,13 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2021-11-19 18:18:00
+2022-07-24 15:57:00
 </td>
 <td style="text-align:left;">
 Lausanne, Sallaz
 </td>
 <td style="text-align:left;">
-2021-11-19 20:16:00
-</td>
-<td style="text-align:left;">
-Kehrsatz Nord
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-pedestrian, subway, pedestrian, intercityTrain, cityTrain, pedestrian
-</td>
-<td style="text-align:left;">
-Metro Service, Inter Regional Rail Service, Suburban Railway
-</td>
-<td style="text-align:left;">
-m2, IR15, S3
-</td>
-<td style="text-align:left;">
-Transports Publics de la Région Lausannoise sa, Schweizerische Bundesbahnen SBB, BLS AG (bls)
-</td>
-<td style="text-align:right;">
-109752
-</td>
-<td style="text-align:right;">
-6660
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-2021-11-19 18:55:00
-</td>
-<td style="text-align:left;">
-Lausanne, Sallaz
-</td>
-<td style="text-align:left;">
-2021-11-19 20:46:00
+2022-07-24 17:46:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
@@ -800,13 +775,57 @@ Metro Service, Long Distance Trains, Suburban Railway
 m2, IC1, S3
 </td>
 <td style="text-align:left;">
-Transports Publics de la Région Lausannoise sa, Schweizerische Bundesbahnen SBB, BLS AG (bls)
+Transports Publics de la Région Lausannoise sa, Schweizerische
+Bundesbahnen SBB, BLS AG (bls)
 </td>
 <td style="text-align:right;">
-109759
+94667
 </td>
 <td style="text-align:right;">
-6300
+6180
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+2022-07-24 15:58:00
+</td>
+<td style="text-align:left;">
+Lausanne, Champ-Rond
+</td>
+<td style="text-align:left;">
+2022-07-24 17:46:00
+</td>
+<td style="text-align:left;">
+Kehrsatz Nord
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+pedestrian, bus, subway, pedestrian, intercityTrain, cityTrain,
+pedestrian
+</td>
+<td style="text-align:left;">
+Bus Service, Metro Service, Long Distance Trains, Suburban Railway
+</td>
+<td style="text-align:left;">
+42, m2, IC1, S3
+</td>
+<td style="text-align:left;">
+Transports Publics de la Région Lausannoise sa, Transports Publics de la
+Région Lausannoise sa, Schweizerische Bundesbahnen SBB, BLS AG (bls)
+</td>
+<td style="text-align:right;">
+94602
+</td>
+<td style="text-align:right;">
+5820
 </td>
 </tr>
 <tr>
@@ -817,13 +836,13 @@ Transports Publics de la Région Lausannoise sa, Schweizerische Bundesbahnen SBB
 1
 </td>
 <td style="text-align:left;">
-2021-11-19 18:01:00
+2022-07-24 15:37:00
 </td>
 <td style="text-align:left;">
 Basel, Kleinhüningen
 </td>
 <td style="text-align:left;">
-2021-11-19 19:39:00
+2022-07-24 17:17:00
 </td>
 <td style="text-align:left;">
 Zürich HB
@@ -838,16 +857,16 @@ pedestrian, lightRail, pedestrian, intercityTrain, pedestrian
 Tram Service, Long Distance Trains
 </td>
 <td style="text-align:left;">
-8, IC3
+8, EC
 </td>
 <td style="text-align:left;">
 Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:right;">
-97020
+96895
 </td>
 <td style="text-align:right;">
-5760
+5640
 </td>
 </tr>
 <tr>
@@ -858,13 +877,13 @@ Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 2
 </td>
 <td style="text-align:left;">
-2021-11-19 18:09:00
+2022-07-24 16:07:00
 </td>
 <td style="text-align:left;">
 Basel, Kleinhüningen
 </td>
 <td style="text-align:left;">
-2021-11-19 20:06:00
+2022-07-24 18:03:00
 </td>
 <td style="text-align:left;">
 Zürich HB
@@ -879,16 +898,16 @@ pedestrian, lightRail, pedestrian, intercityTrain, pedestrian
 Tram Service, Inter Regional Rail Service
 </td>
 <td style="text-align:left;">
-8, IR37
+8, IR36
 </td>
 <td style="text-align:left;">
 Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:right;">
-84145
+93407
 </td>
 <td style="text-align:right;">
-6780
+6900
 </td>
 </tr>
 </tbody>
@@ -897,13 +916,19 @@ Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 </div>
 <div id="stations" class="section level2">
 <h2>Stations</h2>
-<p>The function <code>station()</code> allows to request public transport stations nearby points of interest (POIs). The <code>radius</code> defines the maximum search distance in meters and <code>results</code> specifies the maximum number of returned stations. The returned <code>sf</code> object contains the locations of the stations and the available public transport lines at the station.</p>
+<p>The function <code>station()</code> allows to request public
+transport stations nearby points of interest (POIs). The
+<code>radius</code> defines the maximum search distance in meters and
+<code>results</code> specifies the maximum number of returned stations.
+The returned <code>sf</code> object contains the locations of the
+stations and the available public transport lines at the station.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">station</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radius =</span> <span class="dv">500</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">results =</span> <span class="dv">5</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Print the POIs, the radius and stations on an interactive leaflet map:</p>
+<p>Print the POIs, the radius and stations on an interactive leaflet
+map:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>buffer <span class="ot">&lt;-</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  poi <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">2056</span>) <span class="sc">%&gt;%</span></span>
@@ -926,8 +951,10 @@ Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>
 <ul>
-<li><a href="https://developer.here.com/documentation/public-transit/dev_guide/routing/index.html">Public Transit Routing: Routing</a></li>
-<li><a href="https://developer.here.com/documentation/public-transit/dev_guide/station-search/index.html">Public Transit Routing: Station Search</a></li>
+<li><a href="https://developer.here.com/documentation/public-transit/dev_guide/routing/index.html">Public
+Transit Routing: Routing</a></li>
+<li><a href="https://developer.here.com/documentation/public-transit/dev_guide/station-search/index.html">Public
+Transit Routing: Station Search</a></li>
 </ul>
 </div>
 

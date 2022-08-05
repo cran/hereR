@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     </style>
 
 
+
 <style type="text/css">
   code {
     white-space: pre;
@@ -333,14 +334,23 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<p>Real-time traffic flow and incident information based on the ‘HERE Traffic’ API. The traffic flow data contains speed (<code>&quot;SP&quot;</code>) and congestion (jam factor: <code>&quot;JF&quot;</code>) information. Traffic incidents contain information about location, time, duration, severity, description and other details.</p>
+<p>Real-time traffic flow and incident information based on the ‘HERE
+Traffic’ API. The traffic flow data contains speed (<code>&quot;SP&quot;</code>)
+and congestion (jam factor: <code>&quot;JF&quot;</code>) information. Traffic
+incidents contain information about location, time, duration, severity,
+description and other details.</p>
 <div id="flow" class="section level2">
 <h2>Flow</h2>
-<p>In order to request the traffic flow, areas of interest (AOIs) have to be provided. The AOIs must be an <code>sf</code> object containing a polygon or multiple polygons. The response from the HERE Traffic API will be spatially joined on the AOIs and thereby the traffic flows are mapped to the corresponding polygon.</p>
+<p>In order to request the traffic flow, areas of interest (AOIs) have
+to be provided. The AOIs must be an <code>sf</code> object containing a
+polygon or multiple polygons. The response from the HERE Traffic API
+will be spatially joined on the AOIs and thereby the traffic flows are
+mapped to the corresponding polygon.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">flow</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">aoi =</span> aoi[aoi<span class="sc">$</span>code <span class="sc">==</span> <span class="st">&quot;LI&quot;</span>, ]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Print the (ordered) ‘jam factor’ of the traffic flow on an interactive leaflet map:</p>
+<p>Print the (ordered) ‘jam factor’ of the traffic flow on an
+interactive leaflet map:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flows <span class="ot">&lt;-</span> flows[<span class="fu">order</span>(flows<span class="sc">$</span>JF), ]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(flows) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -356,7 +366,12 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="incidents" class="section level2">
 <h2>Incidents</h2>
-<p>AOIs also must be provided in order to request information about traffic incidents in specific regions. The time interval, which defines the traffic incidents that should be considered, can be specitified by the <code>from</code> parameter. The datetime information passed to the function must be a timestamp of type <code>POSIXct</code>. By default, the time interval is defined as the last week.</p>
+<p>AOIs also must be provided in order to request information about
+traffic incidents in specific regions. The time interval, which defines
+the traffic incidents that should be considered, can be specitified by
+the <code>from</code> parameter. The datetime information passed to the
+function must be a timestamp of type <code>POSIXct</code>. By default,
+the time interval is defined as the last week.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>incidents <span class="ot">&lt;-</span> <span class="fu">incident</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">aoi =</span> aoi[aoi<span class="sc">$</span>code <span class="sc">==</span> <span class="st">&quot;LI&quot;</span>, ],</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">Sys.time</span>()<span class="sc">-</span><span class="dv">60</span><span class="sc">*</span><span class="dv">60</span></span>

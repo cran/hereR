@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     </style>
 
 
+
 <style type="text/css">
   code {
     white-space: pre;
@@ -333,15 +334,20 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<p>Autosuggest and geocode addresses or reverse geocode POIs using the ‘HERE Geocoding &amp; Search’ API.</p>
+<p>Autosuggest and geocode addresses or reverse geocode POIs using the
+‘HERE Geocoding &amp; Search’ API.</p>
 <div id="geocode-addresses" class="section level2">
 <h2>Geocode addresses</h2>
-<p>In order to geocode addresses, the function <code>geocode()</code> is used. The requests are sent asynchronously, which means that every geocoded address is counting as one request. The addresses have to be of type <code>character</code>:</p>
+<p>In order to geocode addresses, the function <code>geocode()</code> is
+used. The requests are sent asynchronously, which means that every
+geocoded address is counting as one request. The addresses have to be of
+type <code>character</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(address, <span class="dv">3</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Luzern&quot;   &quot;Lugano&quot;   &quot;Lausanne&quot;</span></span></code></pre></div>
 <p>Geocode the character vector containing the addresses:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>geocoded <span class="ot">&lt;-</span> <span class="fu">geocode</span>(address)</span></code></pre></div>
-<p>The return value is an <code>sf</code> object containing <code>POINT</code> geometries of the addresses:</p>
+<p>The return value is an <code>sf</code> object containing
+<code>POINT</code> geometries of the addresses:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geocoded, <span class="dv">3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 3 features and 16 fields</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
@@ -360,7 +366,12 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 POINT EMPTY POINT (8.30437 47.04954)</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 POINT EMPTY  POINT (8.9512 46.00297)</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 POINT EMPTY  POINT (6.63222 46.5196)</span></span></code></pre></div>
-<p>Not found addresses are deleted from the result. This means that the <code>sf</code> object may contain fewer rows than the original number of addresses. The column <code>&quot;id&quot;</code> matches the order of the the input addresses. Using the <code>&quot;id&quot;</code> column a corresponding <code>data.frame</code> <code>&quot;df&quot;</code> with the addresses to geocode could be joined to the coordinates after geocoding.</p>
+<p>Not found addresses are deleted from the result. This means that the
+<code>sf</code> object may contain fewer rows than the original number
+of addresses. The column <code>&quot;id&quot;</code> matches the order of the the
+input addresses. Using the <code>&quot;id&quot;</code> column a corresponding
+<code>data.frame</code> <code>&quot;df&quot;</code> with the addresses to geocode
+could be joined to the coordinates after geocoding.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">company =</span> <span class="fu">c</span>(<span class="st">&quot;Schweizerische Bundesbahnen SBB&quot;</span>, <span class="st">&quot;Bahnhof AG&quot;</span>, <span class="st">&quot;Deutsche Bahn AG&quot;</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">address =</span> <span class="fu">c</span>(<span class="st">&quot;Wylerstrasse 123, 3000 Bern 65&quot;</span>, <span class="st">&quot;not_an_address&quot;</span>, <span class="st">&quot;Potsdamer Platz 2, 10785 Berlin&quot;</span>),</span>
@@ -378,8 +389,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><strong>Note:</strong> Setting <code>alternatives = TRUE</code> will also return alternative locations in the same order as received from the API (<code>rank</code> column).</p>
-<p>Instead of free-text address searches, there is also an option to specify qualified queries using the keys <code>&quot;country&quot;</code>, <code>&quot;state&quot;</code>, <code>&quot;county&quot;</code>, <code>&quot;city&quot;</code>, <code>&quot;district&quot;</code>, <code>&quot;street&quot;</code>, <code>&quot;houseNumber&quot;</code> or <code>&quot;postalCode&quot;</code>:</p>
+<p><strong>Note:</strong> Setting <code>alternatives = TRUE</code> will
+also return alternative locations in the same order as received from the
+API (<code>rank</code> column).</p>
+<p>Instead of free-text address searches, there is also an option to
+specify qualified queries using the keys <code>&quot;country&quot;</code>,
+<code>&quot;state&quot;</code>, <code>&quot;county&quot;</code>, <code>&quot;city&quot;</code>,
+<code>&quot;district&quot;</code>, <code>&quot;street&quot;</code>,
+<code>&quot;houseNumber&quot;</code> or <code>&quot;postalCode&quot;</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> <span class="st">&quot;Germany&quot;</span>,</span>
@@ -396,9 +413,15 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="autosuggestions" class="section level2">
 <h2>Autosuggestions</h2>
-<p>The autosuggestion endpoint of the Geocoding &amp; Search API can be accessed using the <code>autosuggest()</code> function. The <code>results</code> parameter defines the maximum number of suggestions that should be requested for each input address.</p>
+<p>The autosuggestion endpoint of the Geocoding &amp; Search API can be
+accessed using the <code>autosuggest()</code> function. The
+<code>results</code> parameter defines the maximum number of suggestions
+that should be requested for each input address.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>suggestions <span class="ot">&lt;-</span> <span class="fu">autosuggest</span>(address, <span class="at">results =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p>The return value is a <code>data.frame</code> containing autocomplete suggestions for the addresses. The variable <code>id</code> matches the index of the initial address vector, which was used as input and <code>order</code> stores the rank of the suggestion.</p>
+<p>The return value is a <code>data.frame</code> containing autocomplete
+suggestions for the addresses. The variable <code>id</code> matches the
+index of the initial address vector, which was used as input and
+<code>order</code> stores the rank of the suggestion.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">input =</span> address[suggestions<span class="sc">$</span>id],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> suggestions<span class="sc">$</span>id,</span>
@@ -512,9 +535,14 @@ Lugano Airport (Aeroporto di Lugano)
 </div>
 <div id="reverse-geocode-pois" class="section level2">
 <h2>Reverse geocode POIs</h2>
-<p>The reverse geocoding feature of the Geocoding &amp; Search API can be accessed using the <code>reverse_geocode()</code> function. The function allows to retrieve addresses near POIs.</p>
+<p>The reverse geocoding feature of the Geocoding &amp; Search API can
+be accessed using the <code>reverse_geocode()</code> function. The
+function allows to retrieve addresses near POIs.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>reverse_geocoded <span class="ot">&lt;-</span> <span class="fu">reverse_geocode</span>(<span class="at">poi =</span> poi, <span class="at">results =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p>The function returns an <code>sf</code> object, containing the suggested addresses or landmark names of the reverse geocoded POIs. The coordinates are different from the initially provided POIs since they represent the locations of the suggested addresses or landmarks.</p>
+<p>The function returns an <code>sf</code> object, containing the
+suggested addresses or landmark names of the reverse geocoded POIs. The
+coordinates are different from the initially provided POIs since they
+represent the locations of the suggested addresses or landmarks.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi,</span>
@@ -529,14 +557,22 @@ Lugano Airport (Aeroporto di Lugano)
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  m</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>If no addresses or landmarks are found near a POI, <code>NULL</code> for this POI is returned. In this case the rows corresponding to this particular POI are missing and merging the POIs by row is not possible. However, in the returned <code>sf</code> object, the column <code>&quot;id&quot;</code> matches the rows of the input POIs. The <code>&quot;id&quot;</code> column can be used to join the original POIs.</p>
+<p>If no addresses or landmarks are found near a POI, <code>NULL</code>
+for this POI is returned. In this case the rows corresponding to this
+particular POI are missing and merging the POIs by row is not possible.
+However, in the returned <code>sf</code> object, the column
+<code>&quot;id&quot;</code> matches the rows of the input POIs. The
+<code>&quot;id&quot;</code> column can be used to join the original POIs.</p>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>
 <ul>
-<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-autosuggest-brief.html">Geocoding &amp; Search: Autosuggest</a></li>
-<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html">Geocoding &amp; Search: Geocode</a></li>
-<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-reverse-geocode-brief.html">Geocoding &amp; Search: Reverse Geocode</a></li>
+<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-autosuggest-brief.html">Geocoding
+&amp; Search: Autosuggest</a></li>
+<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html">Geocoding
+&amp; Search: Geocode</a></li>
+<li><a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-reverse-geocode-brief.html">Geocoding
+&amp; Search: Reverse Geocode</a></li>
 </ul>
 </div>
 
