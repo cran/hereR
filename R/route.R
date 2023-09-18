@@ -52,7 +52,6 @@ route <- function(origin, destination, datetime = Sys.time(), arrival = FALSE,
                   results = 1, routing_mode = "fast", transport_mode = "car",
                   traffic = TRUE, avoid_area = NULL, avoid_feature = NULL,
                   consumption_model = NULL, vignettes = TRUE, url_only = FALSE) {
-
   # Checks
   .check_points(origin)
   .check_points(destination)
@@ -239,18 +238,18 @@ route <- function(origin, destination, datetime = Sys.time(), arrival = FALSE,
   routes <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
 
         # Parse JSON
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (is.null(df$routes$sections)) {
           return(NULL)
         }
 
         # Routes
         rank <- 0
-        routes <- data.table::data.table(
+        data.table::data.table(
           id = ids[count],
 
           # Segments

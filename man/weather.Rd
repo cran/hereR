@@ -9,7 +9,7 @@ weather(poi, product = "observation", url_only = FALSE)
 \arguments{
 \item{poi}{\code{sf} object or character, Points of Interest (POIs) of geometry type \code{POINT} or location names (e.g. cities or regions).}
 
-\item{product}{character, weather product of the 'Destination Weather API'. Supported products: \code{"observation"}, \code{"forecast_hourly"}, \code{"forecast_astronomy"} and \code{"alerts"}.}
+\item{product}{character, weather product of the 'Destination Weather API'. Supported products: \code{"observation"}, \code{"forecastHourly"}, \code{"forecastAstronomy"} and \code{"alerts"}.}
 
 \item{url_only}{boolean, only return the generated URLs (\code{default = FALSE})?}
 }
@@ -40,5 +40,5 @@ astronomy <- weather(poi = poi, product = "forecast_astronomy", url_only = TRUE)
 alerts <- weather(poi = poi, product = "alerts", url_only = TRUE)
 }
 \references{
-\href{https://developer.here.com/documentation/destination-weather/dev_guide/topics/guide.html}{HERE Destination Weather API: Observation}
+\href{https://developer.here.com/documentation/destination-weather/api-reference-v3.html}{HERE Destination Weather API}
 }

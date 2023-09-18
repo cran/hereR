@@ -19,7 +19,6 @@
 #'
 #' suggestions <- autosuggest(address = poi$city, url_only = TRUE)
 autosuggest <- function(address, results = 5, url_only = FALSE) {
-
   # Check addresses
   .check_character(address)
   .check_numeric_range(results, 1, 100)
@@ -88,9 +87,9 @@ autosuggest <- function(address, results = 5, url_only = FALSE) {
   result <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (length(nrow(df$items)) == 0) {
           return(NULL)
         }

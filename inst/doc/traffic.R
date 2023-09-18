@@ -17,36 +17,34 @@ incidents <- hereR:::example$incident
 
 ## ----flow, eval=FALSE---------------------------------------------------------
 #  flows <- flow(
-#    aoi = aoi[aoi$code == "LI", ]
+#    aoi = aoi[1, ]
 #  )
 
 ## ----map_flow, eval=FALSE, out.width='100%'-----------------------------------
-#  flows <- flows[order(flows$JF), ]
+#  flows <- flows[order(flows$jam_factor), ]
 #  rownames(flows) <- NULL
 #  
 #  if (requireNamespace("mapview", quietly = TRUE)) {
 #    mapview::mapview(flows,
-#                     zcol = "JF",
-#                     lwd = round(flows$JF*2),
-#                     layer.name = "Jam factor",
-#                     map.types = c("Esri.WorldTopoMap"),
-#                     homebutton = FALSE
+#      zcol = "jam_factor",
+#      layer.name = "Jam factor",
+#      map.types = c("Esri.WorldTopoMap"),
+#      homebutton = FALSE
 #    )
 #  }
 
 ## ----incidents, eval=FALSE----------------------------------------------------
 #  incidents <- incident(
-#    aoi = aoi[aoi$code == "LI", ],
-#    from = Sys.time()-60*60
+#    aoi = aoi[1, ]
 #  )
 
 ## ----map_incidents, eval=FALSE, out.width='100%'------------------------------
 #  if (requireNamespace("mapview", quietly = TRUE)) {
 #    mapview::mapview(incidents,
-#                     zcol = "type",
-#                     layer.name = "Incident type",
-#                     map.types = c("Esri.WorldTopoMap"),
-#                     homebutton = FALSE
+#      zcol = "type",
+#      layer.name = "Incident type",
+#      map.types = c("Esri.WorldTopoMap"),
+#      homebutton = FALSE
 #    )
 #  }
 

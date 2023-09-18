@@ -29,10 +29,10 @@ knitr::kable(head(as.data.frame(intermodal_routes)[, colnames(intermodal_routes)
 ## ----map_int_routes, eval=FALSE, out.width='100%'-----------------------------
 #  if (requireNamespace("mapview", quietly = TRUE)) {
 #    mapview::mapview(intermodal_routes,
-#                     zcol = "mode",
-#                     layer.name = "Intermodal route",
-#                     map.types = c("Esri.WorldTopoMap"),
-#                     homebutton = FALSE
+#      zcol = "mode",
+#      layer.name = "Intermodal route",
+#      map.types = c("Esri.WorldTopoMap"),
+#      homebutton = FALSE
 #    )
 #  }
 

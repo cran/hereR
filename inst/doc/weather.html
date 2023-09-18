@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -352,10 +352,10 @@ or a <code>character</code> vector containing place names (e.g. cities).
 These POIs are passed to the <code>weather()</code> function, whereby
 the <code>product</code> parameter is set to
 <code>&quot;observation&quot;</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>observation <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;observation&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>observation <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;observation&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>)</span></code></pre></div>
 <p>The return value is an <code>sf</code> object, which contains the
 <code>POINT</code> geometries of the provided POIs and the most recent
 record on the observed weather. The measurements are taken from the
@@ -366,489 +366,1933 @@ observed weather near the example POIs:</p>
 <table>
 <thead>
 <tr>
+<th style="text-align:right;">
+id
+</th>
 <th style="text-align:left;">
-station
+city
 </th>
 <th style="text-align:right;">
 distance
 </th>
 <th style="text-align:left;">
+daylight
+</th>
+<th style="text-align:left;">
 description
 </th>
 <th style="text-align:right;">
+sky_info
+</th>
+<th style="text-align:left;">
+sky_desc
+</th>
+<th style="text-align:right;">
 temperature
+</th>
+<th style="text-align:left;">
+temperature_desc
+</th>
+<th style="text-align:left;">
+comfort
+</th>
+<th style="text-align:right;">
+high_temperature
+</th>
+<th style="text-align:right;">
+low_temperature
 </th>
 <th style="text-align:right;">
 humidity
 </th>
 <th style="text-align:right;">
-windSpeed
+dew_point
 </th>
 <th style="text-align:right;">
-windDirection
+precipitation_probability
+</th>
+<th style="text-align:right;">
+rain_fall
+</th>
+<th style="text-align:right;">
+wind_speed
+</th>
+<th style="text-align:right;">
+wind_direction
+</th>
+<th style="text-align:left;">
+wind_descr
+</th>
+<th style="text-align:left;">
+wind_descr_short
+</th>
+<th style="text-align:right;">
+uv_index
+</th>
+<th style="text-align:left;">
+uv_descr
+</th>
+<th style="text-align:right;">
+barometer_pressure
+</th>
+<th style="text-align:left;">
+barometer_trend
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align:right;">
+1
+</td>
 <td style="text-align:left;">
 Rönnimoos
 </td>
 <td style="text-align:right;">
-450
+0.45
 </td>
 <td style="text-align:left;">
-Passing clouds. Warm.
-</td>
-<td style="text-align:right;">
-29.00
-</td>
-<td style="text-align:right;">
-51
-</td>
-<td style="text-align:right;">
-5.56
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lugano
-</td>
-<td style="text-align:right;">
-670
+day
 </td>
 <td style="text-align:left;">
-Scattered clouds. Warm.
+Sprinkles. Partly sunny. Mild.
 </td>
 <td style="text-align:right;">
-30.50
-</td>
-<td style="text-align:right;">
-65
-</td>
-<td style="text-align:right;">
-7.41
-</td>
-<td style="text-align:right;">
-190
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chailly
-</td>
-<td style="text-align:right;">
-340
+14
 </td>
 <td style="text-align:left;">
-Passing clouds. Warm.
+Partly sunny
 </td>
 <td style="text-align:right;">
-29.89
-</td>
-<td style="text-align:right;">
-46
-</td>
-<td style="text-align:right;">
-20.39
-</td>
-<td style="text-align:right;">
-350
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Kleinhüningen
-</td>
-<td style="text-align:right;">
-430
+19.00
 </td>
 <td style="text-align:left;">
-Passing clouds. Pleasantly warm.
-</td>
-<td style="text-align:right;">
-29.11
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-5.56
-</td>
-<td style="text-align:right;">
-310
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Kehrsatz
-</td>
-<td style="text-align:right;">
-620
+Mild
 </td>
 <td style="text-align:left;">
-Passing clouds. Warm.
+19.00
 </td>
 <td style="text-align:right;">
-29.00
+21.5
 </td>
 <td style="text-align:right;">
-48
+14.9
 </td>
 <td style="text-align:right;">
-14.83
+73
 </td>
 <td style="text-align:right;">
-320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Zürich (Kreis 6) / Oberstrass
+14.00
 </td>
 <td style="text-align:right;">
-820
-</td>
-<td style="text-align:left;">
-Partly sunny. Warm.
+97
 </td>
 <td style="text-align:right;">
-28.00
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-9.27
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Geneva
-</td>
-<td style="text-align:right;">
-490
-</td>
-<td style="text-align:left;">
-Passing clouds. Pleasantly warm.
-</td>
-<td style="text-align:right;">
-30.28
-</td>
-<td style="text-align:right;">
-31
+0.52
 </td>
 <td style="text-align:right;">
 12.97
 </td>
 <td style="text-align:right;">
-60
+160
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1014.23
+</td>
+<td style="text-align:left;">
+Falling
 </td>
 </tr>
 <tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Alpnachstad
+</td>
+<td style="text-align:right;">
+11.18
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Sprinkles. More clouds than sun. Mild.
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+More clouds than sun
+</td>
+<td style="text-align:right;">
+18.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+18.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+16.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+12.97
+</td>
+<td style="text-align:right;">
+190
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1015.24
+</td>
+<td style="text-align:left;">
+Falling
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Stans
+</td>
+<td style="text-align:right;">
+11.74
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Light rain. Broken clouds. Mild.
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Broken clouds
+</td>
+<td style="text-align:right;">
+18.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+18.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.71
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1015.24
+</td>
+<td style="text-align:left;">
+Falling
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Lugano
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Broken clouds. Mild.
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Broken clouds
+</td>
+<td style="text-align:right;">
+21.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+21.00
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+20.00
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:right;">
+2.69
+</td>
+<td style="text-align:right;">
+7.41
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1015.24
+</td>
+<td style="text-align:left;">
+Steady
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Locarno-Magadino
+</td>
+<td style="text-align:right;">
+19.60
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Rain. Partly sunny. Mild.
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Partly sunny
+</td>
+<td style="text-align:right;">
+20.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+20.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+19.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+5.56
+</td>
+<td style="text-align:right;">
+220
+</td>
+<td style="text-align:left;">
+Southwest
+</td>
+<td style="text-align:left;">
+SW
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1014.23
+</td>
+<td style="text-align:left;">
+Steady
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Locarno-Monti
+</td>
+<td style="text-align:right;">
+23.35
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Rain. Low clouds. Mild.
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+Low clouds
+</td>
+<td style="text-align:right;">
+18.72
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+18.72
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+17.11
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+7.41
+</td>
+<td style="text-align:right;">
+280
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+W
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1015.10
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Milan / Malpensa
+</td>
+<td style="text-align:right;">
+45.13
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Broken clouds. Mild.
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Broken clouds
+</td>
+<td style="text-align:right;">
+23.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+22.75
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+20.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+16.68
+</td>
+<td style="text-align:right;">
+130
+</td>
+<td style="text-align:left;">
+Southeast
+</td>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1014.23
+</td>
+<td style="text-align:left;">
+Steady
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Chailly
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Heavy rain. Low clouds. Mild.
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+Low clouds
+</td>
+<td style="text-align:right;">
+17.11
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.11
+</td>
+<td style="text-align:right;">
+19.8
+</td>
+<td style="text-align:right;">
+16.3
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+16.28
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:right;">
+2.38
+</td>
+<td style="text-align:right;">
+3.71
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+Southeast
+</td>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1016.20
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Kleinhüningen
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Rain. Overcast. Mild.
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Overcast
+</td>
+<td style="text-align:right;">
+17.39
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.39
+</td>
+<td style="text-align:right;">
+22.4
+</td>
+<td style="text-align:right;">
+14.9
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+16.28
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+9.27
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:left;">
+Southwest
+</td>
+<td style="text-align:left;">
+SW
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1015.10
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Kehrsatz
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Light rain. More clouds than sun. Mild.
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+More clouds than sun
+</td>
+<td style="text-align:right;">
+18.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+18.00
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+13.3
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+<td style="text-align:right;">
+9.27
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1015.24
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Grenchen
+</td>
+<td style="text-align:right;">
+29.72
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Light rain. Scattered clouds. Mild.
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Scattered clouds
+</td>
+<td style="text-align:right;">
+18.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+18.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+16.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+7.41
+</td>
+<td style="text-align:right;">
+270
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+W
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1015.24
+</td>
+<td style="text-align:left;">
+Steady
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Zürich (Kreis 6) / Oberstrass
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Sprinkles. Partly sunny. Mild.
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Partly sunny
+</td>
+<td style="text-align:right;">
+19.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+19.00
+</td>
+<td style="text-align:right;">
+20.5
+</td>
+<td style="text-align:right;">
+14.6
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+9.27
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1015.24
+</td>
+<td style="text-align:left;">
+Steady
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Zurich-Kloten
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Scattered showers. Passing clouds. Mild.
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Passing clouds
+</td>
+<td style="text-align:right;">
+19.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+19.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+16.68
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1014.23
+</td>
+<td style="text-align:left;">
+Falling
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Zurich-Kloten
+</td>
+<td style="text-align:right;">
+11.34
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Rain showers. Overcast. Mild.
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Overcast
+</td>
+<td style="text-align:right;">
+17.78
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.78
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+16.28
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+5.56
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1014.50
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Geneva
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Lots of rain. Low clouds. Mild.
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+Low clouds
+</td>
+<td style="text-align:right;">
+17.11
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.11
+</td>
+<td style="text-align:right;">
+23.0
+</td>
+<td style="text-align:right;">
+12.4
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+15.78
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:right;">
+2.99
+</td>
+<td style="text-align:right;">
+14.83
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1013.70
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Geneva
+</td>
+<td style="text-align:right;">
+4.52
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Rain showers. Broken clouds. Mild.
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Broken clouds
+</td>
+<td style="text-align:right;">
+17.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+17.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+5.56
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1016.26
+</td>
+<td style="text-align:left;">
+Falling
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Annecy-meythet
+</td>
+<td style="text-align:right;">
+31.32
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Light rain. Overcast. Cool.
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Overcast
+</td>
+<td style="text-align:right;">
+16.61
+</td>
+<td style="text-align:left;">
+Cool
+</td>
+<td style="text-align:left;">
+16.61
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+15.11
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+12.97
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1015.70
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Annecy/Meythet
+</td>
+<td style="text-align:right;">
+32.61
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Light rain. Overcast. Mild.
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Overcast
+</td>
+<td style="text-align:right;">
+17.00
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+12.97
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1016.26
+</td>
+<td style="text-align:left;">
+Falling
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
 <td style="text-align:left;">
 Vaduz
 </td>
 <td style="text-align:right;">
-940
+0.94
 </td>
 <td style="text-align:left;">
-Passing clouds. Warm.
+day
+</td>
+<td style="text-align:left;">
+Rain. Overcast. Mild.
 </td>
 <td style="text-align:right;">
-28.89
+18
+</td>
+<td style="text-align:left;">
+Overcast
 </td>
 <td style="text-align:right;">
-53
+18.72
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+18.72
 </td>
 <td style="text-align:right;">
-11.12
+22.1
 </td>
 <td style="text-align:right;">
-330
+14.1
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+17.22
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+2.54
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+Northeast
+</td>
+<td style="text-align:left;">
+NE
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Minimal
+</td>
+<td style="text-align:right;">
+1014.30
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Feldkirch
+</td>
+<td style="text-align:right;">
+16.66
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Light rain. Overcast. Mild.
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Overcast
+</td>
+<td style="text-align:right;">
+19.50
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+19.50
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:right;">
+17.11
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+290
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+W
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1013.20
+</td>
+<td style="text-align:left;">
+Rising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Chur
+</td>
+<td style="text-align:right;">
+29.72
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+Rain. Overcast. Mild.
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Overcast
+</td>
+<td style="text-align:right;">
+17.78
+</td>
+<td style="text-align:left;">
+Mild
+</td>
+<td style="text-align:left;">
+17.78
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+16.78
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+7.41
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1014.00
+</td>
+<td style="text-align:left;">
+Rising
 </td>
 </tr>
 </tbody>
 </table>
 <p>Print the weather observation information on an interactive leaflet
 map:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(observation,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zcol =</span> <span class="st">&quot;temperature&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cex =</span> observation<span class="sc">$</span>humidity<span class="sc">/</span><span class="dv">4</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layer.name =</span> <span class="st">&quot;Observation&quot;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zcol =</span> <span class="st">&quot;city&quot;</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cex =</span> <span class="dv">1</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  m</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(observation,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>      <span class="at">zcol =</span> <span class="st">&quot;temperature&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>      <span class="at">cex =</span> observation<span class="sc">$</span>humidity <span class="sc">/</span> <span class="dv">10</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>      <span class="at">layer.name =</span> <span class="st">&quot;Observation&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>      <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>      <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi,</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>      <span class="at">zcol =</span> <span class="st">&quot;city&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>      <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>      <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>      <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>      <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>    )</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>  m</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="forecast" class="section level2">
 <h2>Forecast</h2>
 <p>An hourly forecast of the predicted weather for the following seven
 days can be obtained by setting the <code>product</code> parameter to
 <code>&quot;forecast_hourly&quot;</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>forecast <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;forecast_hourly&quot;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>forecast <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;forecast_hourly&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print the weather observation information on an interactive leaflet
 map with popup graphs for temperature and humidity:</p>
 <ol style="list-style-type: decimal">
 <li>Create a list containing the temperature and humidity graphs for
 every POI:</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(forecast)), <span class="cf">function</span>(x) {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    fc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">dt =</span> <span class="fu">as.POSIXct</span>(forecast<span class="sc">$</span>forecast[[x]]<span class="sc">$</span>utcTime, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%dT%H:%M:%OS&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">te =</span> <span class="fu">as.numeric</span>(forecast<span class="sc">$</span>forecast[[x]]<span class="sc">$</span>temperature),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">rh =</span> <span class="fu">as.numeric</span>(forecast<span class="sc">$</span>forecast[[x]]<span class="sc">$</span>humidity)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(fc, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> dt)) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">y =</span> te, <span class="at">colour =</span> <span class="st">&quot;Temperature&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">y =</span> rh<span class="sc">/</span><span class="dv">5</span>, <span class="at">colour =</span> <span class="st">&quot;Humidity&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> ggplot2<span class="sc">::</span><span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">*</span><span class="dv">5</span>, <span class="at">name =</span> <span class="st">&quot;Relative humidity [%]&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Air temperature [°C]&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(forecast<span class="sc">$</span>station[x]) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>, <span class="at">panel.background =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">color =</span> <span class="cn">NA</span>))</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(forecast)), <span class="cf">function</span>(x) {</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    df <span class="ot">&lt;-</span> forecast<span class="sc">$</span>forecasts[[x]]</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(df, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> time)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">y =</span> temperature, <span class="at">color =</span> <span class="st">&quot;Temperature&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">y =</span> humidity <span class="sc">/</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">&quot;Humidity&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> ggplot2<span class="sc">::</span><span class="fu">sec_axis</span>(<span class="sc">~</span> . <span class="sc">*</span> <span class="dv">5</span>, <span class="at">name =</span> <span class="st">&quot;Relative humidity [%]&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Air temperature [°C]&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(forecast<span class="sc">$</span>city[x]) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="at">panel.background =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">color =</span> <span class="cn">NA</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>  })</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>}</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Then add list of graphs to the leaflet map using the the
 <code>popup</code> parameter:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;mapview&quot;</span>, <span class="st">&quot;leafpop&quot;</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(forecast,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col.region =</span> <span class="st">&quot;yellow&quot;</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layer.name =</span> <span class="st">&quot;Weather station&quot;</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zcol =</span> <span class="st">&quot;station&quot;</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">homebutton =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">popup =</span> leafpop<span class="sc">::</span><span class="fu">popupGraph</span>(g)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zcol =</span> <span class="st">&quot;city&quot;</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cex =</span> <span class="dv">1</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layer.name =</span> <span class="st">&quot;POI&quot;</span>,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                     <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                     <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  m</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;mapview&quot;</span>, <span class="st">&quot;leafpop&quot;</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(forecast,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>      <span class="at">col.region =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>      <span class="at">layer.name =</span> <span class="st">&quot;Weather station&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>      <span class="at">zcol =</span> <span class="st">&quot;city&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>      <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>      <span class="at">homebutton =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>      <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>      <span class="at">popup =</span> leafpop<span class="sc">::</span><span class="fu">popupGraph</span>(g)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi,</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>      <span class="at">zcol =</span> <span class="st">&quot;city&quot;</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>      <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>      <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>      <span class="at">layer.name =</span> <span class="st">&quot;POI&quot;</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>      <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>      <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>    )</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>  m</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="astronomy" class="section level2">
 <h2>Astronomy</h2>
 <p>An astronomical forecast is requested by setting the
 <code>product</code> parameter to <code>&quot;forecast_astronomy&quot;</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>astronomy <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;forecast_astronomy&quot;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>astronomy <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;forecast_astronomy&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print a table for the sun and moon times of the first example POI,
 where the nearest station is ‘Emmenbrücke’:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align:left;">
-date
+time
 </th>
 <th style="text-align:left;">
-sunrise
+sun_rise
 </th>
 <th style="text-align:left;">
-sunset
+sun_set
 </th>
 <th style="text-align:left;">
-moonrise
+moon_rise
 </th>
 <th style="text-align:left;">
-moonset
+moon_set
 </th>
 <th style="text-align:left;">
-phase
+moon_phase
+</th>
+<th style="text-align:left;">
+moon_phase_description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-2022-07-24
+2023-09-18
 </td>
 <td style="text-align:left;">
-5:55AM
+07:07:00
 </td>
 <td style="text-align:left;">
-9:10PM
+19:33:00
 </td>
 <td style="text-align:left;">
-1:59AM
+10:33:00
 </td>
 <td style="text-align:left;">
-6:22PM
+20:47:00
 </td>
 <td style="text-align:left;">
-Waning crescent
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-25
-</td>
-<td style="text-align:left;">
-5:57AM
-</td>
-<td style="text-align:left;">
-9:09PM
-</td>
-<td style="text-align:left;">
-2:34AM
-</td>
-<td style="text-align:left;">
-7:22PM
-</td>
-<td style="text-align:left;">
-Waning crescent
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-26
-</td>
-<td style="text-align:left;">
-5:58AM
-</td>
-<td style="text-align:left;">
-9:07PM
-</td>
-<td style="text-align:left;">
-3:17AM
-</td>
-<td style="text-align:left;">
-8:14PM
-</td>
-<td style="text-align:left;">
-Waning crescent
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-27
-</td>
-<td style="text-align:left;">
-5:59AM
-</td>
-<td style="text-align:left;">
-9:06PM
-</td>
-<td style="text-align:left;">
-4:09AM
-</td>
-<td style="text-align:left;">
-8:57PM
-</td>
-<td style="text-align:left;">
-Waning crescent
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-28
-</td>
-<td style="text-align:left;">
-6:00AM
-</td>
-<td style="text-align:left;">
-9:05PM
-</td>
-<td style="text-align:left;">
-5:10AM
-</td>
-<td style="text-align:left;">
-9:32PM
-</td>
-<td style="text-align:left;">
-New moon
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-29
-</td>
-<td style="text-align:left;">
-6:01AM
-</td>
-<td style="text-align:left;">
-9:04PM
-</td>
-<td style="text-align:left;">
-6:15AM
-</td>
-<td style="text-align:left;">
-9:59PM
-</td>
-<td style="text-align:left;">
-New moon
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-30
-</td>
-<td style="text-align:left;">
-6:02AM
-</td>
-<td style="text-align:left;">
-9:03PM
-</td>
-<td style="text-align:left;">
-7:23AM
-</td>
-<td style="text-align:left;">
-10:22PM
-</td>
-<td style="text-align:left;">
-New moon
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2022-07-31
-</td>
-<td style="text-align:left;">
-6:04AM
-</td>
-<td style="text-align:left;">
-9:01PM
-</td>
-<td style="text-align:left;">
-8:31AM
-</td>
-<td style="text-align:left;">
-10:41PM
+0.079
 </td>
 <td style="text-align:left;">
 Waxing crescent
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-19
+</td>
+<td style="text-align:left;">
+07:09:00
+</td>
+<td style="text-align:left;">
+19:31:00
+</td>
+<td style="text-align:left;">
+11:45:00
+</td>
+<td style="text-align:left;">
+21:08:00
+</td>
+<td style="text-align:left;">
+0.141
+</td>
+<td style="text-align:left;">
+Waxing crescent
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-20
+</td>
+<td style="text-align:left;">
+07:10:00
+</td>
+<td style="text-align:left;">
+19:29:00
+</td>
+<td style="text-align:left;">
+12:59:00
+</td>
+<td style="text-align:left;">
+21:35:00
+</td>
+<td style="text-align:left;">
+0.218
+</td>
+<td style="text-align:left;">
+Waxing crescent
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-21
+</td>
+<td style="text-align:left;">
+07:11:00
+</td>
+<td style="text-align:left;">
+19:27:00
+</td>
+<td style="text-align:left;">
+14:14:00
+</td>
+<td style="text-align:left;">
+22:11:00
+</td>
+<td style="text-align:left;">
+0.310
+</td>
+<td style="text-align:left;">
+Waxing crescent
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-22
+</td>
+<td style="text-align:left;">
+07:13:00
+</td>
+<td style="text-align:left;">
+19:25:00
+</td>
+<td style="text-align:left;">
+15:25:00
+</td>
+<td style="text-align:left;">
+23:01:00
+</td>
+<td style="text-align:left;">
+0.412
+</td>
+<td style="text-align:left;">
+First Quarter
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-23
+</td>
+<td style="text-align:left;">
+07:14:00
+</td>
+<td style="text-align:left;">
+19:23:00
+</td>
+<td style="text-align:left;">
+16:26:00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+0.521
+</td>
+<td style="text-align:left;">
+First Quarter
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-24
+</td>
+<td style="text-align:left;">
+07:15:00
+</td>
+<td style="text-align:left;">
+19:21:00
+</td>
+<td style="text-align:left;">
+17:16:00
+</td>
+<td style="text-align:left;">
+00:05:00
+</td>
+<td style="text-align:left;">
+0.631
+</td>
+<td style="text-align:left;">
+Waxing gibbous
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-09-25
+</td>
+<td style="text-align:left;">
+07:17:00
+</td>
+<td style="text-align:left;">
+19:19:00
+</td>
+<td style="text-align:left;">
+17:53:00
+</td>
+<td style="text-align:left;">
+01:23:00
+</td>
+<td style="text-align:left;">
+0.738
+</td>
+<td style="text-align:left;">
+Waxing gibbous
 </td>
 </tr>
 </tbody>
@@ -858,14 +2302,14 @@ Waxing crescent
 <h2>Alerts</h2>
 <p>Current weather alerts, near provided POIs, are obtain by the product
 <code>alerts</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alerts <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;alerts&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>alerts <span class="ot">&lt;-</span> <span class="fu">weather</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">product =</span> <span class="st">&quot;alerts&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>)</span></code></pre></div>
 <p>This returns an <code>sf</code> object with the POIs and the
-attribute <code>&quot;alerts&quot;</code>, which is a <code>data.table</code>,
-which contains the current weather alerts. If no alerts are recorded
-near a POI the attribute <code>&quot;alerts&quot;</code> is <code>NULL</code>.</p>
+attribute <code>&quot;alerts&quot;</code>, which contains the current weather
+alerts. If no alerts are recorded near a POI the attribute
+<code>&quot;alerts&quot;</code> is <code>NULL</code>.</p>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>

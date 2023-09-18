@@ -21,7 +21,6 @@
 #' # Stations
 #' stations <- station(poi = poi, url_only = TRUE)
 station <- function(poi, radius = 500, results = 50, url_only = FALSE) {
-
   # Checks
   .check_points(poi)
   .check_numeric_range(radius, 1, Inf)
@@ -108,9 +107,9 @@ station <- function(poi, radius = 500, results = 50, url_only = FALSE) {
   stations <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (length(df$stations) < 1) {
           return(NULL)
         }

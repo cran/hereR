@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -349,19 +349,22 @@ package, application credentials for a HERE project must be provided.
 The HERE application credentials (API Key) can be obtained for free as
 follows:</p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://developer.here.com/">developer.here.com</a></li>
-<li>Sign up for a HERE developer account, which automatically creates a
-new project</li>
-<li>Click ‘REST: Generate APP’</li>
-<li>Click ‘Create API Key’ and copy the key</li>
+<li>Signup for the <a href="https://platform.here.com">HERE
+Platform</a></li>
+<li>Create new App using the <a href="https://platform.here.com/admin/apps?action=new-registration">Credentials
+Manager</a></li>
+<li>Select the Credentials tab, then go to “API Keys” and click “Create
+API Key”</li>
+<li>Copy the API key</li>
 </ol>
+<p>To set the key, please use:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(hereR)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">set_key</span>(<span class="st">&quot;&lt;YOUR API KEY&gt;&quot;</span>)</span></code></pre></div>
 <p>The API key is set for the current R session and will be used to
 authenticate in the requests to the HERE REST APIs (250K free
-transactions per month). To set the key, please use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hereR)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_key</span>(<span class="st">&quot;&lt;YOUR API KEY&gt;&quot;</span>)</span></code></pre></div>
-<p>Alternatively, the key can be exported directly to the environment:
-<code>export HERE_API_KEY=&quot;&lt;YOUR-KEY&gt;&quot;</code></p>
+transactions per month). Alternatively, the key can be exported directly
+to the environment:
+<code>export HERE_API_KEY=&quot;&lt;YOUR-KEY&gt;&quot;</code>.</p>
 </div>
 <div id="information-about-requests" class="section level2">
 <h2>Information about requests</h2>
@@ -369,7 +372,7 @@ transactions per month). To set the key, please use:</p>
 messages with information about the requests sent and the data received
 from to the HERE APIs. If this information should be printed for the
 current R session, use:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_verbose</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">set_verbose</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Use <code>set_Verbose(FALSE)</code> to set the <strong>hereR</strong>
 package to be quiet again.</p>
 </div>
@@ -449,8 +452,8 @@ for accounts with paid plans.</p>
 consider setting a global proxy for R. Open the R environment file
 <code>file.edit(&#39;~/.Renviron&#39;)</code> and add your proxy
 configuration:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">http_proxy</span><span class="op">=</span>http://user:passwd@proxy.dom.com:port/</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">https_proxy</span><span class="op">=</span>https://user:passwd@proxy.dom.com:port/</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="va">http_proxy</span><span class="op">=</span>http://user:passwd@proxy.dom.com:port/</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="va">https_proxy</span><span class="op">=</span>https://user:passwd@proxy.dom.com:port/</span></code></pre></div>
 <p><strong>Note:</strong> On RStudio Server this file is located at
 <code>R_HOME/etc/Renviron.site</code>.</p>
 </div>

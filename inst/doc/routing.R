@@ -34,15 +34,16 @@ knitr::kable(head(as.data.frame(routes)[, colnames(routes) != "geometry"]), form
 
 ## ----map_routes, eval=FALSE, out.width='100%'---------------------------------
 #  routes$label <- paste(origin$city[routes$id],
-#                        destination$city[routes$id],
-#                        sep =  " - ")
+#    destination$city[routes$id],
+#    sep = " - "
+#  )
 #  
 #  if (requireNamespace("mapview", quietly = TRUE)) {
 #    mapview::mapview(routes,
-#                     zcol = "label",
-#                     layer.name = "Route [O-D]",
-#                     map.types = c("Esri.WorldTopoMap"),
-#                     homebutton = FALSE
+#      zcol = "label",
+#      layer.name = "Route [O-D]",
+#      map.types = c("Esri.WorldTopoMap"),
+#      homebutton = FALSE
 #    )
 #  }
 
@@ -73,15 +74,15 @@ knitr::kable(head(mat, 10), format = "html")
 #  )
 
 ## ----map_isoline, eval=FALSE, out.width='100%'--------------------------------
-#  iso$minutes <- iso$range/60
+#  iso$minutes <- iso$range / 60
 #  
 #  if (requireNamespace("mapview", quietly = TRUE)) {
 #    mapview::mapview(iso,
-#            zcol = "minutes",
-#            layer.name = "Isoline [min]",
-#            alpha = 0,
-#            map.types = c("Esri.WorldTopoMap"),
-#            homebutton = FALSE
+#      zcol = "minutes",
+#      layer.name = "Isoline [min]",
+#      alpha = 0,
+#      map.types = c("Esri.WorldTopoMap"),
+#      homebutton = FALSE
 #    )
 #  }
 

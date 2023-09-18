@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -352,51 +352,49 @@ to be provided. The AOIs must be an <code>sf</code> object containing a
 polygon or multiple polygons. The response from the HERE Traffic API
 will be spatially joined on the AOIs and thereby the traffic flows are
 mapped to the corresponding polygon.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">flow</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">aoi =</span> aoi[aoi<span class="sc">$</span>code <span class="sc">==</span> <span class="st">&quot;LI&quot;</span>, ]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">flow</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">aoi =</span> aoi[<span class="dv">1</span>, ]</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print the (ordered) ‘jam factor’ of the traffic flow on an
 interactive leaflet map:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flows <span class="ot">&lt;-</span> flows[<span class="fu">order</span>(flows<span class="sc">$</span>JF), ]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(flows) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(flows,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">zcol =</span> <span class="st">&quot;JF&quot;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">lwd =</span> <span class="fu">round</span>(flows<span class="sc">$</span>JF<span class="sc">*</span><span class="dv">2</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">layer.name =</span> <span class="st">&quot;Jam factor&quot;</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>flows <span class="ot">&lt;-</span> flows[<span class="fu">order</span>(flows<span class="sc">$</span>jam_factor), ]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">rownames</span>(flows) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(flows,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="st">&quot;jam_factor&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="at">layer.name =</span> <span class="st">&quot;Jam factor&quot;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  )</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="incidents" class="section level2">
 <h2>Incidents</h2>
 <p>AOIs also must be provided in order to request information about
 traffic incidents in specific regions. The time interval, which defines
 the traffic incidents that should be considered, can be specitified by
-the <code>from</code> parameter. The datetime information passed to the
-function must be a timestamp of type <code>POSIXct</code>. By default,
-the time interval is defined as the last week.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>incidents <span class="ot">&lt;-</span> <span class="fu">incident</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">aoi =</span> aoi[aoi<span class="sc">$</span>code <span class="sc">==</span> <span class="st">&quot;LI&quot;</span>, ],</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">Sys.time</span>()<span class="sc">-</span><span class="dv">60</span><span class="sc">*</span><span class="dv">60</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+the <code>from</code> and <code>to</code> parameter. The datetime
+information passed to the function must be a timestamp of type
+<code>POSIXct</code>. By default, no time interval filter is set.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>incidents <span class="ot">&lt;-</span> <span class="fu">incident</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">aoi =</span> aoi[<span class="dv">1</span>, ]</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print the traffic incidents on an interactive leaflet map:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(incidents,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">zcol =</span> <span class="st">&quot;type&quot;</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">layer.name =</span> <span class="st">&quot;Incident type&quot;</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(incidents,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="st">&quot;type&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="at">layer.name =</span> <span class="st">&quot;Incident type&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  )</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>
 <ul>
-<li><a href="https://developer.here.com/documentation/traffic/dev_guide/topics_v6.1/resource-parameters-flow.html">Flow</a></li>
-<li><a href="https://developer.here.com/documentation/traffic/dev_guide/topics/resource-parameters-incidents.html">Incidents</a></li>
+<li><a href="https://developer.here.com/documentation/traffic-api/api-reference.html">Flow</a></li>
+<li><a href="https://developer.here.com/documentation/traffic-api/api-reference.html">Incidents</a></li>
 </ul>
 </div>
 

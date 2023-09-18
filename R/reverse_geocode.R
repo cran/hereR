@@ -33,7 +33,6 @@
 #' # Get addresses
 #' addresses <- reverse_geocode(poi = poi, results = 3, url_only = TRUE)
 reverse_geocode <- function(poi, results = 1, sf = TRUE, url_only = FALSE) {
-
   # Input checks
   .check_points(poi)
   .check_numeric_range(results, 1, 100)
@@ -136,9 +135,9 @@ reverse_geocode <- function(poi, results = 1, sf = TRUE, url_only = FALSE) {
   result <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (length(nrow(df$items)) == 0) {
           return(NULL)
         }

@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -360,11 +360,11 @@ row with a unified and simplified geometry.</li>
 <h3>1. Sections</h3>
 <p>Request available public transport connections as detailed
 sections:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>connection_section <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>connection_section <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>The <code>id</code> column corresponds to the row of the input
 locations (<code>origin</code> and <code>destination</code>) and the
 <code>rank</code> column enumerates the alternative routes. The maximum
@@ -430,16 +430,16 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:57:00
+2023-09-18 14:48:00
 </td>
 <td style="text-align:left;">
 ORIG
 </td>
 <td style="text-align:left;">
-2022-07-24 16:07:00
+2023-09-18 14:52:00
 </td>
 <td style="text-align:left;">
-Lausanne, Sallaz
+Lausanne, Vallonnette
 </td>
 <td style="text-align:left;">
 pedestrian
@@ -457,10 +457,10 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-577
+211
 </td>
 <td style="text-align:right;">
-600
+240
 </td>
 </tr>
 <tr>
@@ -474,37 +474,37 @@ NA
 2
 </td>
 <td style="text-align:left;">
-2022-07-24 16:07:00
+2023-09-18 14:52:00
 </td>
 <td style="text-align:left;">
-Lausanne, Sallaz
+Lausanne, Vallonnette
 </td>
 <td style="text-align:left;">
-2022-07-24 16:17:00
+2023-09-18 15:01:00
 </td>
 <td style="text-align:left;">
-Lausanne, gare
+Lausanne, St-François
 </td>
 <td style="text-align:left;">
-subway
+bus
 </td>
 <td style="text-align:left;">
-Metro Service
+Bus Service
 </td>
 <td style="text-align:left;">
-m2
+6
 </td>
 <td style="text-align:left;">
 Transports Publics de la Région Lausannoise sa
 </td>
 <td style="text-align:left;">
-Lausanne, Ouchy-Olympique
+Lausanne, Montoie
 </td>
 <td style="text-align:right;">
-2940
+3218
 </td>
 <td style="text-align:right;">
-600
+540
 </td>
 </tr>
 <tr>
@@ -518,13 +518,57 @@ Lausanne, Ouchy-Olympique
 3
 </td>
 <td style="text-align:left;">
-2022-07-24 16:17:00
+2023-09-18 15:03:00
 </td>
 <td style="text-align:left;">
-Lausanne, gare
+Lausanne, St-François
 </td>
 <td style="text-align:left;">
-2022-07-24 16:20:00
+2023-09-18 15:07:00
+</td>
+<td style="text-align:left;">
+Lausanne, Closelet
+</td>
+<td style="text-align:left;">
+bus
+</td>
+<td style="text-align:left;">
+Bus Service
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Transports Publics de la Région Lausannoise sa
+</td>
+<td style="text-align:left;">
+Lausanne, Maladière-Lac
+</td>
+<td style="text-align:right;">
+1003
+</td>
+<td style="text-align:right;">
+240
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+2023-09-18 15:07:00
+</td>
+<td style="text-align:left;">
+Lausanne, Closelet
+</td>
+<td style="text-align:left;">
+2023-09-18 15:12:00
 </td>
 <td style="text-align:left;">
 Lausanne
@@ -545,10 +589,10 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-180
+300
 </td>
 <td style="text-align:right;">
-180
+300
 </td>
 </tr>
 <tr>
@@ -559,16 +603,16 @@ NA
 1
 </td>
 <td style="text-align:right;">
-4
+5
 </td>
 <td style="text-align:left;">
-2022-07-24 16:20:00
+2023-09-18 15:13:00
 </td>
 <td style="text-align:left;">
 Lausanne
 </td>
 <td style="text-align:left;">
-2022-07-24 17:26:00
+2023-09-18 16:27:00
 </td>
 <td style="text-align:left;">
 Bern
@@ -589,10 +633,10 @@ Schweizerische Bundesbahnen SBB
 St. Gallen
 </td>
 <td style="text-align:right;">
-82104
+97030
 </td>
 <td style="text-align:right;">
-3960
+4440
 </td>
 </tr>
 <tr>
@@ -603,16 +647,16 @@ St. Gallen
 1
 </td>
 <td style="text-align:right;">
-5
+6
 </td>
 <td style="text-align:left;">
-2022-07-24 17:32:00
+2023-09-18 16:32:00
 </td>
 <td style="text-align:left;">
 Bern
 </td>
 <td style="text-align:left;">
-2022-07-24 17:43:00
+2023-09-18 16:43:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
@@ -633,77 +677,33 @@ BLS AG (bls)
 Belp
 </td>
 <td style="text-align:right;">
-8663
+8686
 </td>
 <td style="text-align:right;">
 660
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:left;">
-2022-07-24 17:43:00
-</td>
-<td style="text-align:left;">
-Kehrsatz Nord
-</td>
-<td style="text-align:left;">
-2022-07-24 17:46:00
-</td>
-<td style="text-align:left;">
-DEST
-</td>
-<td style="text-align:left;">
-pedestrian
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-203
-</td>
-<td style="text-align:right;">
-180
 </td>
 </tr>
 </tbody>
 </table>
 <p>Print the public transport sections on an interactive leaflet
 map:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(connection_section,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">layer.name =</span> <span class="st">&quot;Transport mode&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(connection_section,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    <span class="at">layer.name =</span> <span class="st">&quot;Transport mode&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  )</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="summary" class="section level3">
 <h3>2. Summary</h3>
 <p>Request a summary of the available public transport connections:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>connection_summary <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>connection_summary <span class="ot">&lt;-</span> <span class="fu">connection</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ],</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>, ],</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">summary =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -757,55 +757,13 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:57:00
+2023-09-18 14:48:00
 </td>
 <td style="text-align:left;">
-Lausanne, Sallaz
+Lausanne, Vallonnette
 </td>
 <td style="text-align:left;">
-2022-07-24 17:46:00
-</td>
-<td style="text-align:left;">
-Kehrsatz Nord
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-pedestrian, subway, pedestrian, intercityTrain, cityTrain, pedestrian
-</td>
-<td style="text-align:left;">
-Metro Service, Long Distance Trains, Suburban Railway
-</td>
-<td style="text-align:left;">
-m2, IC1, S3
-</td>
-<td style="text-align:left;">
-Transports Publics de la Région Lausannoise sa, Schweizerische
-Bundesbahnen SBB, BLS AG (bls)
-</td>
-<td style="text-align:right;">
-94667
-</td>
-<td style="text-align:right;">
-6180
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-2022-07-24 15:58:00
-</td>
-<td style="text-align:left;">
-Lausanne, Champ-Rond
-</td>
-<td style="text-align:left;">
-2022-07-24 17:46:00
+2023-09-18 16:46:00
 </td>
 <td style="text-align:left;">
 Kehrsatz Nord
@@ -814,24 +772,66 @@ Kehrsatz Nord
 3
 </td>
 <td style="text-align:left;">
-pedestrian, bus, subway, pedestrian, intercityTrain, cityTrain,
-pedestrian
+pedestrian, bus, bus, pedestrian, intercityTrain, cityTrain, pedestrian
 </td>
 <td style="text-align:left;">
-Bus Service, Metro Service, Long Distance Trains, Suburban Railway
+Bus Service, Bus Service, Long Distance Trains, Suburban Railway
 </td>
 <td style="text-align:left;">
-42, m2, IC1, S3
+6, 2, IC1, S3
 </td>
 <td style="text-align:left;">
 Transports Publics de la Région Lausannoise sa, Transports Publics de la
 Région Lausannoise sa, Schweizerische Bundesbahnen SBB, BLS AG (bls)
 </td>
 <td style="text-align:right;">
-94602
+110651
 </td>
 <td style="text-align:right;">
-5820
+6600
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+2023-09-18 14:54:00
+</td>
+<td style="text-align:left;">
+Lausanne, Georgette
+</td>
+<td style="text-align:left;">
+2023-09-18 17:40:00
+</td>
+<td style="text-align:left;">
+Wabern, Kleinwabern
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+pedestrian, bus, pedestrian, intercityTrain, cityTrain, pedestrian, bus,
+pedestrian
+</td>
+<td style="text-align:left;">
+Bus Service, Inter Regional Rail Service, Suburban Railway, Bus Service
+</td>
+<td style="text-align:left;">
+1, IR15, S3, 22
+</td>
+<td style="text-align:left;">
+Transports Publics de la Région Lausannoise sa, Schweizerische
+Bundesbahnen SBB, BLS AG (bls), Städtische Verkehrsbetriebe Bern
+</td>
+<td style="text-align:right;">
+109116
+</td>
+<td style="text-align:right;">
+9180
 </td>
 </tr>
 <tr>
@@ -842,13 +842,13 @@ Région Lausannoise sa, Schweizerische Bundesbahnen SBB, BLS AG (bls)
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:37:00
+2023-09-18 15:00:00
 </td>
 <td style="text-align:left;">
-Basel, Kleinhüningen
+Kleinhüningen
 </td>
 <td style="text-align:left;">
-2022-07-24 17:17:00
+2023-09-18 16:41:00
 </td>
 <td style="text-align:left;">
 Zürich HB
@@ -857,22 +857,22 @@ Zürich HB
 1
 </td>
 <td style="text-align:left;">
-pedestrian, lightRail, pedestrian, intercityTrain, pedestrian
+pedestrian, lightRail, pedestrian, highSpeedTrain, pedestrian
 </td>
 <td style="text-align:left;">
-Tram Service, Long Distance Trains
+Tram Service, High Speed Rail Service
 </td>
 <td style="text-align:left;">
-8, EC
+8, TGV TGV
 </td>
 <td style="text-align:left;">
 Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:right;">
-96895
+97006
 </td>
 <td style="text-align:right;">
-5640
+5880
 </td>
 </tr>
 <tr>
@@ -883,37 +883,38 @@ Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
 2
 </td>
 <td style="text-align:left;">
-2022-07-24 16:07:00
+2023-09-18 15:02:00
 </td>
 <td style="text-align:left;">
-Basel, Kleinhüningen
+Kleinhüningen
 </td>
 <td style="text-align:left;">
-2022-07-24 18:03:00
+2023-09-18 16:41:00
 </td>
 <td style="text-align:left;">
 Zürich HB
 </td>
 <td style="text-align:right;">
-1
+2
 </td>
 <td style="text-align:left;">
-pedestrian, lightRail, pedestrian, intercityTrain, pedestrian
+pedestrian, bus, pedestrian, cityTrain, highSpeedTrain, pedestrian
 </td>
 <td style="text-align:left;">
-Tram Service, Inter Regional Rail Service
+Bus Service, Suburban Railway, High Speed Rail Service
 </td>
 <td style="text-align:left;">
-8, IR36
+46, S6, TGV TGV
 </td>
 <td style="text-align:left;">
-Basler Verkehrsbetriebe, Schweizerische Bundesbahnen SBB
+Basler Verkehrsbetriebe, SBB GmbH (Grenzverkehr), Schweizerische
+Bundesbahnen SBB
 </td>
 <td style="text-align:right;">
-93407
+96896
 </td>
 <td style="text-align:right;">
-6900
+5460
 </td>
 </tr>
 </tbody>
@@ -928,31 +929,37 @@ transport stations nearby points of interest (POIs). The
 <code>results</code> specifies the maximum number of returned stations.
 The returned <code>sf</code> object contains the locations of the
 stations and the available public transport lines at the station.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">station</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radius =</span> <span class="dv">500</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">results =</span> <span class="dv">5</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">station</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="at">poi =</span> poi,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">radius =</span> <span class="dv">500</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">results =</span> <span class="dv">5</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print the POIs, the radius and stations on an interactive leaflet
 map:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>buffer <span class="ot">&lt;-</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  poi <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">2056</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_buffer</span>(<span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi, <span class="at">alpha.region =</span> <span class="dv">1</span>, <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> poi<span class="sc">$</span>city, <span class="at">layer.name =</span> <span class="st">&quot;POIs&quot;</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>), <span class="at">homebutton =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(stations, <span class="at">col.region =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label =</span> stations<span class="sc">$</span>station, <span class="at">layer.name =</span> <span class="st">&quot;Stations&quot;</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">homebutton =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(buffer, <span class="at">col.region =</span> <span class="st">&quot;transparent&quot;</span>, <span class="at">alpha.region =</span> <span class="dv">0</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layer.name =</span> <span class="st">&quot;Buffer&quot;</span>, <span class="at">homebutton =</span> <span class="cn">FALSE</span>, <span class="at">legend =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  m</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>buffer <span class="ot">&lt;-</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  poi <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">2056</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">st_buffer</span>(<span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  m <span class="ot">&lt;-</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(poi,</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>      <span class="at">alpha.region =</span> <span class="dv">1</span>, <span class="at">col.region =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>      <span class="at">label =</span> poi<span class="sc">$</span>city, <span class="at">layer.name =</span> <span class="st">&quot;POIs&quot;</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>      <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>), <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(stations,</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>      <span class="at">col.region =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>      <span class="at">label =</span> stations<span class="sc">$</span>station, <span class="at">layer.name =</span> <span class="st">&quot;Stations&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>      <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>    mapview<span class="sc">::</span><span class="fu">mapview</span>(buffer,</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>      <span class="at">col.region =</span> <span class="st">&quot;transparent&quot;</span>, <span class="at">alpha.region =</span> <span class="dv">0</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>      <span class="at">layer.name =</span> <span class="st">&quot;Buffer&quot;</span>, <span class="at">homebutton =</span> <span class="cn">FALSE</span>, <span class="at">legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>    )</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>  m</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>

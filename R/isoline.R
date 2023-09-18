@@ -40,7 +40,6 @@ isoline <- function(poi, datetime = Sys.time(), arrival = FALSE,
                     traffic = TRUE, optimize = "balanced",
                     consumption_model = NULL, aggregate = FALSE,
                     url_only = FALSE) {
-
   # Checks
   .check_points(poi)
   .check_datetime(datetime)
@@ -205,9 +204,9 @@ isoline <- function(poi, datetime = Sys.time(), arrival = FALSE,
   isolines <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (is.null(df$isolines)) {
           return(NULL)
         }

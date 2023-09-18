@@ -61,7 +61,6 @@ geocode.character <- function(address, alternatives = FALSE, sf = TRUE, url_only
 }
 
 .geocode.default <- function(address, alternatives = FALSE, sf = TRUE, url_only = FALSE, qq = FALSE) {
-
   # Input checks
   .check_boolean(alternatives)
   .check_boolean(sf)
@@ -151,9 +150,9 @@ geocode.character <- function(address, alternatives = FALSE, sf = TRUE, url_only
   geocoded <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (length(df$items) == 0) {
           geocode_failed <<- c(geocode_failed, address[count])
           return(NULL)

@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -355,12 +355,12 @@ modes, as for example car or public transport. Optionally the current or
 predicted traffic information is considered. For routes using the
 transport mode <code>&quot;car&quot;</code> a vehicle type can be specified, to
 obtain an estimate of the energy consumption on the routes.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>origin <span class="ot">&lt;-</span> poi[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>destination <span class="ot">&lt;-</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>routes <span class="ot">&lt;-</span> <span class="fu">route</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> origin,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> destination</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>origin <span class="ot">&lt;-</span> poi[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>destination <span class="ot">&lt;-</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ]</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>routes <span class="ot">&lt;-</span> <span class="fu">route</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="at">origin =</span> origin,</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="at">destination =</span> destination</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -414,10 +414,10 @@ tolls
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:53
 </td>
 <td style="text-align:left;">
-2022-07-24 17:38:26
+2023-09-18 16:56:16
 </td>
 <td style="text-align:left;">
 vehicle
@@ -426,19 +426,19 @@ vehicle
 car
 </td>
 <td style="text-align:right;">
-211765
+211768
 </td>
 <td style="text-align:right;">
-7781
+7823
 </td>
 <td style="text-align:right;">
-7581
+7362
 </td>
 <td style="text-align:right;">
-83.1847
+85.9268
 </td>
 <td style="text-align:right;">
-40.91
+44.6
 </td>
 </tr>
 <tr>
@@ -452,10 +452,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:53
 </td>
 <td style="text-align:left;">
-2022-07-24 18:31:36
+2023-09-18 17:52:27
 </td>
 <td style="text-align:left;">
 vehicle
@@ -464,37 +464,38 @@ vehicle
 car
 </td>
 <td style="text-align:right;">
-265717
+266757
 </td>
 <td style="text-align:right;">
-10971
+11194
 </td>
 <td style="text-align:right;">
-10015
+9870
 </td>
 <td style="text-align:right;">
-102.8417
+105.5051
 </td>
 <td style="text-align:right;">
-40.91
+44.6
 </td>
 </tr>
 </tbody>
 </table>
 <p>Construct a route label and print the routes on an interactive
 leaflet map:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>routes<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">paste</span>(origin<span class="sc">$</span>city[routes<span class="sc">$</span>id],</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                      destination<span class="sc">$</span>city[routes<span class="sc">$</span>id],</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sep =</span>  <span class="st">&quot; - &quot;</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(routes,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">zcol =</span> <span class="st">&quot;label&quot;</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">layer.name =</span> <span class="st">&quot;Route [O-D]&quot;</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>routes<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">paste</span>(origin<span class="sc">$</span>city[routes<span class="sc">$</span>id],</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  destination<span class="sc">$</span>city[routes<span class="sc">$</span>id],</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot; - &quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(routes,</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="st">&quot;label&quot;</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="at">layer.name =</span> <span class="st">&quot;Route [O-D]&quot;</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  )</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="matrix-routing" class="section level2">
 <h2>Matrix routing</h2>
@@ -511,16 +512,16 @@ number of overall needed requests is minimized. The return value of the
 function <code>route_matrix</code> is one route summary matrix, that
 fits the order of the provided POIs: <code>orig_id</code>,
 <code>dest_id</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From - to</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">route_matrix</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ],</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct O-D matrix (all routes between the POIs)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">route_matrix</span>(</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># From - to</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">route_matrix</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ],</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, ]</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Construct O-D matrix (all routes between the POIs)</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">route_matrix</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="at">origin =</span> poi</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>)</span></code></pre></div>
 <p>Print the first 10 rows of the matrix table, created from the POIs
 above, where the distance is in meters, the travel time in seconds and
 the consumption in cost factor units:</p>
@@ -571,10 +572,10 @@ error_code
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
 fast
@@ -603,10 +604,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 17:42:15
+2023-09-18 16:50:52
 </td>
 <td style="text-align:left;">
 fast
@@ -615,10 +616,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-173394
+176027
 </td>
 <td style="text-align:right;">
-8010
+7498
 </td>
 <td style="text-align:right;">
 0
@@ -635,10 +636,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 17:38:14
+2023-09-18 16:56:25
 </td>
 <td style="text-align:left;">
 fast
@@ -647,10 +648,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-211774
+211777
 </td>
 <td style="text-align:right;">
-7769
+7831
 </td>
 <td style="text-align:right;">
 0
@@ -667,10 +668,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 16:33:28
+2023-09-18 16:00:18
 </td>
 <td style="text-align:left;">
 fast
@@ -679,10 +680,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-99336
+100379
 </td>
 <td style="text-align:right;">
-3883
+4464
 </td>
 <td style="text-align:right;">
 0
@@ -699,10 +700,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 16:48:53
+2023-09-18 16:11:52
 </td>
 <td style="text-align:left;">
 fast
@@ -711,10 +712,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-117576
+117575
 </td>
 <td style="text-align:right;">
-4808
+5158
 </td>
 <td style="text-align:right;">
 0
@@ -731,10 +732,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 16:15:09
+2023-09-18 15:33:27
 </td>
 <td style="text-align:left;">
 fast
@@ -743,10 +744,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-55400
+54382
 </td>
 <td style="text-align:right;">
-2784
+2853
 </td>
 <td style="text-align:right;">
 0
@@ -763,10 +764,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 18:20:27
+2023-09-18 17:32:26
 </td>
 <td style="text-align:left;">
 fast
@@ -775,10 +776,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-266526
+266763
 </td>
 <td style="text-align:right;">
-10302
+9992
 </td>
 <td style="text-align:right;">
 0
@@ -795,10 +796,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 16:56:48
+2023-09-18 16:14:43
 </td>
 <td style="text-align:left;">
 fast
@@ -807,10 +808,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-131879
+132803
 </td>
 <td style="text-align:right;">
-5283
+5329
 </td>
 <td style="text-align:right;">
 0
@@ -827,10 +828,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 17:40:58
+2023-09-18 16:55:38
 </td>
 <td style="text-align:left;">
 fast
@@ -839,10 +840,10 @@ fast
 car
 </td>
 <td style="text-align:right;">
-171885
+171881
 </td>
 <td style="text-align:right;">
-7933
+7784
 </td>
 <td style="text-align:right;">
 0
@@ -859,10 +860,10 @@ car
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
-2022-07-24 15:28:45
+2023-09-18 14:45:54
 </td>
 <td style="text-align:left;">
 fast
@@ -896,28 +897,28 @@ means that the isoline polygons are intersected and the minimum range
 value (time, distance or consumption) is taken in all intersecting
 areas, then the polygons are aggregated to polygons of geometry type
 <code>MULTIPOLYGON</code>. Thereby overlapping isolines are avoided.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>iso <span class="ot">&lt;-</span> <span class="fu">isoline</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  poi,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">30</span>, <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">60</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">range_type =</span> <span class="st">&quot;time&quot;</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">routing_mode =</span> <span class="st">&quot;fast&quot;</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">transport_mode =</span> <span class="st">&quot;car&quot;</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">aggregate =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">traffic =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>iso <span class="ot">&lt;-</span> <span class="fu">isoline</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  poi,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">range =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">30</span>, <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">60</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">range_type =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">routing_mode =</span> <span class="st">&quot;fast&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">transport_mode =</span> <span class="st">&quot;car&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">aggregate =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">traffic =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>)</span></code></pre></div>
 <p>Convert range from seconds to minutes and print the aggregated
 isolines on an interactive leaflet map:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>iso<span class="sc">$</span>minutes <span class="ot">&lt;-</span> iso<span class="sc">$</span>range<span class="sc">/</span><span class="dv">60</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(iso,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">zcol =</span> <span class="st">&quot;minutes&quot;</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">layer.name =</span> <span class="st">&quot;Isoline [min]&quot;</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="dv">0</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>iso<span class="sc">$</span>minutes <span class="ot">&lt;-</span> iso<span class="sc">$</span>range <span class="sc">/</span> <span class="dv">60</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(iso,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="st">&quot;minutes&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="at">layer.name =</span> <span class="st">&quot;Isoline [min]&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="dv">0</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  )</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>

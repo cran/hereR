@@ -163,18 +163,18 @@ intermodal_route <- function(origin, destination, datetime = Sys.time(),
   routes <- data.table::rbindlist(
     append(
       list(template),
-      lapply(data, function(con) {
+      lapply(data, function(res) {
         count <<- count + 1
 
         # Parse JSON
-        df <- jsonlite::fromJSON(con)
+        df <- jsonlite::fromJSON(res)
         if (is.null(df$routes$sections)) {
           return(NULL)
         }
 
         # Connections
         rank <- 0
-        routes <- data.table::data.table(
+        data.table::data.table(
           id = ids[count],
 
           # Segments
@@ -223,10 +223,16 @@ intermodal_route <- function(origin, destination, datetime = Sys.time(),
     return(NULL)
   }
 
+  # Filter on valid geometries
+  valid_geom_mask <- !is.na(routes$geometry)
+  geometries <- routes$geometry
+  routes$geometry <- NULL
+  routes$geometry <- sf::st_sfc()
+
   # Decode flexible polyline encoding to LINESTRING
-  routes$geometry <- sf::st_geometry(
+  routes[valid_geom_mask, ]$geometry <- sf::st_geometry(
     flexpolyline::decode_sf(
-      routes$geometry, 4326
+      geometries[valid_geom_mask], 4326
     )
   )
 

@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -352,11 +352,11 @@ geometries of type <code>POINT</code> as input. Routes can be limited to
 a maximum number of allowed transfers (includes mode changes and public
 transit transfers), by specifying the <code>transfer</code>
 parameter.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Request routes</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>intermodal_routes <span class="ot">&lt;-</span> <span class="fu">route</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ],</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, ]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Request routes</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>intermodal_routes <span class="ot">&lt;-</span> <span class="fu">route</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="at">origin =</span> poi[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ],</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="at">destination =</span> poi[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, ]</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>The <code>id</code> column corresponds to the row of the input
 locations (<code>origin</code> and <code>destination</code>) and the
 <code>rank</code> column enumerates the alternative routes. The maximum
@@ -422,16 +422,16 @@ duration
 1
 </td>
 <td style="text-align:left;">
-2022-07-24 16:05:00
+2023-09-18 14:48:00
 </td>
 <td style="text-align:left;">
 ORIG
 </td>
 <td style="text-align:left;">
-2022-07-24 16:13:00
+2023-09-18 14:51:05
 </td>
 <td style="text-align:left;">
-Littau, Längweiher
+Littau Grenzhof / Luzernerstrasse
 </td>
 <td style="text-align:left;">
 pedestrian
@@ -449,10 +449,10 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-466
+184
 </td>
 <td style="text-align:right;">
-480
+185
 </td>
 </tr>
 <tr>
@@ -466,37 +466,37 @@ NA
 2
 </td>
 <td style="text-align:left;">
-2022-07-24 16:13:00
+2023-09-18 14:52:05
 </td>
 <td style="text-align:left;">
-Littau, Längweiher
+Littau Grenzhof / Luzernerstrasse
 </td>
 <td style="text-align:left;">
-2022-07-24 16:24:00
+2023-09-18 15:10:25
 </td>
 <td style="text-align:left;">
-Bahnhof
+NA
 </td>
 <td style="text-align:left;">
-transit
+rented
 </td>
 <td style="text-align:left;">
-bus
+bicycle
 </td>
 <td style="text-align:left;">
-12
+NA
 </td>
 <td style="text-align:left;">
-Verkehrsbetriebe Luzern AG
+nextbike Switzerland
 </td>
 <td style="text-align:left;">
-Luzern, Bahnhof
+NA
 </td>
 <td style="text-align:right;">
-3415
+3626
 </td>
 <td style="text-align:right;">
-660
+1100
 </td>
 </tr>
 <tr>
@@ -510,16 +510,16 @@ Luzern, Bahnhof
 3
 </td>
 <td style="text-align:left;">
-2022-07-24 16:24:00
+2023-09-18 15:11:25
 </td>
 <td style="text-align:left;">
-Bahnhof
+NA
 </td>
 <td style="text-align:left;">
-2022-07-24 16:29:00
+2023-09-18 15:12:00
 </td>
 <td style="text-align:left;">
-Luzern
+Emmenbrücke
 </td>
 <td style="text-align:left;">
 pedestrian
@@ -537,10 +537,10 @@ NA
 NA
 </td>
 <td style="text-align:right;">
-270
+34
 </td>
 <td style="text-align:right;">
-300
+35
 </td>
 </tr>
 <tr>
@@ -554,37 +554,37 @@ NA
 4
 </td>
 <td style="text-align:left;">
-2022-07-24 16:30:00
+2023-09-18 15:12:00
 </td>
 <td style="text-align:left;">
-Luzern
+Emmenbrücke
 </td>
 <td style="text-align:left;">
-2022-07-24 17:47:00
+2023-09-18 15:53:00
 </td>
 <td style="text-align:left;">
-Basel SBB
+Olten
 </td>
 <td style="text-align:left;">
 transit
 </td>
 <td style="text-align:left;">
-intercityTrain
+regionalTrain
 </td>
 <td style="text-align:left;">
-IR27
+RE
 </td>
 <td style="text-align:left;">
 Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:left;">
-Basel SBB
+Olten
 </td>
 <td style="text-align:right;">
-94766
+50787
 </td>
 <td style="text-align:right;">
-4620
+2460
 </td>
 </tr>
 <tr>
@@ -598,37 +598,37 @@ Basel SBB
 5
 </td>
 <td style="text-align:left;">
-2022-07-24 17:47:00
+2023-09-18 16:05:00
+</td>
+<td style="text-align:left;">
+Olten
+</td>
+<td style="text-align:left;">
+2023-09-18 16:32:00
 </td>
 <td style="text-align:left;">
 Basel SBB
 </td>
 <td style="text-align:left;">
-2022-07-24 17:51:00
+transit
 </td>
 <td style="text-align:left;">
-Bahnhof SBB
+intercityTrain
 </td>
 <td style="text-align:left;">
-pedestrian
+IC61
 </td>
 <td style="text-align:left;">
-pedestrian
+Schweizerische Bundesbahnen SBB
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
+Basel SBB
 </td>
 <td style="text-align:right;">
-228
+38072
 </td>
 <td style="text-align:right;">
-240
+1620
 </td>
 </tr>
 <tr>
@@ -642,50 +642,50 @@ NA
 6
 </td>
 <td style="text-align:left;">
-2022-07-24 17:53:00
+2023-09-18 16:32:00
 </td>
 <td style="text-align:left;">
-Bahnhof SBB
+Basel SBB
 </td>
 <td style="text-align:left;">
-2022-07-24 18:13:00
+2023-09-18 16:32:53
 </td>
 <td style="text-align:left;">
-Basel, Kleinhüningen
+Basel Bahnhof SBB / Central Bahnparking
 </td>
 <td style="text-align:left;">
-transit
+pedestrian
 </td>
 <td style="text-align:left;">
-lightRail
+pedestrian
 </td>
 <td style="text-align:left;">
-8
+NA
 </td>
 <td style="text-align:left;">
-Basler Verkehrsbetriebe
+NA
 </td>
 <td style="text-align:left;">
-Basel, Kleinhüningen
+NA
 </td>
 <td style="text-align:right;">
-4516
+53
 </td>
 <td style="text-align:right;">
-1200
+53
 </td>
 </tr>
 </tbody>
 </table>
 <p>Print the intermodal routes on an interactive leaflet map:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(intermodal_routes,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">layer.name =</span> <span class="st">&quot;Intermodal route&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;mapview&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(intermodal_routes,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="st">&quot;mode&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    <span class="at">layer.name =</span> <span class="st">&quot;Intermodal route&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="at">map.types =</span> <span class="fu">c</span>(<span class="st">&quot;Esri.WorldTopoMap&quot;</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="at">homebutton =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  )</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="api-reference" class="section level2">
 <h2>API Reference</h2>

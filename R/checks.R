@@ -1,5 +1,5 @@
 .check_character <- function(text) {
-  if (!is.character(text) & !is.null(text)) {
+  if (!is.character(text) && !is.null(text)) {
     stop(sprintf(
       "'%s' must be a 'character' vector.",
       deparse(substitute(text, environment()))
@@ -24,7 +24,9 @@ qualified_keys <- c(
 )
 
 .check_qualified_query_list <- function(query) {
-  if (any(names(query) %in% qualified_keys) | length(query) == 0) stop("Invalid format, needs to be 'list(query, ...)'.")
+  if (any(names(query) %in% qualified_keys) || length(query) == 0) {
+    stop("Invalid format, needs to be 'list(query, ...)'.")
+  }
 }
 
 .check_qualified_query <- function(query) {
@@ -32,9 +34,9 @@ qualified_keys <- c(
 }
 
 .check_points <- function(points) {
-  if (!"sf" %in% class(points)) {
+  if (!("sf" %in% class(points) || "sfc" %in% class(points))) {
     stop(sprintf(
-      "'%s' must be an sf object.",
+      "'%s' must be an sf or sfc object.",
       deparse(substitute(points, environment()))
     ))
   }
@@ -54,9 +56,9 @@ qualified_keys <- c(
 
 .check_polygon <- function(polygon) {
   if (!is.null(polygon)) {
-    if (!"sf" %in% class(polygon)) {
+    if (!("sf" %in% class(polygon) || "sfc" %in% class(polygon))) {
       stop(sprintf(
-        "'%s' must be an sf object.",
+        "'%s' must be an sf or sfc object.",
         deparse(substitute(polygon, environment()))
       ))
     }
@@ -66,10 +68,7 @@ qualified_keys <- c(
         deparse(substitute(polygon, environment()))
       ))
     }
-    if (!"sf" %in% class(polygon) |
-      any(!(
-        sf::st_geometry_type(polygon) %in% c("POLYGON", "MULTIPOLYGON")
-      ))) {
+    if (any(!(sf::st_geometry_type(polygon) %in% c("POLYGON", "MULTIPOLYGON")))) {
       stop(sprintf(
         "'%s' must be an sf object with geometry type 'POLYGON' or 'MULTIPOLYGON'.",
         deparse(substitute(polygon, environment()))
@@ -102,8 +101,7 @@ qualified_keys <- c(
 }
 
 .check_datetime <- function(datetime) {
-  if (!any(class(datetime) %in% c("POSIXct", "POSIXt")) &
-    !is.null(datetime)) {
+  if (!any(class(datetime) %in% c("POSIXct", "POSIXt")) && !is.null(datetime)) {
     stop(sprintf(
       "'%s' must be of type 'POSIXct', 'POSIXt'.",
       deparse(substitute(datetime, environment()))
@@ -198,7 +196,7 @@ qualified_keys <- c(
 }
 
 .check_key <- function(api_key) {
-  if (!(is.character(api_key) & api_key != "")) {
+  if (!(is.character(api_key) && api_key != "")) {
     stop(
       "Please provide an 'API key' for a HERE project.
       Get your login here: https://developer.here.com/"
@@ -207,26 +205,26 @@ qualified_keys <- c(
 }
 
 .check_weather_product <- function(product) {
-  weather_product_types <-
-    c(
-      "observation",
-      "forecast_hourly",
-      "forecast_astronomy",
-      "alerts"
-    )
-  if (!product %in% weather_product_types) {
+  product_mapping <- list(
+    observation = "observation",
+    forecast_hourly = "forecastHourly",
+    forecast_astronomy = "forecastAstronomy",
+    alerts = "alerts"
+  )
+  if (!product %in% names(product_mapping)) {
     stop(sprintf(
       "'product' must be '%s'.",
-      paste(weather_product_types, collapse = "', '")
+      paste(names(product_mapping), collapse = "', '")
     ))
   }
+  return(product_mapping[[product]])
 }
 
 .check_min_jam_factor <- function(min_jam_factor) {
   if (!is.numeric(min_jam_factor)) {
     stop("'min_jam_factor' must be of type 'numeric'.")
   }
-  if (min_jam_factor < 0 | min_jam_factor > 10) {
+  if (min_jam_factor < 0 || min_jam_factor > 10) {
     stop("'min_jam_factor' must be in the valid range from 0 to 10.")
   }
 }
@@ -236,7 +234,7 @@ qualified_keys <- c(
   if (!is.numeric(num)) {
     stop(sprintf("'%s' must be of type 'numeric'.", var_name))
   }
-  if (num < lower | num > upper) {
+  if (num < lower || num > upper) {
     stop(sprintf(
       "'%s' must be in the valid range from %s to %s.",
       var_name,
