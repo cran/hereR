@@ -20,8 +20,8 @@ Set up a valid authentication to the 'HERE' REST APIs and optionally configure a
 
 In order to use the functionality of the **hereR** package, application credentials for a HERE project must be provided. The HERE application credentials (API Key) can be obtained for free as follows:
 
-1. Signup for the [HERE Platform](https://platform.here.com)
-2. Create new App using the [Credentials Manager](https://platform.here.com/admin/apps?action=new-registration)
+1. Signup for the HERE Platform
+2. Create new App using the Credentials Manager
 3. Select the Credentials tab, then go to "API Keys" and click "Create API Key"
 4. Copy the API key
 
@@ -86,5 +86,4 @@ For overwriting the application credentials use again the `set_key()` function.
 
 ## Reference
 
-- [Sign up as developer](https://developer.here.com/sign-up?create=Freemium-Basic&keepState=true&step=account)
-- [Pricing and plans](https://developer.here.com/pricing)
+- [Pricing and plans](https://www.here.com/get-started/pricing)

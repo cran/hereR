@@ -3,7 +3,7 @@
 #' Geocodes addresses using the HERE 'Geocoding & Search API' API.
 #'
 #' @references
-#' \href{https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html}{HERE Geocoding & Search API: Geocode}
+#' \href{https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html}{HERE Geocoding & Search API: Geocode}
 #'
 #' @param address character, addresses to geocode or a list containing qualified queries with the keys "country", "state", "county", "city", "district", "street", "houseNumber" or "postalCode".
 #' @param alternatives boolean, return also alternative results (\code{default = FALSE})?
@@ -19,13 +19,11 @@
 #' If \code{sf = FALSE}, a \code{data.frame} containing the coordinates of the
 #' geocoded addresses as \code{lng}, \code{lat} columns.
 #'
-#' According to the
-#' \href{https://developer.here.com/documentation/geocoding-search-api/api-reference-swagger.html}{Geocoding
-#' and Search API Reference}, the access coordinates are "[c]oordinates of the
-#' place you are navigating to (for example, driving or walking). This is a
-#' point on a road or in a parking lot." The position coordinates are "[t]he
-#' coordinates (latitude, longitude) of a pin on a map corresponding to the
-#' searched place."
+#' According to the Geocoding and Search API Reference, the access coordinates
+#' are "[c]oordinates of the place you are navigating to (for example, driving
+#' or walking). This is a point on a road or in a parking lot." The position
+#' coordinates are "[t]he coordinates (latitude, longitude) of a pin on a map
+#' corresponding to the searched place."
 #' @export
 #'
 #' @examples

@@ -7,7 +7,7 @@
 #' The result is one route summary matrix, that fits the order of the provided POIs: \code{orig_id}, \code{dest_id}.
 #'
 #' @references
-#' \href{https://developer.here.com/documentation/matrix-routing-api/dev_guide/index.html}{HERE Matrix Routing API}
+#' \href{https://www.here.com/docs/bundle/matrix-routing-api-developer-guide/page/README.html}{HERE Matrix Routing API}
 #'
 #' @param origin \code{sf} object, the origin locations (M) of geometry type \code{POINT}.
 #' @param destination \code{sf} object, the destination locations (N) of geometry type \code{POINT}.
@@ -19,6 +19,10 @@
 #'
 #' @return
 #' A \code{data.frame}, which is an edge list containing the requested M:N route combinations.
+#'
+#' @note This feature is no longer available with new freemium keys on the HERE platform.
+#' For more details, refer to the HERE API documentation.
+#'
 #' @export
 #'
 #' @examples

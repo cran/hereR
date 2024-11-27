@@ -24,13 +24,11 @@ well-known text (WKT).
 If \code{sf = FALSE}, a \code{data.frame} containing the coordinates of the
 geocoded addresses as \code{lng}, \code{lat} columns.
 
-According to the
-\href{https://developer.here.com/documentation/geocoding-search-api/api-reference-swagger.html}{Geocoding
-and Search API Reference}, the access coordinates are "[c]oordinates of the
-place you are navigating to (for example, driving or walking). This is a
-point on a road or in a parking lot." The position coordinates are "[t]he
-coordinates (latitude, longitude) of a pin on a map corresponding to the
-searched place."
+According to the Geocoding and Search API Reference, the access coordinates
+are "[c]oordinates of the place you are navigating to (for example, driving
+or walking). This is a point on a road or in a parking lot." The position
+coordinates are "[t]he coordinates (latitude, longitude) of a pin on a map
+corresponding to the searched place."
 }
 \description{
 Geocodes addresses using the HERE 'Geocoding & Search API' API.
@@ -42,5 +40,5 @@ set_key("<YOUR API KEY>")
 locs <- geocode(address = poi$city, url_only = TRUE)
 }
 \references{
-\href{https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html}{HERE Geocoding & Search API: Geocode}
+\href{https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html}{HERE Geocoding & Search API: Geocode}
 }

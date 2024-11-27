@@ -39,6 +39,10 @@ The requested matrix is split into (sub-)matrices of dimension 15x100 to use the
 maximum matrix size per request and thereby minimize the number of overall needed requests.
 The result is one route summary matrix, that fits the order of the provided POIs: \code{orig_id}, \code{dest_id}.
 }
+\note{
+This feature is no longer available with new freemium keys on the HERE platform.
+For more details, refer to the HERE API documentation.
+}
 \examples{
 # Provide an API Key for a HERE project
 set_key("<YOUR API KEY>")
@@ -50,5 +54,5 @@ mat <- route_matrix(
 )
 }
 \references{
-\href{https://developer.here.com/documentation/matrix-routing-api/dev_guide/index.html}{HERE Matrix Routing API}
+\href{https://www.here.com/docs/bundle/matrix-routing-api-developer-guide/page/README.html}{HERE Matrix Routing API}
 }

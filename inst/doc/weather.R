@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -20,10 +20,10 @@ astronomy <- hereR:::example$weather_forecast_astronomy
 alerts <- hereR:::example$weather_alerts
 
 ## ----observations, eval = FALSE-----------------------------------------------
-#  observation <- weather(
-#    poi = poi,
-#    product = "observation"
-#  )
+# observation <- weather(
+#   poi = poi,
+#   product = "observation"
+# )
 
 ## ----table_obs, eval=TRUE, fig.align='center', out.width='100%', echo=FALSE, screenshot.force=FALSE----
 cols <- c(
@@ -36,30 +36,30 @@ cols <- c(
 knitr::kable(as.data.frame(observation)[, cols], format = "html")
 
 ## ----map_obs, eval=FALSE, out.width='100%'------------------------------------
-#  if (requireNamespace("mapview", quietly = TRUE)) {
-#    m <-
-#      mapview::mapview(observation,
-#        zcol = "temperature",
-#        cex = observation$humidity / 10,
-#        layer.name = "Observation",
-#        map.types = c("Esri.WorldTopoMap"),
-#        homebutton = FALSE
-#      ) +
-#      mapview::mapview(poi,
-#        zcol = "city",
-#        cex = 1,
-#        col.region = "black",
-#        legend = FALSE,
-#        homebutton = FALSE
-#      )
-#    m
-#  }
+# if (requireNamespace("mapview", quietly = TRUE)) {
+#   m <-
+#     mapview::mapview(observation,
+#       zcol = "temperature",
+#       cex = observation$humidity / 10,
+#       layer.name = "Observation",
+#       map.types = c("Esri.WorldTopoMap"),
+#       homebutton = FALSE
+#     ) +
+#     mapview::mapview(poi,
+#       zcol = "city",
+#       cex = 1,
+#       col.region = "black",
+#       legend = FALSE,
+#       homebutton = FALSE
+#     )
+#   m
+# }
 
 ## ----forecast, eval = FALSE---------------------------------------------------
-#  forecast <- weather(
-#    poi = poi,
-#    product = "forecast_hourly"
-#  )
+# forecast <- weather(
+#   poi = poi,
+#   product = "forecast_hourly"
+# )
 
 ## ----plots_forecast, eval=TRUE, out.width='100%'------------------------------
 if (requireNamespace("ggplot2", quietly = TRUE)) {
@@ -78,41 +78,41 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 }
 
 ## ----map_forecast, eval=FALSE, out.width='100%'-------------------------------
-#  if (requireNamespace(c("ggplot2", "mapview", "leafpop"), quietly = TRUE)) {
-#    m <-
-#      mapview::mapview(forecast,
-#        color = "black",
-#        col.region = "yellow",
-#        layer.name = "Weather station",
-#        zcol = "city",
-#        map.types = c("Esri.WorldTopoMap"),
-#        homebutton = FALSE,
-#        legend = FALSE,
-#        popup = leafpop::popupGraph(g)
-#      ) +
-#      mapview::mapview(poi,
-#        zcol = "city",
-#        cex = 1,
-#        col.region = "black",
-#        layer.name = "POI",
-#        legend = FALSE,
-#        homebutton = FALSE
-#      )
-#    m
-#  }
+# if (requireNamespace(c("ggplot2", "mapview", "leafpop"), quietly = TRUE)) {
+#   m <-
+#     mapview::mapview(forecast,
+#       color = "black",
+#       col.region = "yellow",
+#       layer.name = "Weather station",
+#       zcol = "city",
+#       map.types = c("Esri.WorldTopoMap"),
+#       homebutton = FALSE,
+#       legend = FALSE,
+#       popup = leafpop::popupGraph(g)
+#     ) +
+#     mapview::mapview(poi,
+#       zcol = "city",
+#       cex = 1,
+#       col.region = "black",
+#       layer.name = "POI",
+#       legend = FALSE,
+#       homebutton = FALSE
+#     )
+#   m
+# }
 
 ## ----astronomy, eval = FALSE--------------------------------------------------
-#  astronomy <- weather(
-#    poi = poi,
-#    product = "forecast_astronomy"
-#  )
+# astronomy <- weather(
+#   poi = poi,
+#   product = "forecast_astronomy"
+# )
 
 ## ----table_ast, eval=TRUE, fig.align='center', out.width='100%', echo=FALSE, screenshot.force=FALSE----
 knitr::kable(astronomy$forecasts[[1]], format = "html")
 
 ## ----alerts, eval = FALSE-----------------------------------------------------
-#  alerts <- weather(
-#    poi = poi,
-#    product = "alerts"
-#  )
+# alerts <- weather(
+#   poi = poi,
+#   product = "alerts"
+# )
 
